@@ -10,7 +10,7 @@ import de.gowlr.allcar.entities.*;
 import de.gowlr.allcar.repositories.*;
 
 /**
- * FilterService
+ * FilterService loool
  */
 public class FilterService {
 
