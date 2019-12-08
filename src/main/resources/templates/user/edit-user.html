@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>New User</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{header :: copy}"></div>
+
+    <div class="container mt-4">
+        <div class="cardbox p-5">
+            <h5 class="card-title text-center">Nutzerdaten bearbeiten</h5>
+            <div class="carbox-body text-center">
+                Herzlich Willkommen bei Exclusive Car Rental! Bitte geben Sie hier Ihre Daten ein, bevor Sie mit der
+                weiteren Registrierung fortfahren.
+            </div>
+            <br>
+            <form action="#" th:action="@{/users/update}" th:object="${user}" method="post">
+                <div class="form-row justify-content-md-center">
+                    <div class="form-group col-3">
+                        <label for="inputEmail4">Anrede*</label>
+                        <select id="inputState" class="form-control" th:field="*{title}" required="true">
+                            <option value="" selected>Anrede wählen..</option>
+                            <option th:value="Herr">Herr</option>
+                            <option th:value="Frau">Frau</option>
+                            <option th:value="sonstiges">sonstiges</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-3">
+                        <label for="inputEmail4">Geschlecht*</label>
+                        <select id="inputState" class="form-control" th:field="*{gender}" required="true">
+                            <option value="" selected>Geschlecht wählen..</option>
+                            <option th:value="w">weiblich</option>
+                            <option th:value="m">männlich</option>
+                            <option th:value="f">fluid</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row justify-content-md-center">
+                    <div class="form-group col-3">
+                        <label for="inputName">Name*</label>
+                        <input type="text" class="form-control" th:field="*{name}" id="inputName" placeholder="Name">
+                    </div>
+                    <div class="form-group col-3">
+                        <label for="inputVorname">Vorname*</label>
+                        <input type="text" class="form-control" th:field="*{firstname}" id="inputVorname"
+                            placeholder="Vorname">
+                    </div>
+                </div>
+                <br>
+                <div class="form-row justify-content-md-center">
+                    <div class="form-group col-5">
+                        <label for="inputStraße">Straße*</label>
+                        <input type="text" class="form-control" th:field="*{street}" id="inputStraße"
+                            placeholder="Straße">
+                    </div>
+                    <div class="form-group col-1">
+                        <label for="inputNr">Nr*</label>
+                        <input type="text" class="form-control" th:field="*{houseNumber}" id="inputNr"
+                            placeholder="Nr.">
+                    </div>
+                </div>
+                <br>
+
+                <div class="form-row justify-content-md-center">
+                    <div class="form-group col-2">
+                        <label for="inputPLZ">Postleitzahl*</label>
+                        <input type="text" class="form-control" th:field="*{postCode}" id="inputPLZ"
+                            placeholder="Postleitzahl">
+                    </div>
+                    <div class="form-group col-4">
+                        <label for="inputStadt">Stadt*</label>
+                        <input type="text" class="form-control" th:field="*{city}" id="inputStadt" placeholder="Stadt">
+                    </div>
+                </div>
+
+                <!-- <div class="form-row justify-content-md-center">
+                    <div class="form-group col-2">
+                        <label for="inputGeburtsdatum">Geburtsdatum*</label>
+                        <input type="text" class="form-control" th:field="*{birth}" id="inputGeburtsdatum" placeholder="TT.MM.JJJJ">
+                    </div>
+                    <div class="form-group col-4">
+                    </div>
+                </div> -->
+
+                <input type="hidden" th:field="*{username}" />
+                <input type="hidden" th:field="*{password}" />
+                <input type="hidden" th:field="*{role}" />
+
+                <br>
+                <br>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        * Ich bestätige hiermit, dass ich die Allgemeinen Geschäftsbedingungen von Exclusive Car Rental
+                        einschließlich der Datenschutzrichtlinien gelesen und akzeptiert habe.
+                    </label>
+                </div>
+                <br>
+                <!-- <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        Zum Newsletter anmelden
+                    </label>
+                </div>
+                <br> -->
+                <button type="submit" class="btn btn-secondary float-right">Fortfahren</button>
+                <br>
+
+            </form>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- FOOTER-->
+    <div class="fixed-bottom">
+        <div th:insert="~{footer :: copy}"></div>
+    </div>
+
+
+
+    <!-- SKRIPTE-->
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

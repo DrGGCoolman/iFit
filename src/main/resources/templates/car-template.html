@@ -1,0 +1,101 @@
+<div class="cardbox mb-3 p-4" th:fragment="copy (product)">
+  <div class="row no-gutters">
+    <div class="col-3">
+      <a th:href="@{${product.id}}">
+        <img
+        th:src="${(!product.ecPicturesById.isEmpty()) ? product.ecPicturesById.get(product.ecPicturesById.size() - 1).filePath : '/uploads/no_image.jpg'}"
+          class="card-img_own">
+      </a>
+    </div>
+
+    <div class="col-9 rechter-teil">
+      <div class="cardbox-body">
+        <h4 class="cardbox-title pb-2 pl-4"
+          th:text="${product.ecBrandByBrandId.brandTitle} + ' ' + ${product.model} + ' ' + ${product.variant}"></h4>
+          <span sec:authorize="hasRole('ADMIN')" style="color: #b1afaf">|</span>
+        <a th:href="@{'/products/edit/' + ${product.id}}" sec:authorize="hasRole('ADMIN')" style="color: #b1afaf">
+            Bearbeiten
+        </a>
+        <span sec:authorize="hasRole('ADMIN')" style="color: #b1afaf">|</span>
+        <a th:href="@{'/products/delete/' + ${product.id}}" sec:authorize="hasRole('ADMIN')" style="color: #b1afaf">
+          Löschen
+      </a>
+        <div class="row-card">
+          <div class="col-6 pl-4 tabelle">
+            <table class="table-car">
+              <tbody>
+                <tr scope="row">
+
+                  <td>
+                    <i class="fa fa-motorcycle"></i>
+                  </td>
+
+                  <td th:text="${product.powerPs} + ' PS'"></td>
+
+                  <td>
+                    <i class="fa fa-paint-brush"></i>
+                  </td>
+
+                  <td th:text="${product.bodyColor}"></td>
+                </tr>
+
+                <tr scope="row">
+
+                  <td>
+                    <i class="fa fa-battery-three-quarters"></i>
+                  </td>
+
+                  <td th:text="${product.engine}"></td>
+
+                  <td>
+                    <i class="fa fa-flag"></i>
+                  </td>
+
+                  <td th:text="${product.ecCategoryByCategoryId.title}"></td>
+                </tr>
+
+                <tr scope="row">
+
+                  <td>
+                    <i class="fa fa-tachometer"></i>
+                  </td>
+
+                  <td th:text="${product.gearingType}"></td>
+
+                  <td>
+                    <i class="fa fa-bolt"></i>
+                  </td>
+
+                  <td th:text="${product.driveSystem}"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-3 preis-buttons">
+            <div>
+              <button type="button" class="btn btn-sm btn-light" th:id="200button + ${product.id}"
+                th:onclick="|price_function(this, '${product.id}')|" style="background-color: white">>200km</button>
+              <button type="button" th:id="500button + ${product.id}" class="btn btn-sm btn-light"
+                th:onclick="|price_function(this, '${product.id}')|" style="background-color: rgb(255, 255, 255, 0.75)">>500km</button>
+            </div>
+            <div class="col">
+              <button type="button" th:id="1000button + ${product.id}" class="btn btn-sm btn-light ml-4 mt-1"
+                th:onclick="|price_function(this, '${product.id}')|" style="background-color: rgb(255, 255, 255, 0.75)">>1000km</button>
+            </div>
+          </div>
+
+          <div class="col-3 preis text-center">
+            <strong th:id="200km + ${product.id}" th:text="'Ab ' + ${#numbers.formatDecimal(product.price200,3,0)} + ',- €' + ' pro Tag'"></strong>
+              <strong th:id="500km + ${product.id}" style=" display:none" th:text="'Ab ' + ${#numbers.formatDecimal(product.price500,3,0)} + ',- €' + ' pro Tag'"></strong>
+              <strong th:id="1000km + ${product.id}" style=" display:none" th:text="'Ab ' + ${#numbers.formatDecimal(product.price1000,3,0)} + ',- €' + ' pro Tag'"></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

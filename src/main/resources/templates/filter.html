@@ -1,0 +1,127 @@
+<div th:fragment="copy(model)">
+    <!-- debug -->
+    <!-- <span th:text="${model.Category[0]}"></span> -->
+    <!-- debug -->
+
+    <div class="cardbox">
+        <div class="container">
+            <div class="categories pt-4 pb-4">
+                <form method="post" th:action="@{/products/filter}" th:object="${carFilter}">
+
+                    <a li class="list-group-wb-item main-item" href="#klasse" data-toggle="collapse">Klasse
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="list-group-wb">
+                        <li href="#" id="klasse" class="collapse list-group-wb-item pl-5"
+                            th:each=" cat: ${model.Categories}">
+                            <input class="form-check-input" th:field="*{SelectedCategories}" type="checkbox"
+                                th:value="${cat.title}" th:id="${cat.title}">
+                            <label class="form-check-label" th:for="${cat.title}" th:text="${cat.title}">
+                            </label>
+                        </li>
+                    </ul>
+
+                    <a li class="list-group-wb-item" href="#marke" data-toggle="collapse">Marke
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="list-group-wb">
+                        <li href="#" id="marke" class="collapse list-group-wb-item pl-5"
+                            th:each=" brand: ${model.Brands}">
+                            <input class="form-check-input" th:field="*{SelectedBrands}" type="checkbox"
+                                th:value="${brand.brandTitle}" th:id="${brand.brandTitle}">
+                            <label class="form-check-label" th:for="${brand.brandTitle}" th:text="${brand.brandTitle}">
+
+                            </label>
+                        </li>
+                    </ul>
+
+                    <a li class="list-group-wb-item" href="#getriebe" data-toggle="collapse">Getriebe
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+
+                    <ul class="list-group-wb">
+                        <li href="#" id="getriebe" class="collapse list-group-wb-item pl-5"
+                            th:each=" getriebe: ${model.Transmissions}">
+                            <input class="form-check-input" th:field="*{SelectedTransmissions}" type="checkbox"
+                                th:value="${getriebe}" th:id="${getriebe}">
+                            <label class="form-check-label" th:for="${getriebe}" th:text="${getriebe}">
+
+                            </label>
+                        </li>
+                    </ul>
+
+                    <a li class="list-group-wb-item" href="#baujahr" data-toggle="collapse">Baujahr
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="list-group-wb">
+                        <li href="#" id="baujahr" class="collapse list-group-wb-item pl-5">
+                            <div class="row">
+                                <input type="number" th:field="*{SelectedYearFrom}"
+                                    class="form-control-sm col-lg-6 col-sm-12" th:value="${model.YearFrom}">
+                                <input type="number" th:field="*{SelectedYearTo}"
+                                    class="form-control-sm col-lg-6 col-sm-12" th:value="${model.YearTo}">
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a li class="list-group-wb-item" href="#leistung" data-toggle="collapse">Mindestleistung
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="list-group-wb">
+                        <li href="#" id="leistung" class="collapse list-group-wb-item pl-5">
+                            <div class="row">
+                                <input type="number" th:field="*{SelectedPowerMin}" class="form-control-sm col-12"
+                                    th:value="0">
+                            </div>
+                        </li>
+                    </ul>
+
+                    <a li class="list-group-wb-item" href="#antrieb" data-toggle="collapse">Antrieb
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="list-group-wb">
+                        <li href="#" id="antrieb" class="collapse list-group-wb-item pl-5"
+                            th:each=" antrieb: ${model.DriveSystems}">
+                            <input class="form-check-input" th:field="*{SelectedDriveSystems}" th:name="${antrieb}"
+                                type="checkbox" th:value="${antrieb}" th:id="${antrieb}">
+                            <label class="form-check-label" th:for="${antrieb}" th:text="${antrieb}">
+                            </label>
+                        </li>
+                    </ul>
+
+
+
+                    <a li class="list-group-wb-item" href="#kraftstoff" data-toggle="collapse">Kraftstoff
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="list-group-wb">
+                        <li href="#" id="kraftstoff" class="collapse list-group-wb-item pl-5"
+                            th:each=" fuel: ${model.Fuels}">
+                            <input class="form-check-input" th:field="*{SelectedFuels}" th:name="${fuel}"
+                                type="checkbox" th:value="${fuel}" th:id="${fuel}">
+                            <label class="form-check-label" th:for="${fuel}" th:text="${fuel}">
+                            </label>
+                        </li>
+                    </ul>
+
+                    <a li class="list-group-wb-item" href="#fahreralter" data-toggle="collapse">Fahreralter
+                        <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="list-group-wb">
+                        <li href="#" id="fahreralter" class="collapse list-group-wb-item pl-5">
+                            <select th:field="*{SelectedDriverAge}" id="DriverAgeMin">
+                                <option th:value="${age}" th:text="${age}" th:each="age : ${#lists.sort(model.DriverAges)}"></option>
+                            </select>
+                        </li>
+
+                    </ul>
+                    <br>
+
+                    </ul>
+                    <input class="btn btn-secondary w-100" type="submit" value="Submit" />
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

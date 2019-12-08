@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Fahrzeuge</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- <script src="../scripts/script.js"></script> -->
+</head>
+
+<body>
+
+    <div th:insert="~{header :: copy}"></div>
+
+    <div class="rent bg-main">
+
+
+        <div class="container col-11">
+            <div class="row">
+
+                <div class="col-2 mt-4" th:href="@{/product-detail{/id}}"
+                    th:insert="~{filter :: copy(model=${carFilter})}"></div>
+                <div class="col-10 mt-4">
+                    <div th:switch="${productTypes}">
+                        <div th:case="null">
+                            <span>Keine Produkte gefunden</span>
+                        </div>
+                        <div th:case="*">
+                            <div th:each="product : ${productTypes}">
+                                <div th:insert="~{car-template :: copy(${product})}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TODO: Auslagern  -->
+                    <script>
+
+                        function price_function(e, id) {
+                            // debugger;
+                            var x = document.getElementById("200km".concat(id));
+                            var y = document.getElementById("500km".concat(id));
+                            var z = document.getElementById("1000km".concat(id));
+                            var x1 = document.getElementById("200button".concat(id));
+                            var y1 = document.getElementById("500button".concat(id));
+                            var z1 = document.getElementById("1000button".concat(id));
+                            if (e.id === "200button".concat(id)) {
+                                x.style.display = "block";
+                                y.style.display = "none";
+                                z.style.display = "none";
+                                x1.style.backgroundColor = "white";
+                                y1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                z1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                            } else if (e.id === "500button".concat(id)) {
+                                x.style.display = "none";
+                                y.style.display = "block";
+                                z.style.display = "none";
+                                x1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                y1.style.backgroundColor = "white";
+                                z1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                            } else if (e.id === "1000button".concat(id)) {
+                                x.style.display = "none";
+                                y.style.display = "none";
+                                z.style.display = "block";
+                                x1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                y1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                z1.style.backgroundColor = "white";
+                            }
+                        };
+                    </script>
+                    
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER-->
+        
+            <div th:insert="~{footer :: copy}"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+
+</body>
+
+</html>

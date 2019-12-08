@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Exclusive Car Rental | Product-Details</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{header :: copy}"></div>
+
+    <br>
+
+    <div class="container">
+        <div class="cardbox p-4">
+            <h3 class="text-white"
+                th:text="${product.ecBrandByBrandId.brandTitle} + ' ' + ${product.model} + ' ' + ${product.variant}">
+            </h3>
+            <br>
+            <div class="cardbox-body">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <img th:src="${(!product.ecPicturesById.isEmpty()) ? product.ecPicturesById.get(product.ecPicturesById.size() - 1).filePath : '/uploads/no_image.jpg'}"
+                            class="w-100" alt="...">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-7 p-4">
+                                <table class="table-car">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>Farbe</b>
+                                            </td>
+                                            <td class="pl-2" th:text="${product.bodyColor}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>Leistung</b></td>
+                                            <td class="pl-2" th:text="${product.powerPs} + ' PS'"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>Motor</b></td>
+                                            <td class="pl-2" th:text="${product.engine}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>Antrieb</b></td>
+                                            <td class="pl-2" th:text="${product.driveSystem}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>0 - 100</b></td>
+                                            <td class="pl-2" th:text="${product.zeroToHundred}+ ' s'"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>Getriebe</b></td>
+                                            <td class="pl-2" th:text="${product.gearingType}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>Jahr</b></td>
+                                            <td class="pl-2" th:text="${product.age}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>Sitze</b></td>
+                                            <td class="pl-2" th:text="${product.seats}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">
+                                            </th>
+                                            <td>
+                                                <b>Mindestalter</b></td>
+                                            <td class="pl-2" th:text="${product.minimumAge}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-5 p-4">
+                                <div class="row">
+                                    <div class="span12">
+                                        <script>/**
+                        * Ist ein Datum g�ltig
+                        * @param y: Jahr
+                        * @param m: Monat
+                        * @param d: Tag
+                        * @return true = g�ltig, false = ung�ltig
+                        */
+                                            function isValidDate(y, m, d) {
+                                                //--Gibt Datum des letzten Tag des Monats aus--
+                                                var thisDate = new Date(y, m, 1);
+                                                //einen Tag weiter schalten
+                                                thisDate.setMonth(thisDate.getMonth() + 1);
+                                                //vom ersten Tag des n�chsten monats
+                                                //ein Tag abziehen
+                                                thisDate.setTime(thisDate.getTime() - 12 * 3600 * 1000);
+
+                                                if (d > thisDate.getDate()) { return false; }
+                                                else { return true; }
+                                            }
+                                            /**
+                                            * ermittelt den letzten Tag des aktuellen Monats
+                                            * @return: gibt letzten Tag zur�ck
+                                            */
+                                            function getLastDayOfMonth() {
+                                                var d = getDateFromMemory();
+                                                //einen Tag weiter schalten
+                                                d.setMonth(d.getMonth() + 1);
+                                                //den ersten des Monats setzen
+                                                d.setDate(1);
+                                                //vom ersten Tag des n�chsten monats
+                                                //ein Tag abziehen
+                                                d.setTime(d.getTime() - 12 * 3600 * 1000);
+                                                return d.getDate();
+                                            }
+                                            /**
+                                            * �bernimmt das angeklickte Datum in das Ausgabeelement
+                                            * @param n: Kalendertag zum Kombinieren mit Monat und Jahr
+                                            */
+                                            function putDate(n) {
+                                                var d = getDateFromMemory();
+                                                d.setDate(n);
+
+
+                                                var returnValue;
+                                                if (returnModus == 0) //Datum zur�ckgeben
+                                                { returnValue = d.getDate() + '.' + (d.getMonth() + 1) + '.' + d.getFullYear(); }
+                                                else {
+                                                    returnValue = getEventtext(d.getFullYear(), d.getMonth(), d.getDate());
+                                                    if (!returnValue) { returnValue = 'kein Event!'; }
+                                                }
+
+                                                document.forms['myform'].elements['datum'].value = returnValue;
+                                            }
+                                            /**
+                                            * setzt das �bergebene Datum in die Speicherzelle
+                                            * @param d: datum zum schreiben in die Speicherzelle
+                                            */
+                                            function setDateToMemory(d) {
+                                                document.all.date_memory.innerHTML = d.getFullYear() + ',' + (d.getMonth() + 1) + ',' + d.getDate();
+                                            }
+                                            /**
+                                            * Gibt das Datum aus der Speicherzelle zur�ck
+                                            * @return: datum in Date format
+                                            */
+                                            function getDateFromMemory() {
+                                                var s = document.all.date_memory.innerHTML;
+                                                var z = s.split(',');
+                                                return new Date(z[0], z[1] - 1, z[2]);
+                                            }
+                                            /**
+                                            * schaltet einen Monat Weiter
+                                            */
+                                            function nextMonth() {
+                                                // debugger;
+                                                var d = getDateFromMemory();
+                                                var m = d.getMonth() + 1;
+                                                var y = d.getFullYear();
+                                                //Falls Jahres wechsel
+                                                if ((m + 1) > 12) {
+                                                    m = 0;
+                                                    y = y + 1;
+                                                }
+                                                d = new Date(y, m, 01);
+                                                setDateToMemory(d);
+                                                loadcalendar();
+                                            }
+                                            /**
+                                            * schaltet einen Monat zur�ck
+                                            */
+                                            function prevMonth() {
+                                                var d = getDateFromMemory();
+                                                var m = d.getMonth() + 1;
+                                                var y = d.getFullYear();
+
+                                                //Falls Jahres1wechsel
+                                                if ((m - 1) < 1) {
+                                                    m = 11;
+                                                    y = y - 1;
+                                                }
+                                                else {
+                                                    m = m - 2;
+                                                }
+                                                d = new Date(y, m, 01);
+                                                setDateToMemory(d);
+
+                                                loadcalendar();
+                                            }
+                                            /**
+                                            * zum erstmaligen aufrufen des Kalenders
+                                            */
+                                            function iniCalendar() {
+                                                //heutiges Datum setzen
+                                                var d = new Date();
+                                                //aktuelles Datum speichern
+                                                setDateToMemory(d);
+                                                //Calender laden
+                                                loadcalendar();
+                                            }
+                                            /**
+                                            *	L�d die Tabelle mit dem �bergebenen Datum (Monat)
+                                            */
+                                            function loadcalendar() {
+                                                //aktuelles Datum holen (1. des Monats)
+                                                var d = getDateFromMemory();
+                                                //Monat ermitteln aus this_date (z�hlen beginnt bei 0, daher +1)
+                                                var m = d.getMonth();
+                                                //Jahr ermitteln aus this_date (YYYY)
+                                                var y = d.getFullYear();
+                                                //Monat und Jahr eintragen
+                                                document.all.calendar_month.innerHTML = getMonthname(m + 1) + ' ' + y;
+                                                //ersten Tag des Monats festlegen
+                                                var firstD = d;
+                                                firstD.setDate(1);
+                                                //Wochentag ermitteln vom 1. des �bergebenen Monats (Wochentag aus firstD)
+                                                var dateDay = firstD.getDay(); //So = 0, Mo = 1 ... Sa = 6
+                                                //Sonntag soll den Wert 7 darstellen -> Mo = 1 ... So = 7
+                                                dateDay = (dateDay == 0) ? 7 : dateDay;
+                                                //Speicher f�r aktuelle Zelle
+                                                var entry = '';
+                                                //Speicher f�r aktuellen Tag
+                                                var zahl = '';
+                                                //heutiges Datum ermitteln
+                                                var hD = new Date();
+                                                //ist event 
+                                                //falls event, dann darf der Rahmen
+                                                //nicht vom isHolyday �berschrieben werden
+                                                var bEvent = false;
+
+                                                //Alle Kalender Spalten durchz�hlen
+                                                for (var i = 1; i <= 42; i++) {
+                                                    bEvent = false;
+                                                    //holen der aktuellen Zelle
+                                                    entry = document.getElementById('calendar_entry_' + i);
+                                                    //errechnen der Tages Zahl
+                                                    zahl = (i + 1) - dateDay;
+                                                    //datum zusammenschreiben
+                                                    var dx = new Date(y, m, zahl);
+
+                                                    //Eintragen der Daten ab ersten Tag im Monat und wenn es ein g�ltiges Datum ist
+                                                    if (i >= dateDay && isValidDate(y, m, zahl)) {
+                                                        // debugger;
+                                                        entry.innerHTML = '<div class=calendar_link href=javascript:putDate(' + zahl + ')>' + zahl + '</div>';
+                                                        entry.hidden = false;
+                                                        entry.style.visibility = 'visible';
+                                                        entry.style.backgroundColor = 'rgb(69, 121, 69, 0.8)';
+                                                        entry.style.fontWeight = 'normal';
+                                                        //Wenn Tag ein Feiertag ist
+                                                        if (isHoliday(m, zahl)) {
+                                                            entry.style.color = "grey";
+                                                            entry.style.backgroundColor = 'rgb(95, 35, 43, 0.8)';
+                                                            entry.style.textDecoration = 'line-through';
+                                                        }
+                                                        else {
+                                                            if (!bEvent)
+                                                                entry.style.color = 'white'
+                                                            entry.style.textDecoration = 'none';
+                                                        }
+
+                                                        //heutiges Datum hervorheben			
+                                                        if (hD.getDate() == dx.getDate() &&
+                                                            hD.getMonth() == dx.getMonth() &&
+                                                            hD.getYear() == dx.getYear()) {
+                                                            entry.style.fontWeight = 'bold';
+                                                        }
+
+
+                                                    }
+                                                    else {
+                                                        entry.innerHTML = '';
+                                                        entry.style.backgroundColor = 'rgb(81, 82, 102, 0)';
+                                                        if (i >= dateDay) {//Wenn Kalenderende
+                                                            //Zelle = hidden
+                                                            entry.hidden = true;
+                                                            entry.style.border = '0px';
+                                                        }
+                                                        else {//Wenn Kalenderanfang
+                                                            //Border-width = 0px
+                                                            entry.style.border = '0px';
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+
+                                            /**
+                                            * Ist das Angegebene Datum ein Feiertag?
+                                            * @param m : Monat
+                                            * @param d : Tag
+                                            */
+                                            function isHoliday(m, d) {
+                                                //Monate fangen bei 0 an zuz�hlen
+                                                m++;
+                                                //festlegen der Feiertage
+                                                var h = new Array(47);
+                                                h[0] = "1.1";
+                                                h[1] = "6.1";
+                                                h[2] = "23.1";
+                                                h[3] = "29.1";
+                                                h[4] = "2.2";
+                                                h[5] = "7.2";
+                                                h[6] = "12.2";
+                                                h[7] = "1.3";
+                                                h[8] = "2.3";
+                                                h[9] = "3.3";
+                                                h[10] = "4.3";
+                                                h[11] = "12.4";
+                                                h[12] = "13.4";
+                                                h[13] = "20.4";
+                                                h[14] = "31.4";
+                                                h[15] = "1.5";
+                                                h[16] = "2.5";
+                                                h[17] = "3.5";
+                                                h[18] = "4.5";
+                                                h[19] = "12.5";
+                                                h[20] = "21.5";
+                                                h[21] = "1.6";
+                                                h[22] = "7.6";
+                                                h[23] = "12.6";
+                                                h[24] = "1.7";
+                                                h[25] = "12.7";
+                                                h[26] = "13.7";
+                                                h[27] = "21.7";
+                                                h[28] = "23.7";
+                                                h[29] = "17.8";
+                                                h[30] = "18.8";
+                                                h[31] = "22.8";
+                                                h[32] = "1.9";
+                                                h[33] = "2.9";
+                                                h[34] = "28.9";
+                                                h[35] = "29.9";
+                                                h[36] = "30.9";
+                                                h[37] = "11.11";
+                                                h[38] = "24.12";
+                                                h[39] = "25.12";
+                                                h[40] = "26.12";
+                                                h[41] = "27.12";
+                                                h[42] = "28.12";
+                                                h[43] = "29.12";
+                                                h[44] = "30.12";
+                                                h[45] = "31.12";
+                                                h[46] = "10.12";
+                                                h[47] = "11.12";
+                                                h[48] = "24.10";
+                                                h[49] = "25.10";
+                                                h[50] = "26.10";
+                                                h[51] = "27.10";
+                                                h[52] = "28.10";
+                                                h[53] = "29.10";
+                                                h[54] = "30.10";
+                                                h[55] = "31.10";
+                                                h[56] = "10.10";
+                                                h[57] = "11.10";
+
+                                                var iD;
+                                                //Alle Daten Testen
+                                                for (var i = 0; i < h.length; i++) {
+                                                    iH = h[i].split(".");
+
+                                                    if (iH[0] == d && iH[1] == m) {
+                                                        return true;
+                                                    }
+                                                }
+                                                //Wenn kein Feiertag gefunden
+                                                return false;
+
+                                            }
+
+                                            /**
+                                             * regelt welche R�ckgabe erfolgt.
+                                             * 0 = geklicktes Datum wird zur�ckgegeben.
+                                             * 1 = Veranstaltungstext aus getEventtext() 
+                                             * 		wird zur�ckgegeben.
+                                             */
+                                            var returnModus = 0;
+
+                                            /**
+                                             * Setzt die Art der R�ckgabe bei, Datums-klick
+                                             * @param returnIndex:
+                                             * 		0 = geklicktes Datum zur�ckgeben
+                                             * 		1 = event aus getEventtext()
+                                             */
+                                            function setReturnModus(returnIndex) { returnModus = returnIndex; }
+
+                                            /**
+                                            * Gibt den Monatsnamen anhand der Monatsnummer zur�ck
+                                            *@param monthnumber: Monatsnummer (1-12)
+                                            */
+                                            function getMonthname(monthnumber) {
+                                                switch (monthnumber) {
+                                                    case 1:
+                                                        return 'Januar';
+                                                        break;
+                                                    case 2:
+                                                        return 'Februar';
+                                                        break;
+                                                    case 3:
+                                                        return 'März';
+                                                        break;
+                                                    case 4:
+                                                        return 'April';
+                                                        break;
+                                                    case 5:
+                                                        return 'Mai';
+                                                        break;
+                                                    case 6:
+                                                        return 'Juni';
+                                                        break;
+                                                    case 7:
+                                                        return 'Juli';
+                                                        break;
+                                                    case 8:
+                                                        return 'August';
+                                                        break;
+                                                    case 9:
+                                                        return 'September';
+                                                        break;
+                                                    case 10:
+                                                        return 'Oktober';
+                                                        break;
+                                                    case 11:
+                                                        return 'November';
+                                                        break;
+                                                    case 12:
+                                                        return 'Dezember';
+                                                        break;
+                                                    default:
+                                                        return '---';
+                                                }
+                                            }</script>
+                                        <div class="calendar">
+                                            <table id='calendar'>
+                                                <tr style='visibility:collapse;' hidden>
+                                                    <td colspan=7 id='date_memory'>---</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='calendar_head'><a class='calendar_link'
+                                                            href='javascript:prevMonth()'> &laquo;</a></td>
+                                                    <td colspan=5 class='calendar_head_month' id='calendar_month'>
+                                                        ---</td>
+                                                    <td class='calendar_head'><a class='calendar_link'
+                                                            href='javascript:nextMonth()'> &raquo;</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='calendar_day'>Mo</td>
+                                                    <td class='calendar_day'>Di</td>
+                                                    <td class='calendar_day'>Mi</td>
+                                                    <td class='calendar_day'>Do</td>
+                                                    <td class='calendar_day'>Fr</td>
+                                                    <td class='calendar_day'>Sa</td>
+                                                    <td class='calendar_day'>So</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='calendar_entry' id='calendar_entry_1'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_2'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_3'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_4'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_5'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_6'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_7'>-x-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='calendar_entry' id='calendar_entry_8'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_9'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_10'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_11'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_12'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_13'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_14'>-x-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='calendar_entry' id='calendar_entry_15'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_16'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_17'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_18'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_19'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_20'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_21'>-x-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='calendar_entry' id='calendar_entry_22'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_23'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_24'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_25'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_26'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_27'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_28'>-x-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='calendar_entry' id='calendar_entry_29'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_30'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_31'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_32'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_33'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_34'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_35'>-x-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class='calendar_entry' id='calendar_entry_36'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_37'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_38'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_39'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_40'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_41'>-x-</td>
+                                                    <td class='calendar_entry' id='calendar_entry_42'>-x-</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <script type='text/javascript'>
+                                            iniCalendar();
+
+                                            /0 = wie bisher, Datum wird in die Box geschrieben/
+                                                    // setReturnModus(1);
+                                            /*1 = neu, Eventtext wird in die Box geschrieben
+                                            Das event muss in der calendar.js in der Function
+                                            getEventtext definiert werden.*/
+                                                    //setReturnModus(1);
+                                        </script>
+
+
+                                        <br />
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" th:id="200button + ${product.id}" class="btn btn-light"
+                                    th:onclick="|price_function(this, '${product.id}')|"
+                                    style="background-color: white">>200km</button>
+                            </div>
+                            <div class="col">
+                                <button type="button" th:id="500button + ${product.id}" class="btn btn-light"
+                                    th:onclick="|price_function(this, '${product.id}')|"
+                                    style="background-color: rgb(255, 255, 255, 0.75)">>500km</button>
+                            </div>
+                            <div class="col">
+                                <button type="button" th:id="1000button + ${product.id}" class="btn btn-light"
+                                    th:onclick="|price_function(this, '${product.id}')|"
+                                    style="background-color: rgb(255, 255, 255, 0.75)">>1000km</button>
+                            </div>
+                            <div class="col-3 text-center">
+                                <strong th:id="200km + ${product.id}" th:text="'Ab ' + ${#numbers.formatDecimal(product.price200,3,0)} + ',- €' + ' pro Tag'"></strong>
+                                    <strong th:id="500km + ${product.id}" style=" display:none" th:text="'Ab ' + ${#numbers.formatDecimal(product.price500,3,0)} + ',- €' + ' pro Tag'"></strong>
+                                    <strong th:id="1000km + ${product.id}" style=" display:none" th:text="'Ab ' + ${#numbers.formatDecimal(product.price1000,3,0)} + ',- €' + ' pro Tag'"></strong>
+                            </div>
+                            <!-- TODO: Auslagern  -->
+                            <script>
+
+                                function price_function(e, id) {
+                                    // debugger;
+                                    var x = document.getElementById("200km".concat(id));
+                                    var y = document.getElementById("500km".concat(id));
+                                    var z = document.getElementById("1000km".concat(id));
+                                    var x1 = document.getElementById("200button".concat(id));
+                                    var y1 = document.getElementById("500button".concat(id));
+                                    var z1 = document.getElementById("1000button".concat(id));
+                                    if (e.id === "200button".concat(id)) {
+                                        x.style.display = "block";
+                                        y.style.display = "none";
+                                        z.style.display = "none";
+                                        x1.style.backgroundColor = "white";
+                                        y1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                        z1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                    } else if (e.id === "500button".concat(id)) {
+                                        x.style.display = "none";
+                                        y.style.display = "block";
+                                        z.style.display = "none";
+                                        x1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                        y1.style.backgroundColor = "white";
+                                        z1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                    } else if (e.id === "1000button".concat(id)) {
+                                        x.style.display = "none";
+                                        y.style.display = "none";
+                                        z.style.display = "block";
+                                        x1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                        y1.style.backgroundColor = "rgb(255, 255, 255, 0.75)";
+                                        z1.style.backgroundColor = "white";
+                                    }
+                                };
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="cardbox">
+            <div class="cardbox-body text-center pt-4">
+                <h5>
+                    <a data-toggle="collapse" data-target="#collapseExample" id="footerbutton" aria-expanded="false"
+                        aria-controls="collapseExample">
+                        <h5>
+                            <i class="fa fa-angle-down" id="detailsbutton"></i> Details <i class="fa fa-angle-down"></i>
+                        </h5>
+                    </a>
+                </h5>
+            </div>
+
+            <div class="cardbox-body collapse m-4" id="collapseExample">
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Gewicht</b>
+                            <br th:text="${#numbers.formatDecimal(product.weightKg,3,0)} + ' Kg'">
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            <b>Hubraum</b>
+                            <br th:text="${product.cubicCapacityCm3} + ' Liter'">
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            <b>Drehmoment</b>
+                            <br th:text="${#numbers.formatDecimal(product.nm,3,0)} + ' nm'">
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            <b>Massagesitze</b>
+                            <td th:switch="${product.massageSeats}">
+                                <br th:case="true" th:text="Ja">
+                                <br th:case="false" th:text="Nein">  
+                            </td>
+                            
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            <b>Innenraumfarbe</b>
+                            <br th:text="${product.bodyColor}">
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <b>Türen</b>
+                            <br th:text="${product.doors}">
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            <b>Kraftstoff</b>
+                            <br th:text="${product.fuelType}">
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            <b>Zusatzfahrer</b>
+                            <td th:switch="${product.addDriver}">
+                                    <br th:case="true" th:text="Ja">
+                                    <br th:case="false" th:text="Nein">  
+                            </td>
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            <b>Polstermaterial</b>
+                            <br th:text="${product.upholstery}">
+                        </p>
+                    </div>
+                    <div class="col">
+                        <p>
+                            <b>Rückenlehnendisplay</b>
+                            <td th:switch="${product.displaysRear}">
+                                    <br th:case="true" th:text="Ja">
+                                    <br th:case="false" th:text="Nein">  
+                            </td>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER-->
+    <br>
+    <br>
+    <div class="fixed-bottom" id="footer1">
+        <div th:insert="~{footer :: copy}"></div>
+    </div>
+
+
+    <!-- SKRIPTE-->
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

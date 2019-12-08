@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Exclusive Car Rental | Home</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{header :: copy}"></div>
+
+    <br>
+
+    <!-- KATEGORIEN START-->
+
+    <div class="container">
+        <div class="container">
+            <form method="post" th:action="@{/products/filter}" th:object="${carFilter}">
+                <div class="row pt-2">
+                    <a th:href="@{../products/showFilter}" class="col-lg-3 col-md-6 p-0" id="jumbo-sport">
+                        <div class="jumbotron jumbotron-sport">
+                            <div class="overlay">
+                                <div class="row">
+                                    <div class="col-8 text category p-4" id="text-sport">
+                                        <h1 class="main-ecr text-uppercase">Sport</h1>
+                                        <br>
+                                        <p class="text-white">
+                                            Für ein außergewöhnliches Fahrerlebnis benötigen Sie unseren einen
+                                            leistungsstarken
+                                            und speziellen Wagen. Sportliche Motoren und eine hochwertige
+                                            Ausstattung
+                                            sorgen
+                                            für
+                                            ein unvergleichliches Fahrerlebnis. Mit etwas weniger Gepäckraum passen
+                                            bis
+                                            zu
+                                            zwei
+                                            mittelgroße Koffer und sind perfekt für zwei Personen.
+                                        </p>
+                                        <br>
+                                        <button class="btn btn-secondary">
+                                            Kategorie anzeigen
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a th:href="@{../products/list}" class="col-lg-3 col-md-6 p-0" id="jumbo-sportplus">
+                        <div class="jumbotron jumbotron-sportplus">
+                            <div class="overlay">
+                                <div class="row">
+                                    <div class="col-8 text category p-4" id="text-sportplus">
+                                        <h1 class="main-ecr text-uppercase">Sport +</h1>
+                                        <br>
+                                        <p class="text-white">
+                                            Wenn Sie ein Fan von leistungsstarken und schnellen Autos sind, wird
+                                            eins
+                                            unserer
+                                            aufregenden Sportwagen, darunter: Audi R8, Lamborghini Huracan, Mercedes
+                                            AMG
+                                            GT
+                                            Roadster und mehr Ihre Wünsche voll erfüllen.
+                                        </p>
+                                        <br>
+                                        <button class="btn btn-secondary">
+                                            Kategorie anzeigen
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a th:href="@{../products/list}" class="col-lg-3 col-md-6 p-0" id="jumbo-suv">
+                        <div class="jumbotron jumbotron-suv">
+                            <div class="overlay">
+                                <div class="row">
+                                    <div class="col-8 text category p-4" id="text-suv">
+                                        <h1 class="main-ecr text-uppercase">SUV</h1>
+                                        <br>
+                                        <p class="text-white">
+                                            Fahren Sie in einem luxuriösen SUV in Luxus und Komfort mit viel
+                                            Bewegungsfreiheit
+                                            für die ganze Familie. Unsere Flotte umfasst Vermietungen von Top-Marken
+                                            wie
+                                            Range
+                                            Rover, Porsche oder Mercedes-Benz G-Klasse.
+                                        </p>
+                                        <br>
+                                        <button class="btn btn-secondary">
+                                            Kategorie anzeigen
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a th:href="@{../products/list}" class="col-lg-3 col-md-6 p-0" id="jumbo-luxus">
+                        <div class="jumbotron jumbotron-luxus">
+                            <div class="overlay">
+                                <div class="row">
+                                    <div class="col-8 text category p-4" id="text-luxus">
+                                        <h1 class="main-ecr text-uppercase">Luxus</h1>
+                                        <br>
+                                        <p class="text-white">
+                                            Unsere stilvollen Limousinen bieten Stil und Raum und versprechen eine
+                                            sanfte
+                                            Fahrt
+                                            auf der offenen Straße und den Straßen der Stadt. Wir bieten schöne
+                                            Modelle
+                                            wie
+                                            den
+                                            Cadillac, die suv 7er Reihe und vieles mehr.
+                                        </p>
+                                        <br>
+                                        <button class="btn btn-secondary">
+                                            Kategorie anzeigen
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="cardbox p-5">
+            <div class="container">
+                <h2 class="text-light main-ecr text-uppercase">Unsere Highlights</h2>
+                <br>
+                <p>
+                    Unsere Spezialisten wählen regelmäßig ihre Favoriten aus unserer luxuriösen Auswahl aus. Überzeugen
+                    Sie
+                    sich selber
+                    und werfen Sie einen Blick auf die Highlights:
+                </p>
+                <br>
+
+                <div class="container">
+                    <div id="pictureCarousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <th:block th:each="highlight, iter : ${highlights}">
+                                <li data-target="#pictureCarousel" th:attr="data-slide-to=${iter.index}"
+                                    th:class="${iter.index}== 0  ? 'active':''"></li>
+                            </th:block>
+                        </ol>
+                        <div class="carousel-inner">
+                            <a th:each="highlight, iter : ${highlights}" th:href="@{'/products/' + ${highlight .id}}"
+                                th:class="${iter.index}== 0  ? ' active carousel-item':'carousel-item'">
+
+
+                                <img th:src="@{${(!highlight.ecPicturesById.isEmpty()) ? highlight.ecPicturesById.get(highlight.ecPicturesById.size() - 1).filePath : '/uploads/no_image.jpg'}}"
+                                    class="d-block carousel-picture">
+                                <div class="carousel-caption col-8 text category p-2">
+                                    <h3 class="main-ecr text-uppercase"
+                                        th:text="${highlight.ecBrandByBrandId.brandTitle} + ' ' + ${highlight.model} + ' ' + ${highlight.variant}">
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                        <a class="carousel-control-prev" href="#pictureCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#pictureCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="container">
+        <!-- <h2 class="text-light"></h2>
+        <hr> -->
+        <div class="cardbox p-5">
+            <div class="container">
+                <h2 class="text-light main-ecr text-uppercase">Über uns</h2>
+                <br>
+                <p class="text-light text-justify">
+                    <h5>Wer wir sind</h5>
+                    <p class="text-justify">
+                        Von exotischen Sportwagen bis hin zu Luxuslimousinen und SUVs - die Exclusive Car Rental bietet
+                        eine sehr hohe Auswahl an exotischen und Nobel-Luxusfahrzeugen von größten Autoherstellern der
+                        Welt, darunter Ferrari, luxus, Porsche, Bentley, McLaren, Range Rover und mehr. Seit der
+                        Gründung haben wir es geschafft, uns als Marktführer in der Premium-Autovermietung in den
+                        Metropolstädten Deutschlands zu etablieren.
+
+                        Wir sind spezialisiert auf Kundenservice. Wir sorgen für Komfort schon ab dem Zeitpunkt, an dem
+                        ein Kunde unsere Website besucht.
+
+                        Unsere Website wurde entwickelt, um den Prozess der Luxus- oder exotischen Autovermietung zu
+                        vereinfachen und macht Ihnen damit die Reservierung Ihres Wunschautos zum Kinderspiel.
+                    </p>
+                    <br>
+                    <p class="text-justify">
+                        Wir sind stolz darauf, unseren Kunden den besten exotischen Mietwagen-Service zu bieten, weil
+                        wir selbst Autoliebhaber sind. Seit 2016 sind wir auf die Bedürfnisse von Kunden aus aller Welt
+                        eingestellt. Unser Team spricht Englisch, Arabisch, Spanisch, Französisch und Russisch. Unsere
+                        Vertreter sind mit den Eigenschaften dieser einzigartigen Autos vertraut und machen jeden Mieter
+                        mit den erstaunlichen Eigenschaften und den speziellen Optionen des Autos vertraut.
+                    </p>
+                    <br>
+                    <br>
+                    <h5>Was wir tun</h5>
+                    <p class="text-justify">
+                        Bei Exclusive Car Rental können Sie sowohl Luxusfahrzeuge als auch exotische Autos mieten. Wir
+                        liefern auch auf Anfrage Fahrzeuge in nahegelegene Städte, am Flughafen, in Ihre Wohnung oder
+                        direkt an einen Veranstaltungsort.
+                    </p>
+                    <br>
+                    <br>
+                    <h5>Warum uns wählen?</h5>
+                    <p class="text-justify">
+                        Unsere Dienstleistungen gehen über die Erwartungen unserer Kunden hinaus. Unsere Mission ist es,
+                        ein komplettes luxuriöses Lifestyle-Erlebnis zu erschwinglichen Preisen, mit den mildesten
+                        Bedingungen und dem besten Service in den größten Metropolregionen des Landes anzubieten.
+
+                        Buchen Sie noch heute Ihr Auto und erleben Sie hautnah unseren Premium-Service.
+                    </p>
+                    <br>
+                </p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="cardbox p-5">
+            <h2 class="text-light main-ecr text-uppercase">Anfahrt</h2>
+            <br>
+            <div class="container">
+                <div style='height:300px;width:100%;'><iframe width="" height="300"
+                        src="https://maps.google.de/maps?hl=de&q=%20Vierländer+Damm+7%20Hamburg&t=&z=12&ie=utf8&iwloc=b&output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                        style='height:300px;width:100%;'></iframe>
+                    <p
+                        style="text-align:right; margin:0px; padding-top:-10px; line-height:10px;font-size:10px;margin-top: -25px;">
+                        <a href="http://www.checkpoll.de/google-maps-generator/" style="font-size:10px;"
+                            target="_blank">Google Maps Generator</a> by <a href="https://www.on-projects.de/"
+                            style="font-size:10px;" title="" target="_blank">on-projects</a></p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div>
+
+                <h2 class="text-light main-ecr text-uppercase">Wo finde ich
+                    <br>Exclusive Car Rental?</h2>
+                <br>
+                <p class="text-light">
+                    Unser Office befindet sich im Gewerbe-/Industriegebiet in Hamburg-Süd (Rothenburgsort) und ist somit
+                    zentrumsnah zur Hamburger City gelegen.<br>
+                    <br>
+                    <i class="fa fa-car mr-4"></i>Fahrtzeit nächste Autobahn BAB A 1: ca. 8 Minuten<br>
+                    <i class="fa fa-train mr-4"></i>Fahrtzeit Hauptbahnhof Hamburg: ca. 12 Minuten<br>
+                    <i class="fa fa-plane mr-4"></i>Fahrtzeit Flughafen Hamburg: ca. 30 Minuten<br>
+                    <br>
+                    <br>
+                    Anschrift:<br>
+                    <br>
+                    Exclusive Rental Car GmbH<br>
+
+                    Vierländer Damm 7<br>
+
+                    20539 Hamburg
+                    <br>
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- FOOTER-->
+    <br>
+    </br>
+    <div th:insert="~{footer :: copy}"></div>
+
+
+
+    <!-- SKRIPTE-->
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{../scripts/script.js}"></script>
+
+</body>
+<!-- 
+<br> -->
+
+</html>

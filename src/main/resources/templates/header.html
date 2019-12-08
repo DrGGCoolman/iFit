@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body class="bg-main">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+    <nav class="navbar navbar-expand-lg navbar-dark w-100 bg-main pt-4 pb-2" th:fragment="copy">
+        <div class="container-fluid row flex-container">
+            <div>
+                <!-- Linke Elemente-->
+                <ul class="nav navbar-nav mr-auto pl-2">
+
+                    <div class="dropdown mr-1">
+                        <li class="nav-item">
+                            <button class="btn" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false"
+                                id="dropdownMenuOffset" data-offset="10,20" aria-controls="nav-collapse3">
+                                <i class="fa fa-search p-0"></i>
+                            </button>
+                            <div class="dropdown-menu dropdownsearch p-2"
+                                style="background-color: rgb(81, 82, 102, 0.5);" aria-labelledby="dropdownMenuOffset">
+                                <form id="search-form" role="search" th:action="@{/products/search}" method="get">
+                                    <div class="form-group">
+                                        <input type="text" name="searchfor" class="form-control searchbox m-2"
+                                            placeholder="Fahrzeug suchen" />
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </div>
+
+                    <!--RENT-Block-->
+                    <li class="nav-item">
+                        <a class="nav-link text-white" th:href="@{/products/list}">Fahrzeuge</a>
+                    </li>
+
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link text-white">|</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                        <a class="nav-link text-white" th:href="@{/products/create}">Fahrzeug hinzufügen</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <!-- 
+                    ÜBERSCHRIFT
+                    DIV, damit Element zentriert werden kann-->
+                <div class="nav-item pt-2 mx-auto ">
+                    <a class="navbar-brand mx-auto" th:href="@{/index}">
+                        <h2 class="main-ecr">EXCLUSIVE CAR RENTAL</h2>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- Rechte Elemente-->
+            <div>
+                <ul class="nav navbar-nav" sec:authorize="anonymous">
+
+                    <!-- DROPDOWN LOGIN-->
+
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link text-white" th:href="@{/users/register}">Registrierung</a>
+                    </li>
+                    <li class="nav-item text-white mt-2">
+                        |
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" th:href="@{/users/login}">Login</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav" sec:authorize="authenticated">
+                    <li class="nav-item ml-auto">
+                        <a th:href="@{/users/edit}" class="d-inline-block nav-link text-white" th:text="${#httpServletRequest.remoteUser}"></a>
+                            <span class="d-inline-block nav-link text-white">|</span>
+                            <a class="d-inline-block nav-link text-white" th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- SKRIPTE-->
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>
