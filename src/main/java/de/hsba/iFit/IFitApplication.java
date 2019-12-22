@@ -1,4 +1,4 @@
-package de.hsba.iFit;
+package de.hsba.ifit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
