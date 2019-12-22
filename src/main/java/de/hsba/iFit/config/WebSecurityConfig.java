@@ -15,8 +15,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // Konfiguriert und setzt für den jeweiligen User die erlaubten Url-Zugriffe
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/index", "/home", "/webjars/**").permitAll()
-                .antMatchers().hasRole("USER").antMatchers("/admin/**").hasRole("ADMIN").and().logout().permitAll();
+        http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/index", "/webjars/**").permitAll()
+                .antMatchers("/trainer/**").hasRole("USER")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .and().logout().permitAll();
 
     }
 
