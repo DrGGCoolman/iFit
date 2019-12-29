@@ -4,7 +4,6 @@
 <head>
     <title>Login</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}" />
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
@@ -12,7 +11,7 @@
 
 <body class="bg-main">
 
-    <div th:insert="~{header :: copy}"></div>
+
 
     <br>
     <br>
@@ -27,7 +26,7 @@
 
                         <form class="form-signin" action="/users/login" method="post">
                             <div class="form-label-group pt-2 pb-2">
-                                <label for="inputEmail w-100 pb-2">E-Mail</label>
+                                <label for="inputEmail w-100 pb-2">Nutzernamen</label>
                                 <input type="email" id="inputEmail" class="form-control w-100" placeholder="E-Mail"
                                     name="username" required autofocus>
                             </div>
@@ -51,7 +50,6 @@
     <br>
     <!-- FOOTER-->
     <div class="fixed-bottom">
-        <div th:insert="~{footer :: copy}"></div>
     </div>
 
     <!-- SKRIPTE-->
