@@ -48,4 +48,10 @@ public class HomeController {
 
         return "owner/createClasses";
     }
+
+    @RequestMapping("/owner/event/create")
+    public String fixedClasses(Model model) {
+
+        return "owner/fixedClass";
+    }
 }
