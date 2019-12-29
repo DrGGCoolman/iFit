@@ -13,6 +13,12 @@ public class HomeController {
         return "redirect:/index";
     }
 
+    @RequestMapping("/login")
+    public String login(Model model) {
+
+        return "anonymous/login";
+    }
+
     @RequestMapping("/index")
     public String index(Model model) {
 

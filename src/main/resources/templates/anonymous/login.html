@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+</head>
+
+<body class="bg-main">
+
+
+
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="cardbox p-4">
+                    <div class="card-body">
+
+                        <h3 class="card-title text-center">Login</h3>
+
+                        <form class="form-signin" action="/users/login" method="post">
+                            <div class="form-label-group pt-2 pb-2">
+                                <label for="inputEmail w-100 pb-2">Nutzernamen</label>
+                                <input type="email" id="inputEmail" class="form-control w-100" placeholder="E-Mail"
+                                    name="username" required autofocus>
+                            </div>
+
+                            <div class="form-label-group pt-2 pb-4">
+                                <label for="inputPassword pb-2">Passwort</label>
+                                <input type="password" id="inputPassword" class="form-control w-100" name="password"
+                                    placeholder="Passwort" required>
+                            </div>
+                            <button class="btn btn-lg btn-secondary btn-block pure-button pure-button-primary"
+                                type="submit">Einloggen</button>
+                        </form>
+                        <span style="color:#ebb0b0" class="color-light-red" role="alert" th:text="${msg}">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!-- FOOTER-->
+    <div class="fixed-bottom">
+    </div>
+
+    <!-- SKRIPTE-->
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

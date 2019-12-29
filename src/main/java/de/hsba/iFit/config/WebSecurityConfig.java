@@ -1,6 +1,5 @@
 package de.hsba.ifit.config;
 
-import de.hsba.ifit.user.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -16,9 +15,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/index", "/webjars/**").permitAll()
-                .antMatchers("/trainer/**").hasRole("USER")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .and().logout().permitAll();
+                .antMatchers("/trainer/**").hasRole("USER").antMatchers("/admin/**").hasRole("ADMIN").and().logout()
+                .permitAll();
 
     }
 
