@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <title>Termine</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-main">
+    <!-- 
+    <div th:insert="~{header :: copy}"></div> -->
+
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="cardbox p-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Termin anlegen</h3>
+                        <br>
+                        <form class="form" action="#" method="post">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputCategory">Trainer</label>
+                                    <select id="inputCategory" class="form-control" required>
+                                        <option value="" selected>Trainer wählen..</option>
+                                        <option>a</option>
+                                        <option>b</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Auswählen</button>
+                        </form>
+                        <br>
+                        <form class="form" action="#" method="post">
+                                <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label for="inputCategory">Kurs</label>
+                                        <select id="inputCategory" class="form-control" required>
+                                            <option value="" selected>Kurs wählen..</option>
+                                            <option>a</option>
+                                            <option>b</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="inputCategory">Slot</label>
+                                            <select id="inputCategory" class="form-control" required>
+                                                <option value="" selected>Slot wählen..</option>
+                                                <option>a</option>
+                                                <option>b</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                <br>
+                                <button class="btn btn-lg btn-secondary btn-block" type="submit">Anlegen</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <br>
+    <br>
+
+    <!-- FOOTER-->
+    <!-- <div class="fixed-bottom">
+        <div th:insert="~{footer :: copy}"></div>
+    </div> -->
+</body>
+
+</html>
