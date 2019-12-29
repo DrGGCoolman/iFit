@@ -16,7 +16,7 @@ public class HomeController {
     @RequestMapping("/login")
     public String login(Model model) {
 
-        return "login";
+        return "anonymous/login";
     }
 
     @RequestMapping("/index")
