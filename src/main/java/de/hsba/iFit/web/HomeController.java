@@ -37,4 +37,9 @@ public class HomeController {
         return "admin/index";
     }
 
+    @RequestMapping("/owner/trainer/create")
+    public String createTrainer(Model model) {
+
+        return "owner/createTrainer";
+    }
 }
