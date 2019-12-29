@@ -42,4 +42,10 @@ public class HomeController {
 
         return "owner/createTrainer";
     }
+
+    @RequestMapping("/owner/classes/create")
+    public String createClasses(Model model) {
+
+        return "owner/createClasses";
+    }
 }
