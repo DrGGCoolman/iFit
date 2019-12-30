@@ -66,6 +66,23 @@
                 <input class="form-control mr-sm-4" type="search" placeholder="Kurs, Trainer.. " aria-label="Suche">
                 <button class="btn my-2 my-sm-0" type="submit">Suchen</button>
             </form>
+
+
+
+            <div>
+                <ul class="nav navbar-nav" sec:authorize="anonymous">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav" sec:authorize="authenticated">
+                    <li class="nav-item ml-auto">
+                        <a th:href="@{/users/edit}" class="d-inline-block nav-link" th:text="${#httpServletRequest.remoteUser}"></a>
+                            <span class="d-inline-block nav-link">|</span>
+                            <a class="d-inline-block nav-link" th:href="@{/logout}">Logout</a>
+                        </li>
+                    </ul>
+            </div>
         </div>
     </nav>
 
