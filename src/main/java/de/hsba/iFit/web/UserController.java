@@ -43,7 +43,7 @@ public class UserController {
     @RequestMapping("user/settings")
     public String userSettings(Model model) {
 
-        return "user/settings";
+        return "user/Arbeitszeit-config";
     }
 
 }
