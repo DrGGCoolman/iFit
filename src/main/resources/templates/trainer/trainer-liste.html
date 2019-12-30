@@ -12,8 +12,27 @@
 
     <div th:insert="~{shared/header :: copy}"></div>
 
-
-Trainer
+    <br>
+    <table class="table">
+        <tr>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>User</th>
+          <th></th>
+        </tr>
+        <tr th:if="${!users.empty}" th:each="user : ${users}">
+          <td th:text="${user.firstname}"></td>
+          <td th:text="${user.lastname}"></td>
+          <td th:text="${user.user}"></td>
+          <td><a>Bearbeiten</a></td>
+        </tr>
+        <tr>
+            <td><a th:href="${'/owner/trainers/create'}">Trainer hinzufügen..</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+      </table>
 
 
 
