@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{shared/header :: copy}"></div>
+
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="cardbox p-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Kurs bearbeiten</h3>
+                        <br>
+                        <form class="form" action="#" method="post">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputCourse">Kursname</label>
+                                    <input type="text" class="form-control" id="inputCourse" placeholder="Kursname"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputDescription">Beschreibung</label>
+                                    <input type="text" class="form-control" id="inputDescription"
+                                        placeholder="Beschreibung" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputCategory">Kategorie</label>
+                                    <select id="inputCategory" class="form-control" required>
+                                        <option value="" selected>Kategorie wählen..</option>
+                                        <option>Bodyweight</option>
+                                        <option>Gewichte</option>
+                                        <option>Tanzen</option>
+                                        <option>Wassergymnastik</option>
+                                        <option>Yoga</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputMinutes">Minuten</label>
+                                    <input type="text" class="form-control" id="inputMinutes" placeholder="Minuten"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputTargetGroup">Zielgruppe</label>
+                                    <input type="text" class="form-control" id="inputTargetGroup"
+                                        placeholder="Zielgruppe" required>
+                                </div>
+                            </div>
+                            <br>
+                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Anlegen</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+ 
+
+    <br>
+    <br>
+
+    <!-- FOOTER-->
+    <div class="fixed-bottom">
+        <div th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

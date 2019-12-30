@@ -13,39 +13,10 @@ public class HomeController {
         return "redirect:/index";
     }
 
-    @RequestMapping("/login")
-    public String login(Model model) {
-
-        return "anonymous/login";
-    }
-
     @RequestMapping("/index")
     public String index(Model model) {
 
         return "index";
     }
 
-    @RequestMapping("/trainer/index")
-    public String trainerIndex(Model model) {
-
-        return "trainer/index";
-    }
-
-    @RequestMapping("/admin/index")
-    public String adminIndex(Model model) {
-
-        return "admin/index";
-    }
-
-    @RequestMapping("/owner/trainer/create")
-    public String createTrainer(Model model) {
-
-        return "owner/createTrainer";
-    }
-
-    @RequestMapping("/owner/classes/create")
-    public String createClasses(Model model) {
-
-        return "owner/createClasses";
-    }
 }
