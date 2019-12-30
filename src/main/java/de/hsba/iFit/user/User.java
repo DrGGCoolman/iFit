@@ -7,11 +7,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import de.hsba.ifit.course.Course;
+import de.hsba.ifit.slot.Slot;
+
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 @Getter
@@ -45,6 +51,14 @@ public class User implements Comparable<User> {
 
     private String role;
 
+    @Getter
+    @Setter
+    public String firstname;
+
+    @Getter
+    @Setter
+    public String lastname;
+
     public User(String name) {
         this.name = name;
     }
@@ -64,4 +78,11 @@ public class User implements Comparable<User> {
     public String toString() {
         return name;
     }
+
+    @ManyToMany
+    private List<Slot> slots;
+
+    @ManyToMany
+    private List<Course> courses;
+    
 }
