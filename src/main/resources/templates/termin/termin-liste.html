@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>iFit</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
-
 </head>
 
-<body>
+<body class="bg-main">
 
     <div th:insert="~{shared/header :: copy}"></div>
 
 
-    <img src="https://marketplace.canva.com/MAC4jwdaIQo/1/thumbnail_large-1/canva-fat-funny-man-with-dumbbells-MAC4jwdaIQo.jpg"
-        alt="">
+Termine
+
+
+
 
     <!-- FOOTER-->
     <div class="fixed-bottom">
         <div th:insert="~{shared/footer :: copy}"></div>
     </div>
 
-    <!-- SKRIPTE-->
+
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>

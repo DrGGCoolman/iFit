@@ -9,8 +9,8 @@
 </head>
 
 <body class="bg-main">
-    <!-- 
-    <div th:insert="~{header :: copy}"></div> -->
+
+    <div th:insert="~{shared/header :: copy}"></div>
 
     <br>
 
@@ -75,17 +75,20 @@
     </div>
     </div>
 
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+ 
 
     <br>
     <br>
 
     <!-- FOOTER-->
-    <!-- <div class="fixed-bottom">
-        <div th:insert="~{footer :: copy}"></div>
-    </div> -->
+    <div class="fixed-bottom">
+        <div th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 
 </html>
