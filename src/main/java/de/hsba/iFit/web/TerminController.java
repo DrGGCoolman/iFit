@@ -28,7 +28,7 @@ public class TerminController {
         return "termin/termin-edit";
     }
 
-    @RequestMapping("/owner/termine")
+    @RequestMapping("/termine")
     public String showTrainers(Model model) {
 
         return "termin/termin-liste";

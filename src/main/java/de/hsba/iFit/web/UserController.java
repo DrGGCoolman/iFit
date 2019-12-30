@@ -14,7 +14,7 @@ public class UserController {
         return "user/login";
     }
 
-    @RequestMapping("/trainer/appointments")
+    @RequestMapping("/user/appointments")
     public String myAppointments(Model model) {
 
         return "user/meine-termine";

@@ -5,7 +5,7 @@
 
 <body class="bg-main">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="copy">
-        <a class="navbar-brand" href="#">iFit</a>
+        <a class="navbar-brand" th:href="@{/}">iFit</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-               
+
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -21,9 +21,9 @@
                         Kurse
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Kursliste</a>
+                        <a class="dropdown-item" th:href="@{/classes}">Kursliste</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">+ Kurs anlegen</a>
+                        <a class="dropdown-item" th:href="@{/owner/classes/create}">+ Kurs anlegen</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -32,9 +32,9 @@
                         Termine
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Wochenplan</a>
+                        <a class="dropdown-item" th:href="@{/termine}">Terminliste</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">+ Termin anlegen</a>
+                        <a class="dropdown-item" th:href="@{/owner/termine/create}">+ Termin anlegen</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -43,9 +43,10 @@
                         Trainer
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Trainerliste</a>
+                        <a class="dropdown-item" th:href="@{/owner/trainers}">Trainerliste</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">+ Trainer registrieren</a>
+                        <a class="dropdown-item" th:href="@{/owner/trainers/create}">+
+                            Trainer registrieren</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -54,9 +55,10 @@
                         Me
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Meine Termine</a>
+                        <a class="dropdown-item" th:href="@{/user/appointments}">Meine
+                            Termine</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Einstellungen</a>
+                        <a class="dropdown-item" th:href="@{/user/settings}">Einstellungen</a>
                     </div>
                 </li>
             </ul>

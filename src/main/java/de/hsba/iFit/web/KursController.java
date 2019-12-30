@@ -26,7 +26,7 @@ public class KursController {
         return "trainer/kurs-edit";
     }
 
-    @RequestMapping("/owner/classes")
+    @RequestMapping("/classes")
     public String showTrainers(Model model) {
 
         return "kurs/kurs-liste";
