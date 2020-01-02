@@ -5,16 +5,18 @@ import javax.persistence.*;
 import de.hsba.ifit.event.Event;
 import de.hsba.ifit.user.User;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
-
 @Entity
+@NoArgsConstructor
 public class Course {
     @GeneratedValue
     @Id
     @Getter
+    @Setter
     private Integer id;
 
     @Getter
@@ -52,8 +54,3 @@ public class Course {
     }
 
 }
-
-
-
-
-
