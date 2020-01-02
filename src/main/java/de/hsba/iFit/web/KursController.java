@@ -17,13 +17,13 @@ public class KursController {
     @RequestMapping("/owner/classes/details")
     public String showTrainerDetails(Model model) {
 
-        return "trainer/kurs-details";
+        return "kurs/kurs-details";
     }
 
     @RequestMapping("/owner/classes/edit")
     public String editTrainer(Model model) {
 
-        return "trainer/kurs-edit";
+        return "kurs/kurs-edit";
     }
 
     @RequestMapping("/classes")

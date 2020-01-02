@@ -21,31 +21,33 @@
                     <div class="card-body">
                         <h3 class="card-title text-center">Kurs bearbeiten</h3>
                         <br>
-                        <form class="form" action="#" method="post">
+
+                        <form class="form" th:action=" @{${'/owner/course/update/' + id}}" th:object="${course}"
+                            method="post">
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCourse">Kursname</label>
-                                    <input type="text" class="form-control" id="inputCourse" placeholder="Kursname"
-                                        required>
+                                    <input type="text" class="form-control" id="inputCourse" th:field="*{name}"
+                                        placeholder="Kursname" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputDescription">Beschreibung</label>
                                     <input type="text" class="form-control" id="inputDescription"
-                                        placeholder="Beschreibung" required>
+                                        th:field="*{description}" placeholder="Beschreibung" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCategory">Kategorie</label>
-                                    <select id="inputCategory" class="form-control" required>
+                                    <select id="inputCategory" class="form-control" th:field="*{category}" required>
                                         <option value="" selected>Kategorie wählen..</option>
-                                        <option>Bodyweight</option>
-                                        <option>Gewichte</option>
-                                        <option>Tanzen</option>
-                                        <option>Wassergymnastik</option>
-                                        <option>Yoga</option>
+                                        <option th:value="Bodyweight">Bodyweight</option>
+                                        <option th:value="Gewichte">Gewichte</option>
+                                        <option th:value="Tanzen">Tanzen</option>
+                                        <option th:value="Wassergymnastik">Wassergymnastik</option>
+                                        <option th:value="Yoga">Yoga</option>
                                     </select>
                                 </div>
                             </div>
@@ -53,15 +55,15 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputMinutes">Minuten</label>
-                                    <input type="text" class="form-control" id="inputMinutes" placeholder="Minuten"
-                                        required>
+                                    <input type="number" class="form-control" id="inputMinutes" th:field="*{duration}"
+                                        placeholder="Minuten" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputTargetGroup">Zielgruppe</label>
                                     <input type="text" class="form-control" id="inputTargetGroup"
-                                        placeholder="Zielgruppe" required>
+                                        th:field="*{targetGroup}" placeholder="Zielgruppe" required>
                                 </div>
                             </div>
                             <br>
@@ -75,7 +77,7 @@
     </div>
     </div>
 
- 
+
 
     <br>
     <br>
