@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <h3 class="card-title text-center">Kurs anlegen</h3>
                         <br>
-                        <form class="form" action="#" th:action="@{owner/course/add}" th:object="${course}" method="post">
+                        <form class="form"  th:action="@{/owner/course/add}" th:object="${course}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCourse">Kursname</label>
@@ -53,14 +53,14 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputMinutes">Minuten</label>
-                                    <input type="text" class="form-control" th:field="*{duration}" id="inputMinutes" placeholder="Minuten"
+                                    <input type="number" class="form-control" th:field="*{duration}" id="inputMinutes" placeholder="Minuten"
                                         required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputTargetGroup">Zielgruppe</label>
-                                    <input type="text" class="form-control" th:field="*{targetgroup}" id="inputTargetGroup"
+                                    <input type="text" class="form-control" th:field="*{targetGroup}" id="inputTargetGroup"
                                         placeholder="Zielgruppe" required>
                                 </div>
                             </div>

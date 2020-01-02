@@ -78,7 +78,8 @@ public class CourseController {
 
         courseRepository.save(course);
 
-        return "redirect:/kurs/" + id.toString();
+        // return "redirect:/kurs/" + id.toString();
+        return "redirect:/owner/course/list";
     }
 
     // Behandelt das Löschen eines Produktes.
@@ -88,13 +89,13 @@ public class CourseController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
         courseRepository.delete(course);
         model.addAttribute("courses", courseRepository.findAll());
-        return "redirect:/kurs/kurs-list";
+        return "redirect:/owner/course/list ";
     }
 
     // Gibt Listenansicht der Farhzeuge zurück
     @GetMapping("list")
     public String showAllProducts(Model model) {
-        model.addAttribute("course", courseRepository.findAll());
+        model.addAttribute("courses", courseRepository.findAll());
         return "kurs/kurs-liste";
     }
 
