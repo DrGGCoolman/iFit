@@ -19,4 +19,10 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/class/termine")
+    public String classTermine(Model model) {
+
+        return "kurs-termine";
+    }
+
 }

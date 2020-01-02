@@ -12,8 +12,36 @@
 
     <div th:insert="~{shared/header :: copy}"></div>
 
-
-Termine
+    <br>
+    <table class="table">
+        <tr>
+          <th>Tag</th>
+          <th>Beginn</th>
+          <th>Ende</th>
+          <th>Kurs</th>
+          <th>Raum</th>
+          <th>Trainer</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+        <!-- <tr th:if="${!classes.empty}" th:each="class : ${classes}">
+          <td th:text="${class.name}"></td>
+          <td th:text="${class.category}"></td>
+          <td th:text="${class.targetGroup}"></td>
+          <td th:text="${class.duration"></td>
+          <td><a>Bearbeiten</a></td>
+        </tr> -->
+        <tr>
+            <td><a th:href="${'/owner/termine/create'}">Termin hinzufügen..</a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+      </table>
 
 
 
