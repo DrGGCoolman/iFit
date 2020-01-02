@@ -16,18 +16,23 @@ public class Course {
     @Id
     @Getter
     private Integer id;
+
     @Getter
     @Setter
     private String name;
+
     @Getter
     @Setter
     private String description;
+
     @Getter
     @Setter
     private String category;
+
     @Getter
     @Setter
     private String targetGroup;
+
     @Getter
     @Setter
     private Integer duration;
@@ -38,6 +43,13 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     private List<User> users;
 
+    public Course(String name, String description, String category, String targetGroup, Integer duration) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.targetGroup = targetGroup;
+        this.duration = duration;
+    }
 
 }
 
