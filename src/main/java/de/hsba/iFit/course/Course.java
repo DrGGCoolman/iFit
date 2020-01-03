@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 public class Course {
+
     @GeneratedValue
     @Id
     @Getter
@@ -25,15 +26,16 @@ public class Course {
 
     @Getter
     @Setter
+    @Lob
     private String description;
 
     @Getter
     @Setter
-    private String category;
+    private Category category;
 
     @Getter
     @Setter
-    private String targetGroup;
+    private TargetGroup targetGroup;
 
     @Getter
     @Setter
@@ -45,7 +47,7 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     private List<User> users;
 
-    public Course(String name, String description, String category, String targetGroup, Integer duration) {
+    public Course(String name, String description, Category category, TargetGroup targetGroup, Integer duration) {
         this.name = name;
         this.description = description;
         this.category = category;

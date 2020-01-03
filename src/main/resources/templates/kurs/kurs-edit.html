@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-main">
@@ -34,8 +32,8 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputDescription">Beschreibung</label>
-                                    <input type="text" class="form-control" id="inputDescription"
-                                        th:field="*{description}" placeholder="Beschreibung" required>
+                                    <textarea class="form-control" th:field="*{description}" id="inputDescription"
+                                        placeholder="Beschreibung" required></textarea>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -43,11 +41,9 @@
                                     <label for="inputCategory">Kategorie</label>
                                     <select id="inputCategory" class="form-control" th:field="*{category}" required>
                                         <option value="" selected>Kategorie wählen..</option>
-                                        <option th:value="Bodyweight">Bodyweight</option>
-                                        <option th:value="Gewichte">Gewichte</option>
-                                        <option th:value="Tanzen">Tanzen</option>
-                                        <option th:value="Wassergymnastik">Wassergymnastik</option>
-                                        <option th:value="Yoga">Yoga</option>
+                                        <option th:each="category : ${T(de.hsba.ifit.course.Category).values()}"
+                                            th:value="${category}" th:text="${category.displayValue}">
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -61,13 +57,18 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label for="inputTargetGroup">Zielgruppe</label>
-                                    <input type="text" class="form-control" id="inputTargetGroup"
-                                        th:field="*{targetGroup}" placeholder="Zielgruppe" required>
+                                    <label for="inputCategory">Zielgruppe</label>
+                                    <select id="inputCategory" class="form-control" th:field="*{targetGroup}" required>
+                                        <option value="" selected>Zielgruppe wählen..</option>
+                                        <option th:each="targetGroup : ${T(de.hsba.ifit.course.TargetGroup).values()}"
+                                            th:value="${targetGroup}" th:text="${targetGroup.displayValue}">
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <br>
-                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Anlegen</button>
+                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Änderungen
+                                Speichern</button>
                         </form>
 
                     </div>
