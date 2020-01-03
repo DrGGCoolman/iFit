@@ -37,13 +37,13 @@ public class UserController {
     @RequestMapping("/user/appointments")
     public String myAppointments(Model model) {
 
-        return "user/meine-termine";
+        return "user/user-termine";
     }
 
     @RequestMapping("user/settings")
     public String userSettings(Model model) {
 
-        return "user/Arbeitszeit-config";
+        return "user/user-einstellungen";
     }
 
 }
