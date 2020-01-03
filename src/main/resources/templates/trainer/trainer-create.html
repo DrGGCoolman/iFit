@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <h3 class="card-title text-center">Trainer anlegen</h3>
                         <br>
-                        <form class="form" action="#" th:action="@{owner/user/add}" th:object="${user}" method="post">
+                        <form class="form" th:action="@{/owner/trainer/add}" th:object="${user}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label for="inputName">Name</label>
@@ -37,7 +37,7 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputUsername">Benutzername</label>
-                                    <input type="email" id="inputUsername" th:field="*{name}" class="form-control w-100"
+                                    <input type="text" id="inputUsername" th:field="*{name}" class="form-control w-100"
                                         placeholder="Benutzername" required autofocus>
                                 </div>
                             </div>
