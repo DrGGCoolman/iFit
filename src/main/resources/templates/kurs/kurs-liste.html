@@ -2,54 +2,65 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-main">
 
-    <div th:insert="~{shared/header :: copy}"></div>
+  <div th:insert="~{shared/header :: copy}"></div>
 
 
-    <br>
-    <table class="table">
-        <tr>
-          <th>Name</th>
-          <th>Kategorie</th>
-          <th>Zielgruppe</th>
-          <th>Dauer</th>
-          <th></th>
-        </tr>
-        <tr th:if="${!classes.empty}" th:each="class : ${classes}">
-          <td th:text="${class.name}"></td>
-          <td th:text="${class.category}"></td>
-          <td th:text="${class.targetGroup}"></td>
-          <td th:text="${class.duration"></td>
-          <td><a>Bearbeiten</a></td>
-        </tr>
-        <tr>
-            <td><a th:href="${'/owner/classes/create'}">Kurs hinzufügen..</a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-      </table>
+  <br>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Kategorie</th>
+      <th>Zielgruppe</th>
+      <th>Dauer</th>
+      <th></th>
+    </tr>
+
+    <div class="col-10 mt-4">
+      <div th:switch="${courses}">
+        <div th:case="null">
+          <span>Keine Kurse angelegt gefunden</span>
+        </div>
+        <div th:case="*">
+          <tr th:each="course : ${courses}">
+            <td th:text="${course.name}"></td>
+            <td th:text="${course.category.displayValue}"></td>
+            <td th:text="${course.targetGroup.displayValue}"></td>
+            <td th:text="${course.duration}"></td>
+            <td><a th:href="${'/owner/course/edit/' + course.id}">Bearbeiten</a> | <a
+                th:href="${'/owner/course/delete/' + course.id}">Löschen</a></td>
+          </tr>
+        </div>
+      </div>
+
+      <tr>
+        <td><a th:href="${'/owner/course/create'}">Kurs hinzufügen..</a></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+  </table>
 
 
 
 
-    <!-- FOOTER-->
-    <div class="fixed-bottom">
-        <div th:insert="~{shared/footer :: copy}"></div>
-    </div>
+  <!-- FOOTER-->
+  <div class="fixed-bottom">
+    <div th:insert="~{shared/footer :: copy}"></div>
+  </div>
 
 
-    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 
 </html>
