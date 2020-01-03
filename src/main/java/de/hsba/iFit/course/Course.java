@@ -35,7 +35,7 @@ public class Course {
 
     @Getter
     @Setter
-    private String targetGroup;
+    private TargetGroup targetGroup;
 
     @Getter
     @Setter
@@ -47,7 +47,7 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     private List<User> users;
 
-    public Course(String name, String description, Category category, String targetGroup, Integer duration) {
+    public Course(String name, String description, Category category, TargetGroup targetGroup, Integer duration) {
         this.name = name;
         this.description = description;
         this.category = category;

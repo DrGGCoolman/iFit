@@ -57,9 +57,13 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label for="inputTargetGroup">Zielgruppe</label>
-                                    <input type="text" class="form-control" th:field="*{targetGroup}"
-                                        id="inputTargetGroup" placeholder="Zielgruppe" required>
+                                    <label for="inputCategory">Zielgruppe</label>
+                                    <select id="inputCategory" class="form-control" th:field="*{targetGroup}" required>
+                                        <option value="" selected>Zielgruppe wählen..</option>
+                                        <option th:each="targetGroup : ${T(de.hsba.ifit.course.TargetGroup).values()}"
+                                            th:value="${targetGroup}" th:text="${targetGroup.displayValue}">
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <br>

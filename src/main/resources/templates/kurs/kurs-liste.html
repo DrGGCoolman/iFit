@@ -32,7 +32,7 @@
           <tr th:each="course : ${courses}">
             <td th:text="${course.name}"></td>
             <td th:text="${course.category.displayValue}"></td>
-            <td th:text="${course.targetGroup}"></td>
+            <td th:text="${course.targetGroup.displayValue}"></td>
             <td th:text="${course.duration}"></td>
             <td><a th:href="${'/owner/course/edit/' + course.id}">Bearbeiten</a> | <a
                 th:href="${'/owner/course/delete/' + course.id}">Löschen</a></td>
