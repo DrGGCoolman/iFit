@@ -31,7 +31,7 @@
         <div th:case="*">
           <tr th:each="course : ${courses}">
             <td th:text="${course.name}"></td>
-            <td th:text="${course.category}"></td>
+            <td th:text="${course.category.displayValue}"></td>
             <td th:text="${course.targetGroup}"></td>
             <td th:text="${course.duration}"></td>
             <td><a th:href="${'/owner/course/edit/' + course.id}">Bearbeiten</a> | <a
