@@ -6,10 +6,11 @@ import de.hsba.ifit.course.Course;
 import de.hsba.ifit.room.Room;
 import de.hsba.ifit.user.User;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
+@NoArgsConstructor
 public class Event {
     @GeneratedValue
     @Id
@@ -19,7 +20,6 @@ public class Event {
     @Getter
     @Setter
     private Integer startAt;
-
 
     @ManyToOne
     private Course course;
@@ -37,4 +37,4 @@ public class Event {
         this.room = room;
     }
 
-} 
+}
