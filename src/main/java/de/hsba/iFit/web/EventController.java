@@ -87,13 +87,13 @@ public class EventController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id));
         eventRepository.delete(event);
         model.addAttribute("courses", eventRepository.findAll());
-        return "redirect:/owner/course/list ";
+        return "redirect:/owner/event/list ";
     }
 
     // Gibt Listenansicht der Kurse zurück
     @GetMapping("list")
     public String showAllProducts(Model model) {
-        model.addAttribute("courses", eventRepository.findAll());
+        model.addAttribute("events", eventRepository.findAll());
         return "termin/termin-liste";
     }
 
