@@ -9,6 +9,7 @@ import de.hsba.ifit.user.User;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RequiredArgsConstructor
