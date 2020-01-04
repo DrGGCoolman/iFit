@@ -13,6 +13,7 @@ public class Room {
     @GeneratedValue
     @Id
     @Getter
+    @Setter
     private Integer id;
     @Getter
     @Setter
@@ -20,5 +21,9 @@ public class Room {
 
     @OneToMany(mappedBy = "room")
     private List<Event> events;
+
+    public Room(String name) {
+        this.name = name;
+    }
 
 }
