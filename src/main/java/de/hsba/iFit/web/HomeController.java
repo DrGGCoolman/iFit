@@ -36,7 +36,7 @@ public class HomeController {
     @GetMapping("/course/plan")
     public String showAllCourses(Model model) {
         model.addAttribute("courses", courseRepository.findAll());
-        return "kursplan";
+        return "wochenplan";
     }
 
 }

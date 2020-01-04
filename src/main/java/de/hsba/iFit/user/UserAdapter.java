@@ -12,6 +12,11 @@ import java.util.Set;
 @AllArgsConstructor
 public class UserAdapter implements UserDetails {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -7780182748759461753L;
+    
     @Getter
     private final User user;
 

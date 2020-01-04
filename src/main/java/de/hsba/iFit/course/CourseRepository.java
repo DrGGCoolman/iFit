@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
-    List<Course> findByName(String name);
+    Course findByName(String name);
 
     List<Course> findAll();
 

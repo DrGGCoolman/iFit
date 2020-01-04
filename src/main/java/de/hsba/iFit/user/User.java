@@ -1,6 +1,5 @@
 package de.hsba.ifit.user;
 
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,8 +58,6 @@ public class User implements Comparable<User> {
     @Setter
     public String lastname;
 
-
-
     public User(String firstname, String lastname, String name, String password, String role) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -84,5 +81,5 @@ public class User implements Comparable<User> {
 
     @ManyToMany
     private List<Course> courses;
-    
+
 }
