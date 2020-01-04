@@ -22,7 +22,7 @@ import javax.persistence.ManyToMany;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User implements Comparable<User> {
 
@@ -39,8 +39,8 @@ public class User implements Comparable<User> {
 
     @Id
     @GeneratedValue
-    @Setter(AccessLevel.NONE)
-    private Long id;
+    @Setter
+    private Integer id;
 
     @Basic(optional = false)
     @Column(unique = true)
@@ -59,11 +59,11 @@ public class User implements Comparable<User> {
     @Setter
     public String lastname;
 
-    public User(String name) {
-        this.name = name;
-    }
 
-    public User(String name, String password, String role) {
+
+    public User(String firstname, String lastname, String name, String password, String role) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.name = name;
         this.password = password;
         this.role = role;
