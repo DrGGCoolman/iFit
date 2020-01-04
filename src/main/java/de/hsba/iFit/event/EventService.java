@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import de.hsba.ifit.course.Course;
-import de.hsba.ifit.room.Room;
 import de.hsba.ifit.user.User;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +25,7 @@ public class EventService {
         }
     }
 
-    private void createEvent(Integer startAt, Course course, User user, Room room) {
+    private void createEvent(LocalTime startAt, Course course, User user, Room room) {
         eventRepository.save(new Event(startAt, course, user, room));
     }
 
