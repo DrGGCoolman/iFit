@@ -14,14 +14,18 @@
 
 
   <br>
-  <table class="table">
+  <div class="ml-5 mr-5">
+  <table class="table mx-auto">
+    <thead class="thead-light">
+    <h5 class="table mx-auto">Kursliste</h5>
     <tr>
-      <th>Name</th>
-      <th>Kategorie</th>
-      <th>Zielgruppe</th>
-      <th>Dauer</th>
+      <th class="font-italic">Name</th>
+      <th class="font-italic">Kategorie</th>
+      <th class="font-italic">Zielgruppe</th>
+      <th class="font-italic">Dauer</th>
       <th></th>
     </tr>
+    </thead>
 
     <div class="col-10 mt-4">
       <div th:switch="${courses}">
@@ -49,6 +53,7 @@
       <td></td>
     </tr>
   </table>
+  </div>
 
 
 
