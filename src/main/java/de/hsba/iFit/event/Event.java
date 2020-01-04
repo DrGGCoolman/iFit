@@ -29,9 +29,13 @@ public class Event {
     @Setter
     private Weekday weekday;
 
-    @ManyToOne
+    @Getter
+    @Setter
+    @ManyToOne(fetch = FetchType.EAGER)
     private Course course;
 
+    @Getter
+    @Setter
     @ManyToOne
     private User user;
 
@@ -41,6 +45,7 @@ public class Event {
         this.user = user;
         this.room = room;
         this.weekday = weekday;
+
     }
 
 }
