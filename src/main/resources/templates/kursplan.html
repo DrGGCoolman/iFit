@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{shared/header :: copy}"></div>
+
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <img src="https://www.action360.com.br/wp-content/uploads/2018/01/brunetteworkout_Easy-Resize.com_.jpg"
+                    class="" style="width: 100%; height: 300px;" alt="Tanzen">
+                <div class="carousel-caption text-left">
+                    <h5 class="h3 font-italic">Kursplan von iFit</h5>
+                    <p class="h4 font-italic font-weight-lighter">Wählen Sie aus den besten und modernsten Kursen aus.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="">
+        <div class="row">
+            <div class="mx-auto">
+                <h1 class="font-italic font-weight-bold text-uppercase">Kursplan</h1>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="btn-group btn-group-lg mx-auto" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-dark">Montag</button>
+                <button type="button" class="btn btn-dark">Dienstag</button>
+                <button type="button" class="btn btn-dark">Mittwoch</button>
+                <button type="button" class="btn btn-dark">Donnerstag</button>
+                <button type="button" class="btn btn-dark">Freitag</button>
+                <button type="button" class="btn btn-dark">Samstag</button>
+                <button type="button" class="btn btn-dark">Sonntag</button>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <table class="table w-75 mx-auto">
+        <thead class="thead-light">
+            <h5 class="table w-75 mx-auto">Morgens</h5>
+            <tr>
+                <th class="font-italic">Name</th>
+                <th class="font-italic">Kategorie</th>
+                <th class="font-italic">Zielgruppe</th>
+                <th class="font-italic">Dauer</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <div class="col-10 mt-4">
+            <div th:switch="${courses}">
+                <div th:case="null">
+                    <span>Keine Kurse angelegt gefunden</span>
+                </div>
+                <div th:case="*">
+                    <tr th:each="course : ${courses}">
+                        <td th:text="${course.name}"></td>
+                        <td th:text="${course.category.displayValue}"></td>
+                        <td th:text="${course.targetGroup.displayValue}"></td>
+                        <td th:text="${course.duration}"></td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table class="table w-75 mx-auto">
+        <thead class="thead-light">
+            <h5 class="table w-75 mx-auto">Mittags</h5>
+            <tr>
+                <th class="font-italic">Name</th>
+                <th class="font-italic">Kategorie</th>
+                <th class="font-italic">Zielgruppe</th>
+                <th class="font-italic">Dauer</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <div class="col-10 mt-4">
+            <div th:switch="${courses}">
+                <div th:case="null">
+                    <span>Keine Kurse angelegt gefunden</span>
+                </div>
+                <div th:case="*">
+                    <tr th:each="course : ${courses}">
+                        <td th:text="${course.name}"></td>
+                        <td th:text="${course.category.displayValue}"></td>
+                        <td th:text="${course.targetGroup.displayValue}"></td>
+                        <td th:text="${course.duration}"></td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table class="table w-75 mx-auto">
+        <thead class="thead-light">
+            <h5 class="table w-75 mx-auto">Abends</h5>
+            <tr>
+                <th class="font-italic">Name</th>
+                <th class="font-italic">Kategorie</th>
+                <th class="font-italic">Zielgruppe</th>
+                <th class="font-italic">Dauer</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <div class="col-10 mt-4">
+            <div th:switch="${courses}">
+                <div th:case="null">
+                    <span>Keine Kurse angelegt gefunden</span>
+                </div>
+                <div th:case="*">
+                    <tr th:each="course : ${courses}">
+                        <td th:text="${course.name}"></td>
+                        <td th:text="${course.category.displayValue}"></td>
+                        <td th:text="${course.targetGroup.displayValue}"></td>
+                        <td th:text="${course.duration}"></td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <br>
+    <hr>
+    <br>
+
+    <div class="w-75 mx-auto">
+        <div class="row">
+            <div class="text-left">
+                <h5 class="font-italic font-weight-bold text-uppercase">Kursübersicht</h5>
+                <h6 class="pt-4">Bodyweight</h6>
+                <p class="pt-2" style="line-height: 30px;">Als Bodyweight-Training oder auch Eigengewichtübungen
+                    bezeichnet man eine sportliche
+                    Übung, die nur
+                    das eigene Körpergewicht als Widerstand nutzt. Diese Übungen sind eine Form des Fitness- und
+                    Krafttrainings, die fast völlig auf Hilfsmittel wie Gewichte und Fitnessgeräte verzichtet.</p>
+                <h6 class="pt-3">Gewichte</h6>
+                <p class="pt-2" style="line-height: 30px;">Unter Gewichttraining versteht man das körperliche Training
+                    mithilfe von Gewichten,
+                    welches das Ziel verfolgt, körperliche Veränderungen,
+                    etwa die Steigerung der Kraftfähigkeiten oder die Erhöhung der Muskelmasse zu erreichen. Eine
+                    wichtige Rolle spielt Gewichttraining für das Bodybuilding und die Kraftsportarten, aber auch für
+                    die
+                    Medizinische Kräftigungstherapie.</p>
+                <h6 class="pt-3">Tanzen</h6>
+                <p class="pt-2" style="line-height: 30px;">Tanzen ist ein dynamisches Fitnesstraining in der Gruppe mit
+                    rhythmischen Bewegungen zu
+                    motivierender Musik. Die Grundelemente sind hauptsächlich Ausdauer und Koordination. Die in
+                    einer Choreografie zusammengestellten Übungen sind eine Mischung aus klassischer Gymnastik und Tanz.
+                </p>
+                <h6 class="pt-3">Wassergymnastik</h6>
+                <p class="pt-2" style="line-height: 30px;">Wassergymnastik ist ein spezielles Bewegungstraining im
+                    Wasser. Die Kraft- und Konditionsübungen
+                    schonen aufgrund des Auftriebs des Wassers die Gelenke, Sehnen und
+                    den Rücken und kräftigen die Muskulatur sowie das Herz-Kreislaufsystem. Durch den hohen Widerstand
+                    des Wassers sind die Übungen teilweise anstrengender als außerhalb des Wassers.</p>
+                <h6 class="pt-3">Yoga</h6>
+                <p class="pt-2" style="line-height: 30px;">Yoga ist eine philosophische Lehre, deren ganzheitlicher
+                    Ansatz Körper, Geist und Seele in Einklang
+                    bringen soll. Dazu werden geistige und körperliche Übungen, wie Muskelan- und -entspannungsübungen,
+                    Atemübungen, Meditation und Askese eingesetzt. </p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+
+
+    <!-- FOOTER-->
+    <div class="fixed">
+        <div th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
