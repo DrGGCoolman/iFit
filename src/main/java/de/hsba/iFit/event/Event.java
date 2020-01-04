@@ -8,17 +8,17 @@ import de.hsba.ifit.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalTime;
 
 @Entity
 public class Event {
     @GeneratedValue
     @Id
     @Getter
+    @Setter
     private Integer id;
     @Getter
     @Setter
-    private LocalTime startAt;
+    private Integer startAt;
 
 
     @ManyToOne
@@ -29,5 +29,12 @@ public class Event {
 
     @ManyToOne
     private Room room;
+
+    public Event(Integer startAt, Course course, User user, Room room) {
+        this.startAt = startAt;
+        this.course = course;
+        this.user = user;
+        this.room = room;
+    }
 
 } 
