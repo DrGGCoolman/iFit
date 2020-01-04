@@ -1,9 +1,9 @@
 package de.hsba.ifit.event;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 
 import de.hsba.ifit.course.Course;
-import de.hsba.ifit.room.Room;
 import de.hsba.ifit.user.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +18,10 @@ public class Event {
     private Integer id;
     @Getter
     @Setter
-    private Integer startAt;
+    private LocalTime startAt;
+    @Getter
+    @Setter
+    private Room room;
 
 
     @ManyToOne
@@ -27,10 +30,8 @@ public class Event {
     @ManyToOne
     private User user;
 
-    @ManyToOne
-    private Room room;
 
-    public Event(Integer startAt, Course course, User user, Room room) {
+    public Event(LocalTime startAt, Course course, User user, Room room) {
         this.startAt = startAt;
         this.course = course;
         this.user = user;
