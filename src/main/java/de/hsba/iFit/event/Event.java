@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.time.LocalTime;
 
 import de.hsba.ifit.course.Course;
+import de.hsba.ifit.slot.Weekday;
 import de.hsba.ifit.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,18 +25,22 @@ public class Event {
     @Setter
     private Room room;
 
+    @Getter
+    @Setter
+    private Weekday weekday;
+
     @ManyToOne
     private Course course;
 
     @ManyToOne
     private User user;
 
-
-    public Event(LocalTime startAt, Course course, User user, Room room) {
+    public Event(LocalTime startAt, Course course, User user, Room room, Weekday weekday) {
         this.startAt = startAt;
         this.course = course;
         this.user = user;
         this.room = room;
+        this.weekday = weekday;
     }
 
 }

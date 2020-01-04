@@ -22,6 +22,8 @@ public class Course {
 
     @Getter
     @Setter
+    @Basic(optional = false)
+    @Column(unique = true)
     private String name;
 
     @Getter
