@@ -12,8 +12,76 @@
 
     <div th:insert="~{shared/header :: copy}"></div>
 
+    <br>
 
-Termin bearbeiten
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="cardbox p-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Termin bearbeiten</h3>
+                        <br>
+                        <form class="form" th:action=" @{${'/owner/events/update/' + id}}" th:object="${event}" method="post">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputWeekday">Wochentag</label>
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" required>
+                                        <option value="" selected>Wochentag wählen..</option>
+                                        <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
+                                            th:value="${weekday}" th:text="${weekday.displayValue}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputStartAt">Beginn</label>
+                                    <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
+                                        placeholder="Beginn" required>
+                                </div>
+                            </div> 
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputCourse">Kurs</label>
+                                    <input type="text" class="form-control" th:field="*{course}" id="inputCourse"
+                                        placeholder="Kurs" required>
+                                </div>
+                            </div> 
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputRoom">Raum</label>
+                                    <select id="inputRoom" class="form-control" th:field="*{room}" required>
+                                        <option value="" selected>Raum wählen..</option>
+                                        <option th:each="room : ${T(de.hsba.ifit.event.Room).values()}"
+                                            th:value="${room}" th:text="${room.displayValue}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputUser">Trainer</label>
+                                    <input type="text" class="form-control" th:field="*{user}" id="inputUser"
+                                        placeholder="Trainer" required>
+                                </div>
+                            </div>
+                            <!-- <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputStatus">Status</label>
+                                    <input type="text" class="form-control" id="inputStatus"
+                                        placeholder="Status" required>
+                                </div> -->
+                            </div>                        
+                            <br>
+                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Änderungen
+                                Speichern</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

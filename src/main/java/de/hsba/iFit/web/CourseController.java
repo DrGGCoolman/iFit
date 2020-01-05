@@ -60,8 +60,8 @@ public class CourseController {
             return "kurs/kurs-create";
         }
 
-        Course course = courseService.save(formAssembler.update(new Course(), courseForm));
-        return "redirect:edit/" + course.getId().toString();
+        courseService.save(formAssembler.update(new Course(), courseForm));
+        return "redirect:/owner/course/list";
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
