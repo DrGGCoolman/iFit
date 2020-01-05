@@ -18,11 +18,11 @@ public class FormAssembler {
     }
 
     Course update(Course course, CourseForm form) {
-        form.setName(course.getName());
-        form.setDescription(course.getDescription());
-        form.setCategory(course.getCategory());
-        form.setTargetGroup(course.getTargetGroup());
-        form.setDuration(course.getDuration());
+        course.setName(form.getName());
+        course.setDescription(form.getDescription());
+        course.setCategory(form.getCategory());
+        course.setTargetGroup(form.getTargetGroup());
+        course.setDuration(form.getDuration());
         return course;
     }
 
