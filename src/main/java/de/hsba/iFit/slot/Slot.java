@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import de.hsba.ifit.user.User;
+import de.hsba.ifit.daytime.Daytime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,11 +19,12 @@ public class Slot {
 
     @Getter
     @Setter
-    private Daytime daytime;
+    private Weekday weekday;
 
     @Getter
     @Setter
-    private Weekday weekday;
+    @ManyToOne
+    private Daytime daytime;
 
     @ManyToMany(mappedBy = "slots")
     private List<User> users;

@@ -26,15 +26,9 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/class/termine")
-    public String classTermine(Model model) {
-
-        return "kurs-termine";
-    }
-
     // Gibt Listenansicht (Plan) der Kurse zurück
-    @GetMapping("/course/plan")
-    public String showAllEvents(Model model) {
+    @GetMapping("/events/schedule")
+    public String showAllCourses(Model model) {
         model.addAttribute("events", eventRepository.findAll());
         return "wochenplan";
     }

@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="d-inline-block nav-link" th:href="@{/course/plan}">Wochenplan</a>
+                    <a class="d-inline-block nav-link" th:href="@{/events/schedule}">Wochenplan</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -78,7 +78,7 @@
                 </ul>
                 <ul class="nav navbar-nav" sec:authorize="authenticated">
                     <li class="nav-item ml-auto">
-                        <a th:href="@{/users/edit}" class="d-inline-block nav-link" th:text="${#httpServletRequest.remoteUser}"></a>
+                        <a th:href="@{/user/edit}" class="d-inline-block nav-link" th:text="${#httpServletRequest.remoteUser}"></a>
                             <span class="d-inline-block nav-link">|</span>
                             <a class="d-inline-block nav-link" th:href="@{/logout}">Logout</a>
                         </li>

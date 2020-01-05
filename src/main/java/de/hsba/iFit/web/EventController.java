@@ -44,7 +44,7 @@ public class EventController {
         return "termin/termin-detail";
     }
 
-    // Aufruf der Kurs-Anlegen ansicht.
+    // Aufruf der Event-Anlegen ansicht.
     @GetMapping("create")
     public String showCreateFrom(Model model) {
         model.addAttribute("event", new Event());
@@ -53,18 +53,19 @@ public class EventController {
         return "termin/termin-create";
     }
 
-    // Behandelt das Anlegen eines Produktes. Validiert das Kurs-Anlegen
+    // Behandelt das Anlegen eines Produktes. Validiert das Event-Anlegen
     // formular.
     @PostMapping("add")
     public String addEvent(@Valid Event event, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "termin/termin-create";
         }
-        Event savedEvent = eventRepository.save(event);
-        return "redirect:edit/" + savedEvent.getId().toString();
+        eventRepository.save(event);
+
+        return "redirect:/owner/events/list";
     }
 
-    // Aufruf der Kurs-Beaarbeiten ansicht.
+    // Aufruf der Event-Beaarbeiten ansicht.
     @GetMapping("edit/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Event event = eventRepository.findById(id)
@@ -74,7 +75,7 @@ public class EventController {
         return "termin/termin-edit";
     }
 
-    // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
+    // Behandelt das Bearbeiten eines Eventes. Validiert das Event-Bearbeiten
     // formular.
     @PostMapping("update/{id}")
     public String updateCourse(@PathVariable("id") Integer id, @Valid Event event, BindingResult result, Model model) {
@@ -85,21 +86,21 @@ public class EventController {
 
         eventRepository.save(event);
 
-        // return "redirect:/kurs/" + id.toString();
-        return "redirect:/owner/event/list";
+        // return "redirect:/Event/" + id.toString();
+        return "redirect:/owner/events/list";
     }
 
-    // Behandelt das Löschen eines Kurses.
+    // Behandelt das Löschen eines Eventes.
     @GetMapping("/delete/{id}")
     public String deleteCourse(@PathVariable("id") int id, Model model) {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id));
         eventRepository.delete(event);
-        model.addAttribute("courses", eventRepository.findAll());
-        return "redirect:/owner/event/list ";
+        model.addAttribute("events", eventRepository.findAll());
+        return "redirect:/owner/events/list ";
     }
 
-    // Gibt Listenansicht der Kurse zurück
+    // Gibt Listenansicht der Evente zurück
     @GetMapping("list")
     public String showAllProducts(Model model) {
         model.addAttribute("events", eventRepository.findAll());
