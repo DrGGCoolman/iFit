@@ -48,8 +48,8 @@ public class TrainerController {
         if (result.hasErrors()) {
             return "trainer/trainer-create";
         }
-        User savedUser = userRepository.save(user);
-        return "redirect:edit/" + savedUser.getId().toString();
+        userRepository.save(user);
+        return "redirect:/owner/trainer/list";
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
