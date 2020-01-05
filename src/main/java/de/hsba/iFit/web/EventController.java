@@ -30,7 +30,6 @@ public class EventController {
     private CourseRepository courseRepository;
     @Autowired
     private UserRepository userRepository;
-    
 
     // Gibt Daten zu einem bestimmten Course zurück. Benötigt dazu beim Aufruf
     // eine Id.
@@ -50,17 +49,27 @@ public class EventController {
         model.addAttribute("event", new Event());
         model.addAttribute("courses", courseRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
-        return "termin/termin-create";
+        return "termin/termin-create/1";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Event-Anlegen
     // formular.
     @PostMapping("add")
     public String addEvent(@Valid Event event, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "termin/termin-create";
+        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
+        if (event.getCourse() == null) {
+
+            return "termin/termin-create/2";
+        } else if (event.getUser() == null && event.getRoom() == null) {
+
+            return "termin/termin-create/3";
+        } else {
+            eventRepository.save(event);
         }
-        eventRepository.save(event);
+        // if (result.hasErrors()) {
+        // return "termin/termin-create";
+        // }
 
         return "redirect:/owner/events/list";
     }
