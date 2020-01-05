@@ -3,6 +3,7 @@ package de.hsba.ifit.web;
 import org.springframework.stereotype.Component;
 
 import de.hsba.ifit.course.Course;
+import de.hsba.ifit.user.User;
 
 @Component
 public class FormAssembler {
@@ -24,6 +25,23 @@ public class FormAssembler {
         course.setTargetGroup(form.getTargetGroup());
         course.setDuration(form.getDuration());
         return course;
+    }
+
+    TrainerForm toForm(User user) {
+        TrainerForm form = new TrainerForm();
+        form.setFirstname(user.getFirstname());
+        form.setLastname(user.getLastname());
+        form.setName(user.getName());
+        form.setPassword(user.getPassword());
+        return form;
+    }
+
+    User update(User user, TrainerForm form) {
+        user.setFirstname(form.getFirstname());
+        user.setLastname(form.getLastname());
+        user.setName(form.getName());
+        user.setPassword(form.getPassword());
+        return user;
     }
 
 }

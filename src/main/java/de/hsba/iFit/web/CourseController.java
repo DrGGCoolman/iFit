@@ -67,25 +67,22 @@ public class CourseController {
     // Aufruf der Kurs-Beaarbeiten ansicht.
     @GetMapping("edit/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
+        Course course = courseService.findCourse(id);
+        model.addAttribute("courseForm", formAssembler.toForm(course));
         model.addAttribute("isUpdate", true);
-        model.addAttribute("course", course);
         return "kurs/kurs-edit";
     }
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
     // formular.
     @PostMapping("update/{id}")
-    public String updateCourse(@PathVariable("id") Integer id, @Valid Course course, BindingResult result,
-            Model model) {
-        if (result.hasErrors()) {
-            course.setId(id);
-            return "redirect:" + id.toString();
+    public String updateCourse(@PathVariable("id") Integer id,
+    @ModelAttribute("courseForm") @Valid CourseForm form, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "kurs/kurs-edit";
         }
-
-        courseRepository.save(course);
-
+        Course course = courseService.findCourse(id);
+        courseService.save(formAssembler.update(course, form));
         // return "redirect:/kurs/" + id.toString();
         return "redirect:/owner/course/list";
     }
