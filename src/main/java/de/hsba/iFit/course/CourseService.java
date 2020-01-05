@@ -1,0 +1,24 @@
+package de.hsba.ifit.course;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
+
+@RequiredArgsConstructor
+@Service
+@Transactional
+public class CourseService {
+
+    private final CourseRepository courseRepository;
+
+    public void Seed(String name, String description, Category category, TargetGroup targetGroup, int duration) {
+        courseRepository.save(new Course(name, description, category, targetGroup, duration));
+    }
+
+    public List<Course> findAll() {
+        return courseRepository.findAll();
+    }
+
+}

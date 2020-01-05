@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{shared/header :: copy}"></div>
+
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="cardbox p-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-center">Kurs bearbeiten</h3>
+                        <br>
+
+                        <form class="form" th:action=" @{${'/owner/course/update/' + id}}" th:object="${course}"
+                            method="post">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputCourse">Kursname</label>
+                                    <input type="text" class="form-control" id="inputCourse" th:field="*{name}"
+                                        placeholder="Kursname" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputDescription">Beschreibung</label>
+                                    <textarea class="form-control" th:field="*{description}" id="inputDescription"
+                                        placeholder="Beschreibung" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputCategory">Kategorie</label>
+                                    <select id="inputCategory" class="form-control" th:field="*{category}" required>
+                                        <option value="" selected>Kategorie wählen..</option>
+                                        <option th:each="category : ${T(de.hsba.ifit.course.Category).values()}"
+                                            th:value="${category}" th:text="${category.displayValue}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputMinutes">Minuten</label>
+                                    <input type="number" class="form-control" id="inputMinutes" th:field="*{duration}"
+                                        placeholder="Minuten" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <label for="inputCategory">Zielgruppe</label>
+                                    <select id="inputCategory" class="form-control" th:field="*{targetGroup}" required>
+                                        <option value="" selected>Zielgruppe wählen..</option>
+                                        <option th:each="targetGroup : ${T(de.hsba.ifit.course.TargetGroup).values()}"
+                                            th:value="${targetGroup}" th:text="${targetGroup.displayValue}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Änderungen
+                                Speichern</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <br>
+    <br>
+
+    <!-- FOOTER-->
+    <div class="fixed-bottom">
+        <div th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

@@ -1,22 +1,23 @@
 package de.hsba.ifit.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import de.hsba.ifit.event.EventRepository;
 
 //Enthälten allgemeine Routen, die keinem Controller direkt zuzuordnen sind.
 @Controller
 public class HomeController {
 
+    @Autowired
+    private EventRepository eventRepository;
+
     @RequestMapping("/")
     public String root() {
         return "redirect:/index";
-    }
-
-    @RequestMapping("/login")
-    public String login(Model model) {
-
-        return "anonymous/login";
     }
 
     @RequestMapping("/index")
@@ -25,21 +26,21 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/trainer/index")
-    public String trainerIndex(Model model) {
-
-        return "trainer/index";
+    // Gibt Listenansicht (Plan) der Kurse zurück
+    @GetMapping("/events/schedule")
+    public String showAllCourses(Model model) {
+        model.addAttribute("events", eventRepository.findAll());
+        return "wochenplan";
     }
 
-    @RequestMapping("/admin/index")
-    public String adminIndex(Model model) {
-
-        return "admin/index";
+    @RequestMapping("/impressum")
+    public String Impressum() {
+        return "impressum";
     }
 
-    @RequestMapping("/owner/trainer/create")
-    public String createTrainer(Model model) {
-
-        return "owner/createTrainer";
+    @RequestMapping("/datenschutz")
+    public String Datenschutz() {
+        return "datenschutz";
     }
+
 }

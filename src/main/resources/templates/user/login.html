@@ -11,7 +11,7 @@
 
 <body class="bg-main">
 
-
+    <div th:insert="~{shared/header :: copy}"></div>
 
     <br>
     <br>
@@ -26,8 +26,8 @@
 
                         <form class="form-signin" action="/login" method="post">
                             <div class="form-label-group pt-2 pb-2">
-                                <label for="inputEmail w-100 pb-2">Nutzernamen</label>
-                                <input type="text" id="inputEmail" class="form-control w-100" placeholder="E-Mail"
+                                <label for="inputUsername w-100 pb-2">Nutzername</label>
+                                <input type="text" id="inputUsername" class="form-control w-100" placeholder="Nutzername"
                                     name="username" required autofocus>
                             </div>
 
@@ -48,8 +48,9 @@
     </div>
     <br>
     <br>
-    <!-- FOOTER-->
+
     <div class="fixed-bottom">
+        <div th:insert="~{shared/footer :: copy}"></div>
     </div>
 
     <!-- SKRIPTE-->
