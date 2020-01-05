@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.event.*;
+import de.hsba.ifit.user.UserRepository;
 
 //Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
 @Controller
@@ -24,6 +26,11 @@ public class EventController {
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private CourseRepository courseRepository;
+    @Autowired
+    private UserRepository userRepository;
+    
 
     // Gibt Daten zu einem bestimmten Course zurück. Benötigt dazu beim Aufruf
     // eine Id.
@@ -40,19 +47,21 @@ public class EventController {
     // Aufruf der Kurs-Anlegen ansicht.
     @GetMapping("create")
     public String showCreateFrom(Model model) {
-        model.addAttribute("course", new Event());
+        model.addAttribute("event", new Event());
+        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("users", userRepository.findAll());
         return "termin/termin-create";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Kurs-Anlegen
     // formular.
     @PostMapping("add")
-    public String addCourse(@Valid Event event, BindingResult result, Model model) {
+    public String addEvent(@Valid Event event, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "termin/termin-create";
         }
-        Event savedCourse = eventRepository.save(event);
-        return "redirect:edit/" + savedCourse.getId().toString();
+        Event savedEvent = eventRepository.save(event);
+        return "redirect:edit/" + savedEvent.getId().toString();
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
