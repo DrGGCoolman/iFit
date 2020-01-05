@@ -20,73 +20,30 @@
                     <div class="card-body">
                         <h3 class="card-title text-center">Arbeitszeit festlegen</h3>
                         <br>
-                        <form class="form" action="#" method="post">
-                            <div class="form-row">
-                                <div class="form-group col-12">
-                                    <label for="inputSlots">Montag</label>
-                                    <select id="inputSlots" multiple="multiple" class="form-control" required>
-                                        <option>a</option>
-                                        <option>b</option>
-                                        <option>c</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <form class="form" th:action="@{${'/user/settings/update/'+ user.id}}" th:object="${user}"
+                            method="post">
+
+                            <select id="multiSelectElementsSelected" name="multiSelectElementsSelected"
+                                multiple="multiple" th:field="*{slots}">
+
+                                <option th:each="slot : ${slots}" th:value="${slot.id}"
+                                    th:text="${slot.weekday.displayValue + ' -------- ' + slot.daytime.name }"></option>
+
+                            </select>
+
+                            <h3 class="card-title text-center">Kurse wählen</h3>
                             <br>
-                            <div class="form-row">
-                                <div class="form-group col-12">
-                                    <label for="inputSlots">Dienstag</label>
-                                    <select id="inputSlots" multiple="multiple" class="form-control" required>
-                                        <option>a</option>
-                                        <option>b</option>
-                                        <option>c</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-12">
-                                    <label for="inputSlots">Mittwoch</label>
-                                    <select id="inputSlots" multiple="multiple" class="form-control" required>
-                                        <option>a</option>
-                                        <option>b</option>
-                                        <option>c</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-12">
-                                    <label for="inputSlots">Donnerstag</label>
-                                    <select id="inputSlots" multiple="multiple" class="form-control" required>
-                                        <option>a</option>
-                                        <option>b</option>
-                                        <option>c</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-12">
-                                    <label for="inputSlots">Freitag</label>
-                                    <select id="inputSlots" multiple="multiple" class="form-control" required>
-                                        <option>a</option>
-                                        <option>b</option>
-                                        <option>c</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-12">
-                                    <label for="inputCourses">Kurse</label>
-                                    <select id="inputCourses" multiple="multiple" class="form-control" required>
-                                        <option>a</option>
-                                        <option>b</option>
-                                        <option>c</option>
-                                        <option>d</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
-                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Auswählen</button>
-                        </form>
+
+                            <select id="multiSelectElementsSelected" name="multiSelectElementsSelected"
+                                multiple="multiple" th:field="*{courses}">
+                                <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name }">
+                                </option>
+                            </select>
                     </div>
+
+                    <br>
+                    <button class="btn btn-lg btn-secondary btn-block" type="submit">Speicher</button>
+                    </form>
                 </div>
             </div>
         </div>
