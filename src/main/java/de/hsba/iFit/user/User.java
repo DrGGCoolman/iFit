@@ -76,9 +76,13 @@ public class User implements Comparable<User> {
         return name;
     }
 
+    @Getter
+    @Setter
     @ManyToMany
     private List<Slot> slots;
-
+    
+    @Getter
+    @Setter
     @ManyToMany
     private List<Course> courses;
 

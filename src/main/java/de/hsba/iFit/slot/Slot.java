@@ -7,9 +7,11 @@ import javax.persistence.*;
 import de.hsba.ifit.user.User;
 import de.hsba.ifit.daytime.Daytime;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@RequiredArgsConstructor
 public class Slot {
     @GeneratedValue
     @Id
@@ -26,6 +28,8 @@ public class Slot {
     @ManyToOne
     private Daytime daytime;
 
+    @Getter
+    @Setter
     @ManyToMany(mappedBy = "slots")
     private List<User> users;
 
