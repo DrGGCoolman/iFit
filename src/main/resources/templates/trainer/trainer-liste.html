@@ -13,13 +13,17 @@
     <div th:insert="~{shared/header :: copy}"></div>
 
     <br>
-    <table class="table">
+    <div class="ml-5 mr-5">
+    <table class="table mx-auto">
+      <thead class="thead-light">
+        <h5 class="table mx-auto">Trainerliste</h5>
         <tr>
-          <th>Vorname</th>
-          <th>Nachname</th>
-          <th>User</th>
+          <th class="font-italic">Vorname</th>
+          <th class="font-italic">Nachname</th>
+          <th class="font-italic">User</th>
           <th></th>
         </tr>
+      </thead>
 
         <div class="col-10 mt-4">
           <div th:switch="${users}">
@@ -44,6 +48,7 @@
             <td></td>
         </tr>
       </table>
+    </div>
 
 
 

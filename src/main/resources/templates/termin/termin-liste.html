@@ -13,7 +13,10 @@
   <div th:insert="~{shared/header :: copy}"></div>
 
   <br>
+  <div class="ml-5 mr-5">
   <table class="table">
+    <thead class="thead-light">
+      <h5 class="table mx-auto">Terminliste</h5>
     <tr>
       <th>Tag</th>
       <th>Beginn</th>
@@ -24,6 +27,7 @@
       <th>Status</th>
       <th></th>
     </tr>
+    </thead>
 
     <div class="col-10 mt-4">
       <div th:switch="${events}">
@@ -61,6 +65,7 @@
       <td></td>
     </tr>
   </table>
+  </div>
 
 
 

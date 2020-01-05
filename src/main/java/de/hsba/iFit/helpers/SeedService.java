@@ -4,11 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import de.hsba.ifit.course.*;
-
+import de.hsba.ifit.daytime.DaytimeRepository;
+import de.hsba.ifit.daytime.DaytimeService;
 import de.hsba.ifit.event.Event;
 import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.event.EventService;
 import de.hsba.ifit.event.Room;
+import de.hsba.ifit.slot.SlotRepository;
+import de.hsba.ifit.slot.SlotService;
 import de.hsba.ifit.slot.Weekday;
 import de.hsba.ifit.user.User;
 import de.hsba.ifit.user.UserRepository;
@@ -28,13 +31,50 @@ public class SeedService {
     private final EventRepository eventRepository;
     private final UserRepository userRepository;
     private final CourseRepository courseRepository;
+    private final DaytimeRepository daytimeRepository;
+    private final SlotRepository slotRepository;
 
     private final CourseService courseService;
     private final UserService userService;
     private final EventService eventService;
+    private final DaytimeService daytimeService;
+    private final SlotService slotService;
+
 
     @PostConstruct
     void initialSeed() {
+
+        // DAYTIME
+        if (daytimeRepository.count() == 0) {
+                daytimeService.Seed("Morgens", LocalTime.of(8, 0), LocalTime.of(12, 0));
+                daytimeService.Seed("Nachmittags", LocalTime.of(12, 0), LocalTime.of(16, 0));
+                daytimeService.Seed("Abends", LocalTime.of(16, 0), LocalTime.of(20, 0));
+        }
+
+        // SlOTS
+        if (slotRepository.count() == 0) {
+                slotService.Seed(Weekday.MO, daytimeRepository.findByName("Morgens"));
+                slotService.Seed(Weekday.MO, daytimeRepository.findByName("Nachmittags"));
+                slotService.Seed(Weekday.MO, daytimeRepository.findByName("Abends"));
+                slotService.Seed(Weekday.TU, daytimeRepository.findByName("Morgens"));
+                slotService.Seed(Weekday.TU, daytimeRepository.findByName("Nachmittags"));
+                slotService.Seed(Weekday.TU, daytimeRepository.findByName("Abends"));
+                slotService.Seed(Weekday.WE, daytimeRepository.findByName("Morgens"));
+                slotService.Seed(Weekday.WE, daytimeRepository.findByName("Nachmittags"));
+                slotService.Seed(Weekday.WE, daytimeRepository.findByName("Abends"));
+                slotService.Seed(Weekday.TH, daytimeRepository.findByName("Morgens"));
+                slotService.Seed(Weekday.TH, daytimeRepository.findByName("Nachmittags"));
+                slotService.Seed(Weekday.TH, daytimeRepository.findByName("Abends"));
+                slotService.Seed(Weekday.FR, daytimeRepository.findByName("Morgens"));
+                slotService.Seed(Weekday.FR, daytimeRepository.findByName("Nachmittags"));
+                slotService.Seed(Weekday.FR, daytimeRepository.findByName("Abends"));
+                slotService.Seed(Weekday.SA, daytimeRepository.findByName("Morgens"));
+                slotService.Seed(Weekday.SA, daytimeRepository.findByName("Nachmittags"));
+                slotService.Seed(Weekday.SA, daytimeRepository.findByName("Abends"));
+                slotService.Seed(Weekday.SU, daytimeRepository.findByName("Morgens"));
+                slotService.Seed(Weekday.SU, daytimeRepository.findByName("Nachmittags"));
+                slotService.Seed(Weekday.SU, daytimeRepository.findByName("Abends"));
+        }
 
         // NUTZER
         if (userRepository.count() == 0) {
@@ -70,7 +110,7 @@ public class SeedService {
                     Category.WEIGHTS, TargetGroup.RELAXED, 60);
 
         }
-
+        // TERMINE
         if (eventRepository.count() == 0) {
             eventService.Seed(LocalTime.of(12, 15), courseRepository.findByName("Krankengymnastik am Gerät"),
                     userRepository.findByName("zoe.richter"), Room.GYM2, Weekday.MO);
