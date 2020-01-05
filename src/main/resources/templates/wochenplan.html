@@ -19,6 +19,8 @@
                     class="w-100" style="height: 300px;" alt="Tanzen">
                 <div class="carousel-caption text-left">
                     <h5 class="h3 font-italic">Wochenplan von iFit</h5>
+
+                    <!--TODO: xD Niklas der Meme-Lord -->
                     <p class="h4 font-italic font-weight-lighter">Wählen Sie aus den besten und modernsten Kursen aus.
                     </p>
                 </div>
@@ -53,6 +55,7 @@
     <hr>
     <br>
 
+    <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
     <table class="table w-75 mx-auto">
         <thead class="thead-light">
             <h5 class="table w-75 mx-auto">Morgens</h5>
@@ -61,21 +64,24 @@
                 <th class="font-italic">Kategorie</th>
                 <th class="font-italic">Zielgruppe</th>
                 <th class="font-italic">Dauer</th>
+                <th class="font-italic">Trainer</th>
                 <th></th>
             </tr>
         </thead>
 
+
         <div class="col-10 mt-4">
-            <div th:switch="${courses}">
+            <div th:switch="${events}">
                 <div th:case="null">
                     <span>Keine Kurse angelegt gefunden</span>
                 </div>
                 <div th:case="*">
-                    <tr th:each="course : ${courses}">
-                        <td th:text="${course.name}"></td>
-                        <td th:text="${course.category.displayValue}"></td>
-                        <td th:text="${course.targetGroup.displayValue}"></td>
-                        <td th:text="${course.duration}"></td>
+                    <tr th:each="event : ${events}">
+                        <td th:text="${event.course.name}"></td>
+                        <td th:text="${event.course.category.displayValue}"></td>
+                        <td th:text="${event.course.targetGroup.displayValue}"></td>
+                        <td th:text="${event.course.duration}"></td>
+                        <td th:text="${event.user.firstname + ' ' + event.user.lastname }"></td>
                     </tr>
                 </div>
             </div>
@@ -91,6 +97,7 @@
 
     <br>
 
+    <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
     <table class="table w-75 mx-auto">
         <thead class="thead-light">
             <h5 class="table w-75 mx-auto">Mittags</h5>
@@ -99,21 +106,24 @@
                 <th class="font-italic">Kategorie</th>
                 <th class="font-italic">Zielgruppe</th>
                 <th class="font-italic">Dauer</th>
+                <th class="font-italic">Trainer</th>
                 <th></th>
             </tr>
         </thead>
 
+
         <div class="col-10 mt-4">
-            <div th:switch="${courses}">
+            <div th:switch="${events}">
                 <div th:case="null">
                     <span>Keine Kurse angelegt gefunden</span>
                 </div>
                 <div th:case="*">
-                    <tr th:each="course : ${courses}">
-                        <td th:text="${course.name}"></td>
-                        <td th:text="${course.category.displayValue}"></td>
-                        <td th:text="${course.targetGroup.displayValue}"></td>
-                        <td th:text="${course.duration}"></td>
+                    <tr th:each="event : ${events}">
+                        <td th:text="${event.course.name}"></td>
+                        <td th:text="${event.course.category.displayValue}"></td>
+                        <td th:text="${event.course.targetGroup.displayValue}"></td>
+                        <td th:text="${event.course.duration}"></td>
+                        <td th:text="${event.user.firstname + ' ' + event.user.lastname }"></td>
                     </tr>
                 </div>
             </div>
@@ -128,6 +138,8 @@
     </table>
 
     <br>
+
+    <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
 
     <table class="table w-75 mx-auto">
         <thead class="thead-light">
@@ -137,21 +149,24 @@
                 <th class="font-italic">Kategorie</th>
                 <th class="font-italic">Zielgruppe</th>
                 <th class="font-italic">Dauer</th>
+                <th class="font-italic">Trainer</th>
                 <th></th>
             </tr>
         </thead>
 
+
         <div class="col-10 mt-4">
-            <div th:switch="${courses}">
+            <div th:switch="${events}">
                 <div th:case="null">
                     <span>Keine Kurse angelegt gefunden</span>
                 </div>
                 <div th:case="*">
-                    <tr th:each="course : ${courses}">
-                        <td th:text="${course.name}"></td>
-                        <td th:text="${course.category.displayValue}"></td>
-                        <td th:text="${course.targetGroup.displayValue}"></td>
-                        <td th:text="${course.duration}"></td>
+                    <tr th:each="event : ${events}">
+                        <td th:text="${event.course.name}"></td>
+                        <td th:text="${event.course.category.displayValue}"></td>
+                        <td th:text="${event.course.targetGroup.displayValue}"></td>
+                        <td th:text="${event.course.duration}"></td>
+                        <td th:text="${event.user.firstname + ' ' + event.user.lastname }"></td>
                     </tr>
                 </div>
             </div>

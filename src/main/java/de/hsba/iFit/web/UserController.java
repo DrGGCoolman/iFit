@@ -1,5 +1,6 @@
 package de.hsba.ifit.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,9 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import de.hsba.ifit.user.User;
+import de.hsba.ifit.user.UserRepository;
+
 //Enthälten allgemeine Routen, die keinem Controller direkt zuzuordnen sind.
 @Controller
 public class UserController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -32,6 +39,18 @@ public class UserController {
 
         return auth instanceof AnonymousAuthenticationToken ? "user/login" : "redirect:/";
 
+    }
+
+    @GetMapping("/user/edit")
+    public String showUpdateForm(Model model) {
+
+        User currUser = User.getCurrentUser();
+
+        User user = userRepository.findById(currUser.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+        model.addAttribute("user", user);
+
+        return "trainer/trainer-edit";
     }
 
     @RequestMapping("/user/appointments")

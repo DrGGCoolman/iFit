@@ -52,8 +52,8 @@ public class CourseController {
         if (result.hasErrors()) {
             return "kurs/kurs-create";
         }
-        Course savedCourse = courseRepository.save(course);
-        return "redirect:edit/" + savedCourse.getId().toString();
+        courseRepository.save(course);
+        return "redirect:/owner/course/list";
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
