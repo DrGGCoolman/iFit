@@ -26,7 +26,7 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputWeekday">Wochentag</label>
-                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" required>
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}">
                                         <option value="" selected>Wochentag wählen..</option>
                                         <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
                                             th:value="${weekday}" th:text="${weekday.displayValue}">
@@ -38,14 +38,13 @@
                                 <div class="form-group col-12">
                                     <label for="inputStartAt">Beginn</label>
                                     <input type="time" class="form-control" th:field="*{startAt}"
-                                        id="inputStartAt" placeholder="Beginn" required>
+                                        id="inputStartAt" placeholder="Beginn">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCourse">Kurs*</label>
-                                    <select th:field="*{course}" id="inputCourse" class="form-control" required
-                                        autofocus>
+                                    <select th:field="*{course}" id="inputCourse" class="form-control">
                                         <option value="" selected>Kurs wählen..</option>
                                         <option th:each="course: ${courses}" th:value="${course.id}"
                                             th:text="${course.name}">
@@ -56,7 +55,7 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputRoom">Raum</label>
-                                    <select id="inputRoom" class="form-control" th:field="*{room}" required>
+                                    <select id="inputRoom" class="form-control" th:field="*{room}" required autofocus>
                                         <option value="" selected>Raum wählen..</option>
                                         <option th:each="room : ${T(de.hsba.ifit.event.Room).values()}"
                                             th:value="${room}" th:text="${room.displayValue}">
@@ -67,8 +66,7 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputUser">Trainer*</label>
-                                    <select th:field="*{user}" id="inputUser" class="form-control" required
-                                        autofocus>
+                                    <select th:field="*{user}" id="inputUser" class="form-control" required>
                                         <option value="" selected>Trainer wählen..</option>
                                         <option th:each="user: ${users}" th:value="${user.id}"
                                             th:text="${user.firstname + ' ' + user.lastname }">
@@ -76,12 +74,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- <div class="form-row">
-                                <div class="form-group col-12">
-                                    <label for="inputStatus">Status</label>
-                                    <input type="text" class="form-control" id="inputStatus"
-                                        placeholder="Status" required>
-                                </div> -->
                     </div>
                     <br>
                     <button class="btn btn-lg btn-secondary btn-block" type="submit">Anlegen</button>
