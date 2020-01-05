@@ -33,4 +33,14 @@ public class HomeController {
         return "wochenplan";
     }
 
+    @RequestMapping("/impressum")
+    public String Impressum() {
+        return "impressum";
+    }
+
+    @RequestMapping("/datenschutz")
+    public String Datenschutz() {
+        return "datenschutz";
+    }
+
 }
