@@ -11,20 +11,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.hsba.ifit.course.Course;
+import de.hsba.ifit.course.CourseService;
 import de.hsba.ifit.course.CourseRepository;
+import lombok.RequiredArgsConstructor;
 
 //Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/owner/course/")
 public class CourseController {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    private final CourseService courseService;
+    private final FormAssembler formAssembler;
 
     // Gibt Daten zu einem bestimmten Course zurück. Benötigt dazu beim Aufruf
     // eine Id.
@@ -41,19 +48,20 @@ public class CourseController {
     // Aufruf der Kurs-Anlegen ansicht.
     @GetMapping("create")
     public String showCreateFrom(Model model) {
-        model.addAttribute("course", new Course());
+        model.addAttribute("courseForm", new CourseForm());
         return "kurs/kurs-create";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Kurs-Anlegen
     // formular.
     @PostMapping("add")
-    public String addCourse(@Valid Course course, BindingResult result, Model model) {
+    public String addCourse(@ModelAttribute("courseForm") @Valid CourseForm courseForm, BindingResult result) {
         if (result.hasErrors()) {
             return "kurs/kurs-create";
         }
-        Course savedCourse = courseRepository.save(course);
-        return "redirect:edit/" + savedCourse.getId().toString();
+
+        Course course = courseService.save(formAssembler.update(new Course(), courseForm));
+        return "redirect:edit/" + course.getId().toString();
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
