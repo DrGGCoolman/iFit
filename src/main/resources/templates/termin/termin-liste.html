@@ -38,7 +38,7 @@
             <tr th:each="event : ${events}">
               <td th:text="${event.weekday.displayValue}"></td>
               <td th:text="${event.startAt}"></td>
-              <td th:text="${event.startAt.plusMinutes(event.course.duration)}"></td>
+              <td th:text="${event.end}"></td>
               <td th:text="${event.course.name}"></td>
               <td th:text="${event.room.displayValue}"></td>
               <td th:text="${event.user.firstname + ' ' + event.user.lastname }"></td>

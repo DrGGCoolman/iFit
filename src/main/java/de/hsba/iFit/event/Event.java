@@ -39,6 +39,13 @@ public class Event {
     @ManyToOne
     private User user;
 
+    @Transient
+    private LocalTime end;
+
+    public LocalTime getEnd() {
+        return this.startAt.plusMinutes(this.getCourse().getDuration());
+    }
+
     public Event(LocalTime startAt, Course course, User user, Room room, Weekday weekday) {
         this.startAt = startAt;
         this.course = course;
