@@ -17,13 +17,17 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     Optional<Event> findById(Integer id);
 
-    @Query("SELECT e FROM Event e WHERE e.startAt <= '12:00' ")
+    @Query("SELECT e FROM Event e WHERE e.startAt >= '08:00' AND e.startAt <= '12:00' ORDER BY e.weekday,e.startAt ")
     Collection<Event> findAllMorningEvents();
 
-    @Query("SELECT e FROM Event e WHERE e.startAt <= '16:00' ")
-    Collection<Event> findAllMiddayEvents();
+    @Query("SELECT e FROM Event e WHERE e.startAt >= '12:01' AND e.startAt <= '16:00' ORDER BY e.weekday,e.startAt ")
+    Collection<Event> findAllAfternoonEvents();
 
-    @Query("SELECT e FROM Event e WHERE e.startAt <= '20:00' ")
+    @Query("SELECT e FROM Event e WHERE e.startAt >= '16:01' AND e.startAt <= '20:00' ORDER BY e.weekday,e.startAt ")
     Collection<Event> findAllEveningEvents();
+
+    // TODO: List oder Collection
+    @Query("SELECT e FROM Event e WHERE e.user = 29")
+    List<Event> findMyEvents();
 
 }

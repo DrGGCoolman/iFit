@@ -30,7 +30,7 @@ public class HomeController {
     @GetMapping("/events/schedule")
     public String showAllCourses(Model model) {
         model.addAttribute("events", eventRepository.findAllMorningEvents());
-        model.addAttribute("events2", eventRepository.findAllMiddayEvents());
+        model.addAttribute("events2", eventRepository.findAllAfternoonEvents());
         model.addAttribute("events3", eventRepository.findAllEveningEvents());
         return "wochenplan";
     }
