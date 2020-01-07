@@ -21,4 +21,12 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
+    public Course save(Course course) {
+        return courseRepository.save(course);
+    }
+
+    public Course findCourse(Integer id) {
+        return courseRepository.findById(id).orElse(null);
+    }
+
 }
