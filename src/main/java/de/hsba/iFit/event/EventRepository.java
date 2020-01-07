@@ -26,8 +26,8 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
     @Query("SELECT e FROM Event e WHERE e.startAt >= '16:01' AND e.startAt <= '20:00' ORDER BY e.weekday,e.startAt ")
     Collection<Event> findAllEveningEvents();
 
-    // TODO: List oder Collection
-    @Query("SELECT e FROM Event e WHERE e.user = 29")
+    // TODO: List oder Collection? und die id ziehen von getCurrentUser möglich? sollte diese query besser ins UserRepo?
+    @Query("SELECT e FROM Event e WHERE e.user = 29 ORDER BY e.weekday,e.startAt ")
     List<Event> findMyEvents();
 
 }
