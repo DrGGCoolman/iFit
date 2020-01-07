@@ -34,7 +34,7 @@ public class UserController {
     @RequestMapping("/login")
     public String login(Model model) {
 
-        return "user/login";
+        return "visitor/login";
     }
 
     // Gibt Login-Ansicht zurück. Stellt Fehlermeldung bei fehlgeschlagenem Login
@@ -48,30 +48,18 @@ public class UserController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        return auth instanceof AnonymousAuthenticationToken ? "user/login" : "redirect:/";
+        return auth instanceof AnonymousAuthenticationToken ? "visitor/login" : "redirect:/";
 
     }
 
-    @GetMapping("/user/edit")
-    public String showUserUpdateForm(Model model) {
-
-        User currUser = User.getCurrentUser();
-
-        User user = userRepository.findById(currUser.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
-        model.addAttribute("user", user);
-
-        return "trainer/trainer-edit";
-    }
-
-    @RequestMapping("/user/appointments")
+    @RequestMapping("/trainer/events")
     public String myAppointments(Model model) {
 
-        return "user/user-termine";
+        return "trainer/trainer-events";
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
-    @GetMapping("user/settings")
+    @GetMapping("trainer/work")
     public String showUpdateForm(Model model) {
         User currUser = User.getCurrentUser();
 
@@ -82,12 +70,12 @@ public class UserController {
         model.addAttribute("slots", slotRepository.findAll());
         model.addAttribute("courses", courseRepository.findAll());
         model.addAttribute("isUpdate", true);
-        return "user/user-einstellungen";
+        return "trainer/trainer-work";
     }
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
     // formular.
-    @PostMapping("/user/settings/update/{id}")
+    @PostMapping("/trainer/work/update/{id}")
     public String updateCourse(@PathVariable("id") Integer id, @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             user.setId(id);
@@ -106,7 +94,7 @@ public class UserController {
         userRepository.save(user);
 
         // return "redirect:/kurs/" + id.toString();
-        return "redirect:/owner/course/list";
+        return "redirect:/trainer/work";
     }
 
 }

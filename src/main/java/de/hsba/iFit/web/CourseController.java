@@ -33,23 +33,11 @@ public class CourseController {
     private final CourseService courseService;
     private final FormAssembler formAssembler;
 
-    // Gibt Daten zu einem bestimmten Course zurück. Benötigt dazu beim Aufruf
-    // eine Id.
-    // Die Daten stammen aus der Datenbank und werden über das entsprechen
-    // Repository bezogen.
-    @GetMapping("{id}")
-    public String showCourseDetails(@PathVariable("id") Integer id, Model model) {
-        Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
-        model.addAttribute("course", course);
-        return "kurs/kurs-detail";
-    }
-
     // Aufruf der Kurs-Anlegen ansicht.
     @GetMapping("create")
     public String showCreateFrom(Model model) {
         model.addAttribute("courseForm", new CourseForm());
-        return "kurs/kurs-create";
+        return "owner/course/course-create";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Kurs-Anlegen
@@ -57,7 +45,7 @@ public class CourseController {
     @PostMapping("add")
     public String addCourse(@ModelAttribute("courseForm") @Valid CourseForm courseForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "kurs/kurs-create";
+            return "/owner/course/course-create";
         }
 
         courseService.save(formAssembler.update(new Course(), courseForm));
@@ -70,7 +58,7 @@ public class CourseController {
         Course course = courseService.findCourse(id);
         model.addAttribute("courseForm", formAssembler.toForm(course));
         model.addAttribute("isUpdate", true);
-        return "kurs/kurs-edit";
+        return "owner/course/course-edit";
     }
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
@@ -79,7 +67,7 @@ public class CourseController {
     public String updateCourse(@PathVariable("id") Integer id,
     @ModelAttribute("courseForm") @Valid CourseForm form, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "kurs/kurs-edit";
+            return "owner/course/course-edit";
         }
         Course course = courseService.findCourse(id);
         courseService.save(formAssembler.update(course, form));
@@ -101,7 +89,7 @@ public class CourseController {
     @GetMapping("list")
     public String showAllProducts(Model model) {
         model.addAttribute("courses", courseRepository.findAll());
-        return "kurs/kurs-liste";
+        return "owner/course/course-list";
     }
 
 }

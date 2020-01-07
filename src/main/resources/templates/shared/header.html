@@ -1,96 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <body class="bg-main">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="copy">
+            <a class="navbar-brand" th:href="@{/}">iFit</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
 
-
-
-<body class="bg-main">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="copy">
-        <a class="navbar-brand" th:href="@{/}">iFit</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="d-inline-block nav-link" th:href="@{/events/schedule}">Wochenplan</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Kurse
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/owner/course/list}">Kursliste</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/owner/course/create}">+ Kurs anlegen</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Termine
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/owner/events/list}">Terminliste</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/owner/events/create}">+ Termin anlegen</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Trainer
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/owner/trainer/list}">Trainerliste</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/owner/trainer/create}">+
-                            Trainer registrieren</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Me
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/user/appointments}">Meine
-                            Termine</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/user/settings}">Einstellungen</a>
-                    </div>
-                </li>
-            </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-4" type="search" placeholder="Kurs, Trainer.. " aria-label="Suche">
-                <button class="btn my-2 my-sm-0" type="submit">Suchen</button>
-            </form> -->
-
-
-
-            <div>
-                <ul class="nav navbar-nav" sec:authorize="anonymous">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/login}">Login</a>
+                        <a class="d-inline-block nav-link" th:href="@{/schedule}">Wochenplan</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Kurse
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/owner/course/list}">Kursliste</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/owner/course/create}">Kurs anlegen</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Termine
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/owner/event/list}">Terminliste</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/owner/event/create}">Termin anlegen</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Trainer
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/owner/trainer/list}">Trainerliste</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/owner/trainer/create}">Trainer registrieren</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Me
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/trainer/events}">Meine Termine</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/trainer/work}">Arbeitszeit</a>
+                        </div>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav" sec:authorize="authenticated">
-                    <li class="nav-item ml-auto">
-                        <a th:href="@{/user/edit}" class="d-inline-block nav-link" th:text="${#httpServletRequest.remoteUser}"></a>
+
+                <div>
+                    <ul class="nav navbar-nav" sec:authorize="anonymous">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/login}">Login</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav" sec:authorize="authenticated">
+                        <li class="nav-item ml-auto">
+                            <a th:href="@{/user/edit}" class="d-inline-block nav-link" th:text="${#httpServletRequest.remoteUser}"></a>
                             <span class="d-inline-block nav-link">|</span>
                             <a class="d-inline-block nav-link" th:href="@{/logout}">Logout</a>
                         </li>
                     </ul>
+                </div>
+                
             </div>
-        </div>
-    </nav>
-
-
-
-
-
-</body>
-
+        </nav>
+    </body>
 </html>
