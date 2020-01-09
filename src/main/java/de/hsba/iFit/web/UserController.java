@@ -97,7 +97,7 @@ public class UserController {
         userRepository.save(user);
 
         // return "redirect:/kurs/" + id.toString();
-        return "redirect:/trainer/work";
+        return "redirect:/trainer/events";
     }
 
 }

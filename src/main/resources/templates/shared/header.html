@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <body class="bg-main">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="copy">
-            <a class="navbar-brand" th:href="@{/}">iFit</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-
-                    <li class="nav-item">
-                        <a class="d-inline-block nav-link" th:href="@{/schedule}">Wochenplan</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Kurse
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" th:href="@{/owner/course/list}">Kursliste</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:href="@{/owner/course/create}">Kurs anlegen</a>
-                        </div>
-                    </li>
+   
 
 <body class="bg-main">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="copy">
@@ -74,41 +54,15 @@
                 </li>
             </ul>
         
-
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Trainer
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" th:href="@{/owner/trainer/list}">Trainerliste</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:href="@{/owner/trainer/create}">Trainer registrieren</a>
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Me
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" th:href="@{/trainer/events}">Meine Termine</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:href="@{/trainer/work}">Arbeitszeit</a>
-                        </div>
-                    </li>
-                </ul>
                 <ul class="nav navbar-nav" sec:authorize="authenticated">
                     <li class="nav-item dropdown">
                         <a class="d-inline-block nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#httpServletRequest.remoteUser}"></a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" th:href="@{/user/appointments}">Meine
+                            <a class="dropdown-item" th:href="@{/trainer/events}">Meine
                                 Termine</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:href="@{/user/settings}">Meine Arbeitszeit</a>
+                            <a class="dropdown-item" th:href="@{/trainer/work}">Meine Arbeitszeit</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/user/edit}">Meine Daten</a>
                         </div>

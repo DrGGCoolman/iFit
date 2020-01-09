@@ -37,7 +37,7 @@ public class HomeController {
         model.addAttribute("eventsMorning", eventRepository.findAllMorningEvents());
         model.addAttribute("eventsAfternoon", eventRepository.findAllAfternoonEvents());
         model.addAttribute("eventsEvening", eventRepository.findAllEveningEvents());
-        return "schedule";
+        return "visitor/schedule";
     }
 
     @GetMapping("/schedule/{id}")
@@ -59,10 +59,10 @@ public class HomeController {
     }
 
     // Gibt Listenansicht der Kurse zurück
-    @GetMapping("/course/plan")
+    @GetMapping("/courses")
     public String showAllProducts(Model model) {
         model.addAttribute("courses", courseRepository.findAll());
-        return "kursplan";
+        return "visitor/courses";
     }
 
 }
