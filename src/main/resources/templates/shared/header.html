@@ -16,6 +16,9 @@
                 <li class="nav-item">
                     <a class="d-inline-block nav-link" th:href="@{/events/schedule}">Wochenplan</a>
                 </li>
+                <li class="nav-item">
+                    <a class="d-inline-block nav-link" th:href="@{/course/plan}">Kursplan</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,18 +53,6 @@
                             Trainer registrieren</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Me
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" th:href="@{/user/appointments}">Meine
-                            Termine</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/user/settings}">Einstellungen</a>
-                    </div>
-                </li>
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-4" type="search" placeholder="Kurs, Trainer.. " aria-label="Suche">
@@ -77,8 +68,19 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav" sec:authorize="authenticated">
-                    <li class="nav-item ml-auto">
-                        <a th:href="@{/user/edit}" class="d-inline-block nav-link" th:text="${#httpServletRequest.remoteUser}"></a>
+                    <li class="nav-item dropdown">
+                        <a class="d-inline-block nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#httpServletRequest.remoteUser}"></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" th:href="@{/user/appointments}">Meine
+                                Termine</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/user/settings}">Meine Arbeitszeit</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" th:href="@{/user/edit}">Meine Daten</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
                             <span class="d-inline-block nav-link">|</span>
                             <a class="d-inline-block nav-link" th:href="@{/logout}">Logout</a>
                         </li>
