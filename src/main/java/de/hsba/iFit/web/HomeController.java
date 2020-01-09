@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.hsba.ifit.event.Event;
+import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.event.EventRepository;
 
 //Enthälten allgemeine Routen, die keinem Controller direkt zuzuordnen sind.
@@ -16,6 +17,8 @@ public class HomeController {
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
     @RequestMapping("/")
     public String root() {
@@ -30,9 +33,11 @@ public class HomeController {
 
     // Gibt Listenansicht (Plan) der Kurse zurück
     @GetMapping("/schedule")
-    public String showWeeklySchedule(Model model) {
-        model.addAttribute("events", eventRepository.findAll());
-        return "visitor/schedule";
+    public String showAllCourses(Model model) {
+        model.addAttribute("eventsMorning", eventRepository.findAllMorningEvents());
+        model.addAttribute("eventsAfternoon", eventRepository.findAllAfternoonEvents());
+        model.addAttribute("eventsEvening", eventRepository.findAllEveningEvents());
+        return "schedule";
     }
 
     @GetMapping("/schedule/{id}")
@@ -51,6 +56,13 @@ public class HomeController {
     @RequestMapping("/privacy")
     public String Datenschutz() {
         return "visitor/privacy";
+    }
+
+    // Gibt Listenansicht der Kurse zurück
+    @GetMapping("/course/plan")
+    public String showAllProducts(Model model) {
+        model.addAttribute("courses", courseRepository.findAll());
+        return "kursplan";
     }
 
 }

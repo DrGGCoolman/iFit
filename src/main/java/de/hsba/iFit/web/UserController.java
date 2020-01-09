@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import de.hsba.ifit.course.CourseRepository;
+import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.slot.SlotRepository;
 import de.hsba.ifit.user.User;
 import de.hsba.ifit.user.UserRepository;
@@ -30,6 +31,8 @@ public class UserController {
     private SlotRepository slotRepository;
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -54,7 +57,7 @@ public class UserController {
 
     @RequestMapping("/trainer/events")
     public String myAppointments(Model model) {
-
+        model.addAttribute("myEvents", eventRepository.findMyEvents());
         return "trainer/trainer-events";
     }
 

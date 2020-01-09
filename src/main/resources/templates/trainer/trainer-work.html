@@ -23,7 +23,7 @@
                         <form class="form" th:action="@{${'/trainer/work/update/'+ user.id}}" th:object="${user}"
                             method="post">
 
-                            <select id="multiSelectElementsSelected" name="multiSelectElementsSelected"
+                            <select class="form-control" id="multiSelectElementsSelected" name="multiSelectElementsSelected"
                                 multiple="multiple" th:field="*{slots}">
 
                                 <option th:each="slot : ${slots}" th:value="${slot.id}"
@@ -34,7 +34,7 @@
                             <h3 class="card-title text-center">Kurse wählen</h3>
                             <br>
 
-                            <select id="multiSelectElementsSelected" name="multiSelectElementsSelected"
+                            <select class="form-control" id="multiSelectElementsSelected" name="multiSelectElementsSelected"
                                 multiple="multiple" th:field="*{courses}">
                                 <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name }">
                                 </option>
