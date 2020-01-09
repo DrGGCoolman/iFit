@@ -53,7 +53,14 @@
                     </div>
                 </li>
             </ul>
-        
+
+
+            <ul class="nav navbar-nav" sec:authorize="anonymous">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+                </ul>
+
                 <ul class="nav navbar-nav" sec:authorize="authenticated">
                     <li class="nav-item dropdown">
                         <a class="d-inline-block nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -63,8 +70,6 @@
                                 Termine</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/trainer/work}">Meine Arbeitszeit</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" th:href="@{/user/edit}">Meine Daten</a>
                         </div>
                     </li>
                     <li class="nav-item">
