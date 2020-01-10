@@ -10,6 +10,7 @@ import de.hsba.ifit.event.Event;
 import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.event.EventService;
 import de.hsba.ifit.event.Room;
+import de.hsba.ifit.slot.Slot;
 import de.hsba.ifit.slot.SlotRepository;
 import de.hsba.ifit.slot.SlotService;
 import de.hsba.ifit.slot.Weekday;
@@ -21,6 +22,8 @@ import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -82,6 +85,25 @@ public class SeedService {
                         userService.Seed("Charlotte", "Tulpe", "charlotte.tulpe", "password", User.USER_ROLE);
                         userService.Seed("Zoe", "Richter", "zoe.richter", "password", User.USER_ROLE);
                         userService.Seed("admin", "admin", "admin", "admin", User.ADMIN_ROLE);
+
+                        // Testsettings für User anlegen
+
+                        User anne = userRepository.findByName("anne.baum");
+
+                        List<Slot> annesSlots = new ArrayList<>();
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO, daytimeRepository.findByName("Morgens"))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU, daytimeRepository.findByName("Abends"))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository.findByWeekdayAndDaytime(Weekday.MO,
+                                        daytimeRepository.findByName("Nachmittags")).orElseThrow());
+
+                        anne.setSlots(annesSlots);
+                        
+                        userRepository.save(anne);
+
                 }
 
                 // KURSE

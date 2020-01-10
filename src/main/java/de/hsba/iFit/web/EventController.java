@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.time.format.DateTimeFormatter;
 
 import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.event.*;
 import de.hsba.ifit.user.UserRepository;
+import de.hsba.ifit.user.UserService;
 
 //Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
 @Controller
@@ -31,6 +31,8 @@ public class EventController {
     private CourseRepository courseRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     // Aufruf der Event-Anlegen ansicht.
     @GetMapping("create")
@@ -46,14 +48,15 @@ public class EventController {
     @PostMapping("add")
     public String addEvent(@Valid Event event, BindingResult result, Model model) {
         model.addAttribute("courses", courseRepository.findAll());
-        model.addAttribute("users", userRepository.findAll());
-        if (event.getCourse() == null) {
 
+        if (event.getWeekday() != null && event.getStartAt() != null && event.getUser() == null
+                && event.getRoom() == null) {
+
+            model.addAttribute("users",
+                    userService.findFittingTrainer(event.getWeekday(), event.getStartAt(), event.getCourse()));
             return "event/event-create/step2";
-        } else if (event.getUser() == null && event.getRoom() == null) {
 
-            return "event/event-create/step3";
-        } else {
+        } else if (!result.hasErrors()) {
             eventRepository.save(event);
         }
         // if (result.hasErrors()) {
