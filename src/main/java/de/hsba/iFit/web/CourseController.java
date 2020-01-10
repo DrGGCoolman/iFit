@@ -37,7 +37,7 @@ public class CourseController {
     @GetMapping("create")
     public String showCreateFrom(Model model) {
         model.addAttribute("courseForm", new CourseForm());
-        return "owner/course/course-create";
+        return "course/course-create";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Kurs-Anlegen
@@ -45,7 +45,7 @@ public class CourseController {
     @PostMapping("add")
     public String addCourse(@ModelAttribute("courseForm") @Valid CourseForm courseForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "/owner/course/course-create";
+            return "course/course-create";
         }
 
         courseService.save(formAssembler.update(new Course(), courseForm));
@@ -58,7 +58,7 @@ public class CourseController {
         Course course = courseService.findCourse(id);
         model.addAttribute("courseForm", formAssembler.toForm(course));
         model.addAttribute("isUpdate", true);
-        return "owner/course/course-edit";
+        return "course/course-edit";
     }
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
@@ -67,7 +67,7 @@ public class CourseController {
     public String updateCourse(@PathVariable("id") Integer id,
     @ModelAttribute("courseForm") @Valid CourseForm form, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "owner/course/course-edit";
+            return "course/course-edit";
         }
         Course course = courseService.findCourse(id);
         courseService.save(formAssembler.update(course, form));
@@ -89,7 +89,7 @@ public class CourseController {
     @GetMapping("list")
     public String showAllProducts(Model model) {
         model.addAttribute("courses", courseRepository.findAll());
-        return "owner/course/course-list";
+        return "course/course-list";
     }
 
 }

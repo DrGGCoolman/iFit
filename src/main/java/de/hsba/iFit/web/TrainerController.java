@@ -33,7 +33,7 @@ public class TrainerController {
     @GetMapping("create")
     public String showCreateFrom(Model model) {
         model.addAttribute("trainerForm", new TrainerForm());
-        return "owner/trainer/trainer-create";
+        return "trainer/trainer-create";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Kurs-Anlegen
@@ -54,7 +54,7 @@ public class TrainerController {
         model.addAttribute("trainerForm", formAssembler.toForm(user));
         model.addAttribute("isUpdate", true);
 
-        return "owner/trainer/trainer-edit";
+        return "trainer/trainer-edit";
     }
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
@@ -63,7 +63,7 @@ public class TrainerController {
     public String updateTrainer(@PathVariable("id") Integer id, @Valid TrainerForm form, BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
-            return "owner/trainer/trainer-edit";
+            return "trainer/trainer-edit";
         }
         User user = userService.findUser(id);
         userService.save(formAssembler.update(user, form));
@@ -84,7 +84,7 @@ public class TrainerController {
     @GetMapping("list")
     public String showAllTrainers(Model model) {
         model.addAttribute("users", userRepository.findAll());
-        return "owner/trainer/trainer-list";
+        return "trainer/trainer-list";
 
     }
 }
