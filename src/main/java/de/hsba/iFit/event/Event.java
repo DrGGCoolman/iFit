@@ -1,6 +1,9 @@
 package de.hsba.ifit.event;
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalTime;
 
 import de.hsba.ifit.course.Course;
@@ -18,9 +21,12 @@ public class Event {
     @Getter
     @Setter
     private Integer id;
+    
     @Getter
     @Setter
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime startAt;
+
     @Getter
     @Setter
     private Room room;

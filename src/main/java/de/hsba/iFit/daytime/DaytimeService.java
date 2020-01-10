@@ -23,4 +23,16 @@ public class DaytimeService {
         return daytimeRepository.findAll();
     }
 
+    public Daytime getAccordingDaytime(LocalTime time) {
+        for (Daytime daytime : daytimeRepository.findAll()) {
+
+            if (time.isAfter(daytime.getStart()) && time.isBefore(daytime.getEnd())) {
+                return daytime;
+            }
+
+        }
+
+        return null;
+    }
+
 }
