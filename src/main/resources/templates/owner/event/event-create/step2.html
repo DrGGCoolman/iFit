@@ -20,11 +20,11 @@
                     <div class="card-body">
                         <h3 class="card-title text-center">Termin anlegen</h3>
                         <br>
-                        <form class="form" th:action="@{/owner/events/add}" th:object="${event}" method="post">
+                        <form class="form" th:action="@{/owner/event/add}" th:object="${event}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputWeekday">Wochentag</label>
-                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" required autofocus>
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}">
                                         <option value="" selected>Wochentag wählen..</option>
                                         <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
                                             th:value="${weekday}" th:text="${weekday.displayValue}">
@@ -36,14 +36,14 @@
                                 <div class="form-group col-12">
                                     <label for="inputStartAt">Beginn</label>
                                     <input type="time" class="form-control" th:field="*{startAt}"
-                                        id="inputStartAt" placeholder="Beginn" required>
+                                        id="inputStartAt" placeholder="Beginn">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCourse">Kurs*</label>
-                                    <select th:field="*{course}" id="inputCourse" class="form-control"
-                                        disabled>
+                                    <select th:field="*{course}" id="inputCourse" class="form-control" required
+                                        autofocus>
                                         <option value="" selected>Kurs wählen..</option>
                                         <option th:each="course: ${courses}" th:value="${course.id}"
                                             th:text="${course.name}">
@@ -75,7 +75,7 @@
                             </div>
                     </div>
                     <br>
-                    <button class="btn btn-lg btn-secondary btn-block" type="submit">Weiter ..</button>
+                    <button class="btn btn-lg btn-secondary btn-block" type="submit">Anlegen</button>
                     </form>
 
                 </div>

@@ -21,7 +21,7 @@ import de.hsba.ifit.user.UserRepository;
 
 //Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
 @Controller
-@RequestMapping("/owner/events/")
+@RequestMapping("/owner/event/")
 public class EventController {
 
     @Autowired
@@ -31,25 +31,13 @@ public class EventController {
     @Autowired
     private UserRepository userRepository;
 
-    // Gibt Daten zu einem bestimmten Course zurück. Benötigt dazu beim Aufruf
-    // eine Id.
-    // Die Daten stammen aus der Datenbank und werden über das entsprechen
-    // Repository bezogen.
-    @GetMapping("{id}")
-    public String showCourseDetails(@PathVariable("id") Integer id, Model model) {
-        Event event = eventRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
-        model.addAttribute("event", event);
-        return "termin/termin-detail";
-    }
-
     // Aufruf der Event-Anlegen ansicht.
     @GetMapping("create")
     public String showCreateFrom(Model model) {
         model.addAttribute("event", new Event());
         model.addAttribute("courses", courseRepository.findAll());
         model.addAttribute("users", userRepository.findAll());
-        return "termin/termin-create/1";
+        return "owner/event/event-create/step1";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Event-Anlegen
@@ -60,10 +48,10 @@ public class EventController {
         model.addAttribute("users", userRepository.findAll());
         if (event.getCourse() == null) {
 
-            return "termin/termin-create/2";
+            return "owner/event/event-create/step2";
         } else if (event.getUser() == null && event.getRoom() == null) {
 
-            return "termin/termin-create/3";
+            return "owner/event/event-create/step3";
         } else {
             eventRepository.save(event);
         }
@@ -71,7 +59,7 @@ public class EventController {
         // return "termin/termin-create";
         // }
 
-        return "redirect:/owner/events/list";
+        return "redirect:/owner/event/list";
     }
 
     // Aufruf der Event-Beaarbeiten ansicht.
@@ -81,7 +69,7 @@ public class EventController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id));
         model.addAttribute("isUpdate", true);
         model.addAttribute("event", event);
-        return "termin/termin-edit";
+        return "owner/event/event-edit";
     }
 
     // Behandelt das Bearbeiten eines Eventes. Validiert das Event-Bearbeiten
@@ -96,7 +84,7 @@ public class EventController {
         eventRepository.save(event);
 
         // return "redirect:/Event/" + id.toString();
-        return "redirect:/owner/events/list";
+        return "redirect:/owner/event/list";
     }
 
     // Behandelt das Löschen eines Eventes.
@@ -106,14 +94,14 @@ public class EventController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id));
         eventRepository.delete(event);
         model.addAttribute("events", eventRepository.findAll());
-        return "redirect:/owner/events/list ";
+        return "redirect:/owner/event/list ";
     }
 
     // Gibt Listenansicht der Evente zurück
     @GetMapping("list")
     public String showAllProducts(Model model) {
         model.addAttribute("events", eventRepository.findAll());
-        return "termin/termin-liste";
+        return "owner/event/event-list";
     }
 
 }
