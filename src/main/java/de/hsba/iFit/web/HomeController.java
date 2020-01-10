@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.hsba.ifit.event.Event;
-import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.event.EventRepository;
 
 //Enthälten allgemeine Routen, die keinem Controller direkt zuzuordnen sind.
@@ -17,8 +16,6 @@ public class HomeController {
 
     @Autowired
     private EventRepository eventRepository;
-    @Autowired
-    private CourseRepository courseRepository;
 
     @RequestMapping("/")
     public String root() {
@@ -28,7 +25,7 @@ public class HomeController {
     @RequestMapping("/index")
     public String index(Model model) {
 
-        return "visitor/index";
+        return "index";
     }
 
     // Gibt Listenansicht (Plan) der Kurse zurück
@@ -37,7 +34,7 @@ public class HomeController {
         model.addAttribute("eventsMorning", eventRepository.findAllMorningEvents());
         model.addAttribute("eventsAfternoon", eventRepository.findAllAfternoonEvents());
         model.addAttribute("eventsEvening", eventRepository.findAllEveningEvents());
-        return "visitor/schedule";
+        return "schedule";
     }
 
     @GetMapping("/schedule/{id}")
@@ -45,24 +42,18 @@ public class HomeController {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
         model.addAttribute("event", event);
-        return "visitor/event-detail";
+        return "event/event-details";
     }
 
     @RequestMapping("/information")
     public String Impressum() {
-        return "visitor/information";
+        return "information";
     }
 
     @RequestMapping("/privacy")
     public String Datenschutz() {
-        return "visitor/privacy";
+        return "privacy";
     }
 
-    // Gibt Listenansicht der Kurse zurück
-    @GetMapping("/courses")
-    public String showAllProducts(Model model) {
-        model.addAttribute("courses", courseRepository.findAll());
-        return "visitor/courses";
-    }
 
 }
