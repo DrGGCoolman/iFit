@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 
@@ -10,16 +11,12 @@
 
     <div th:insert="~{shared/header :: copy}"></div>
 
-
-    <br>
-
-    <div class="container">
+    <div class="con-styling container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="cardbox p-4">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Termin anlegen</h3>
-                        <br>
+                        <h3 class="card-title text-center mb-5">Termin anlegen</h3>                   
                         <form class="form" th:action="@{/owner/event/add}" th:object="${event}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-12">
@@ -74,8 +71,7 @@
                                 </div>
                             </div>
                     </div>
-                    <br>
-                    <button class="btn btn-lg btn-secondary btn-block" type="submit">Anlegen</button>
+                    <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">Anlegen</button>
                     </form>
 
                 </div>

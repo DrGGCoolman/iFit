@@ -4,6 +4,7 @@
 <head>
     <title>Login</title>
     <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 
@@ -11,10 +12,7 @@
 
     <div th:insert="~{shared/header :: copy}"></div>
 
-    <br>
-    <br>
-
-    <div class="container">
+    <div class="con-styling container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="cardbox p-4">
@@ -37,16 +35,13 @@
                             <button class="btn btn-lg btn-secondary btn-block pure-button pure-button-primary"
                                 type="submit">Einloggen</button>
                         </form>
-                        <span style="color:#ebb0b0" class="color-light-red" role="alert" th:text="${msg}">
+                        <span class="msg color-light-red" role="alert" th:text="${msg}">
                         </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <br>
-    <br>
-
     <div class="fixed-bottom">
         <div th:insert="~{shared/footer :: copy}"></div>
     </div>
