@@ -49,7 +49,7 @@ public class CourseController {
         }
 
         courseService.save(formAssembler.update(new Course(), courseForm));
-        return "redirect:/owner/course/list";
+        return "redirect:/trainer/course/list";
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
@@ -72,7 +72,7 @@ public class CourseController {
         Course course = courseService.findCourse(id);
         courseService.save(formAssembler.update(course, form));
         // return "redirect:/kurs/" + id.toString();
-        return "redirect:/owner/course/list";
+        return "redirect:/trainer/course/list";
     }
 
     // Behandelt das Löschen eines Kurses.
@@ -82,7 +82,7 @@ public class CourseController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
         courseRepository.delete(course);
         model.addAttribute("courses", courseRepository.findAll());
-        return "redirect:/owner/course/list ";
+        return "redirect:/trainer/course/list ";
     }
 
     // Gibt Listenansicht der Kurse zurück
