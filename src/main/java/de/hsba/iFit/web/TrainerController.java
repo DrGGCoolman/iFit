@@ -29,23 +29,11 @@ public class TrainerController {
     private final UserService userService;
     private final FormAssembler formAssembler;
 
-    // Gibt Daten zu einem bestimmten Course zurück. Benötigt dazu beim Aufruf
-    // eine Id.
-    // Die Daten stammen aus der Datenbank und werden über das entsprechen
-    // Repository bezogen.
-    @GetMapping("{id}")
-    public String showTrainerDetails(@PathVariable("id") Integer id, Model model) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
-        model.addAttribute("user", user);
-        return "trainer/trainer-detail";
-    }
-
     // Aufruf der Kurs-Anlegen ansicht.
     @GetMapping("create")
     public String showCreateFrom(Model model) {
         model.addAttribute("trainerForm", new TrainerForm());
-        return "trainer/trainer-create";
+        return "owner/trainer/trainer-create";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Kurs-Anlegen
@@ -53,7 +41,7 @@ public class TrainerController {
     @PostMapping("add")
     public String addCourse(@ModelAttribute("trainerForm") @Valid TrainerForm trainerForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "trainer/trainer-create";
+            return "owner/trainer/trainer-create";
         }
         userService.save(formAssembler.update(new User(), trainerForm));
         return "redirect:/owner/trainer/list";
@@ -66,7 +54,7 @@ public class TrainerController {
         model.addAttribute("trainerForm", formAssembler.toForm(user));
         model.addAttribute("isUpdate", true);
 
-        return "trainer/trainer-edit";
+        return "owner/trainer/trainer-edit";
     }
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
@@ -75,7 +63,7 @@ public class TrainerController {
     public String updateTrainer(@PathVariable("id") Integer id, @Valid TrainerForm form, BindingResult bindingResult,
             Model model) {
         if (bindingResult.hasErrors()) {
-            return "trainer/trainer-edit";
+            return "owner/trainer/trainer-edit";
         }
         User user = userService.findUser(id);
         userService.save(formAssembler.update(user, form));
@@ -96,7 +84,7 @@ public class TrainerController {
     @GetMapping("list")
     public String showAllTrainers(Model model) {
         model.addAttribute("users", userRepository.findAll());
-        return "trainer/trainer-liste";
+        return "owner/trainer/trainer-list";
 
     }
 }
