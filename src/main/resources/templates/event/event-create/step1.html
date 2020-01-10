@@ -21,7 +21,8 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputWeekday">Wochentag</label>
-                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" required autofocus>
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" required
+                                        autofocus>
                                         <option value="" selected>Wochentag wählen..</option>
                                         <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
                                             th:value="${weekday}" th:text="${weekday.displayValue}">
@@ -32,15 +33,14 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputStartAt">Beginn</label>
-                                    <input type="time" class="form-control" th:field="*{startAt}"
-                                        id="inputStartAt" placeholder="Beginn" required>
+                                    <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
+                                        placeholder="Beginn" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCourse">Kurs*</label>
-                                    <select th:field="*{course}" id="inputCourse" class="form-control"
-                                        disabled>
+                                    <select th:field="*{course}" id="inputCourse" class="form-control">
                                         <option value="" selected>Kurs wählen..</option>
                                         <option th:each="course: ${courses}" th:value="${course.id}"
                                             th:text="${course.name}">

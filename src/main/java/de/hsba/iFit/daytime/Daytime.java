@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import de.hsba.ifit.slot.Slot;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,10 +28,12 @@ public class Daytime {
 
     @Getter
     @Setter
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime start;
 
     @Getter
     @Setter
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime end;
 
     @OneToMany(mappedBy = "daytime")

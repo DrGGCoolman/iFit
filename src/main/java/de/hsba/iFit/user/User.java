@@ -64,6 +64,7 @@ public class User implements Comparable<User> {
         this.name = name;
         this.password = password;
         this.role = role;
+
     }
 
     @Override
@@ -80,7 +81,7 @@ public class User implements Comparable<User> {
     @Setter
     @ManyToMany
     private List<Slot> slots;
-    
+
     @Getter
     @Setter
     @ManyToMany

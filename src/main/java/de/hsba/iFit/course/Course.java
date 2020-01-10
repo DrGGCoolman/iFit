@@ -43,7 +43,7 @@ public class Course {
     @Setter
     private Integer duration;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", orphanRemoval = true)
     private List<Event> events;
 
     @ManyToMany(mappedBy = "courses")
