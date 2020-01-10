@@ -37,7 +37,7 @@ public class UserController {
     @RequestMapping("/login")
     public String login(Model model) {
 
-        return "visitor/login";
+        return "user/login";
     }
 
     // Gibt Login-Ansicht zurück. Stellt Fehlermeldung bei fehlgeschlagenem Login
@@ -51,7 +51,7 @@ public class UserController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        return auth instanceof AnonymousAuthenticationToken ? "visitor/login" : "redirect:/";
+        return auth instanceof AnonymousAuthenticationToken ? "user/login" : "redirect:/";
 
     }
 
@@ -61,7 +61,7 @@ public class UserController {
         User currUser = User.getCurrentUser();
 
         model.addAttribute("myEvents", eventRepository.findByUserId(currUser.getId()));
-        return "trainer/trainer-events";
+        return "user/trainer-events";
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
@@ -76,7 +76,7 @@ public class UserController {
         model.addAttribute("slots", slotRepository.findAll());
         model.addAttribute("courses", courseRepository.findAll());
         model.addAttribute("isUpdate", true);
-        return "trainer/trainer-work";
+        return "user/trainer-work";
     }
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
