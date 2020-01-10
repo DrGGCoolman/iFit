@@ -101,7 +101,6 @@ public class SeedService {
                                         daytimeRepository.findByName("Nachmittags")).orElseThrow());
 
                         anne.setSlots(annesSlots);
-                        
                         userRepository.save(anne);
 
                 }

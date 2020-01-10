@@ -54,7 +54,7 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputRoom">Raum</label>
-                                    <select id="inputRoom" class="form-control" th:field="*{room}" disabled>
+                                    <select id="inputRoom" class="form-control" th:field="*{room}">
                                         <option value="" selected>Raum wählen..</option>
                                         <option th:each="room : ${T(de.hsba.ifit.event.Room).values()}"
                                             th:value="${room}" th:text="${room.displayValue}">
@@ -65,7 +65,7 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputUser">Trainer*</label>
-                                    <select th:field="*{user}" id="inputUser" class="form-control" disabled>
+                                    <select th:field="*{user}" id="inputUser" class="form-control">
                                         <option value="" selected>Trainer wählen..</option>
                                         <option th:each="user: ${users}" th:value="${user.id}"
                                             th:text="${user.firstname + ' ' + user.lastname }">
