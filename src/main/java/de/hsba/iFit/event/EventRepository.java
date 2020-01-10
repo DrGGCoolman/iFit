@@ -16,6 +16,9 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     Optional<Event> findById(Integer id);
 
+    List<Event> findByUserId(Integer id);
+    
+
     @Query("SELECT e FROM Event e WHERE e.startAt >= '08:00' AND e.startAt <= '12:00' ORDER BY e.weekday,e.startAt ")
     List<Event> findAllMorningEvents();
 
@@ -24,9 +27,5 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     @Query("SELECT e FROM Event e WHERE e.startAt >= '16:01' AND e.startAt <= '20:00' ORDER BY e.weekday,e.startAt ")
     List<Event> findAllEveningEvents();
-
-    // TODO: die id ziehen von getCurrentUser möglich? sollte diese query besser ins UserRepo?
-    @Query("SELECT e FROM Event e WHERE e.user = 29 ORDER BY e.weekday,e.startAt ")
-    List<Event> findMyEvents();
 
 }

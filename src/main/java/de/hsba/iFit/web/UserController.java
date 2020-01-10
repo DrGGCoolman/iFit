@@ -57,7 +57,10 @@ public class UserController {
 
     @RequestMapping("/trainer/events")
     public String myAppointments(Model model) {
-        model.addAttribute("myEvents", eventRepository.findMyEvents());
+
+        User currUser = User.getCurrentUser();
+
+        model.addAttribute("myEvents", eventRepository.findByUserId(currUser.getId()));
         return "user/trainer-events";
     }
 
@@ -90,9 +93,8 @@ public class UserController {
         user.lastname = currUser.lastname;
         user.setPassword(currUser.getPassword());
         user.setName(currUser.getName());
-        
-        user.setRole(currUser.getRole());
 
+        user.setRole(currUser.getRole());
 
         userRepository.save(user);
 
