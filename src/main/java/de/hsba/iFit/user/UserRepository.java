@@ -1,6 +1,7 @@
 package de.hsba.ifit.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 
@@ -20,6 +21,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findById(Integer id);
 
+    @Query("SELECT u FROM User u WHERE u.role = 'USER' ORDER BY u.lastname, u.firstname")
+    List<User> findAllTrainers();
 
 
 }

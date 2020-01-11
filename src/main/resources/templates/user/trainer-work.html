@@ -37,6 +37,14 @@
 
 
                             <table class="table">
+                                <caption>
+                                    *<a th:each="daytime, amount : ${daytimes}">
+                                        <a th:if="${amount.count == 3}" th:text="${daytime.name.displayValue + ': ' + daytime.start + '-' + daytime.end}"></a>
+                                        <a th:unless="${amount.count == 3}" th:text="${daytime.name.displayValue + ': ' + daytime.start + '-' + daytime.end + ', '}"></a>
+                    
+                                    </a>
+                                </caption>
+                        
 
                                 <thead class="thead-light">
                                     <tr>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import de.hsba.ifit.course.CourseRepository;
+import de.hsba.ifit.daytime.DaytimeRepository;
 import de.hsba.ifit.daytime.Daytime.DaytimeName;
 import de.hsba.ifit.slot.SlotRepository;
 import de.hsba.ifit.user.User;
@@ -31,6 +32,8 @@ public class UserController {
     private SlotRepository slotRepository;
     @Autowired
     private CourseRepository courseRepository;
+    @Autowired
+    private DaytimeRepository daytimeRepository;
 
 
     @RequestMapping("/login")
@@ -80,7 +83,10 @@ public class UserController {
         model.addAttribute(DaytimeName.MORGENS + "Slots", slotRepository.findByDaytimeName(DaytimeName.MORGENS));
         model.addAttribute(DaytimeName.MITTAGS + "Slots", slotRepository.findByDaytimeName(DaytimeName.MITTAGS));
         model.addAttribute(DaytimeName.ABENDS + "Slots", slotRepository.findByDaytimeName(DaytimeName.ABENDS));
+
         model.addAttribute("myWork", slotRepository.findByUsersId(currUser.getId()));
+
+        model.addAttribute("daytimes", daytimeRepository.findAll());
 
         return "user/trainer-work";
     }

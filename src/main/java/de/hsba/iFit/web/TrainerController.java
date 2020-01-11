@@ -83,7 +83,7 @@ public class TrainerController {
 
     @GetMapping("list")
     public String showAllTrainers(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users", userRepository.findAllTrainers());
         return "trainer/trainer-list";
 
     }

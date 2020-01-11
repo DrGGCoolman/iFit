@@ -86,7 +86,7 @@ public class CourseController {
     // Gibt Listenansicht der Kurse zurück
     @GetMapping("/trainer/course/list")
     public String showAllProducts(Model model) {
-        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("courses", courseRepository.findAllCourses());
         return "course/course-list";
     }
 
