@@ -44,8 +44,9 @@
               <!-- TODO: Logik fehlt -->
               <td>Läuft</td>
 
-              <td><a th:href="${'/owner/event/edit/' + event.id}">Trainer ändern</a> | <a
-                  th:href="${'/owner/event/delete/' + event.id}">Löschen</a></td>
+              <td><a th:href="@{${'/owner/event/' +  event.id}}">Details anzeigen</a> |
+                <a th:href="${'/owner/event/edit/' + event.id}">Trainer ändern</a> | 
+                <a th:href="${'/owner/event/delete/' + event.id}">Löschen</a></td>
             </tr>
           </div>
         </div>

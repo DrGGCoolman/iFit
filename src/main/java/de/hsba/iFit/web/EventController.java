@@ -110,7 +110,7 @@ public class EventController {
 
     @GetMapping("{id}")
     public String showEventDetails(@PathVariable("id") int id, Model model) {
-        model.addAttribute("events", eventRepository.findById(id));
+        model.addAttribute("event", eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id)));
         return "event/event-details";
     }
 }
