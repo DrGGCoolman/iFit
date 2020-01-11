@@ -25,7 +25,7 @@
       </thead>
   
       <div class="col-10 mt-4">
-            <tr th:each="event : ${myEvents}">
+            <tr th:each="event : ${user.events}">
               <td th:text="${event.weekday.displayValue}"></td>
               <td th:text="${event.startAt}"></td>
               <td th:text="${event.startAt.plusMinutes(event.course.duration)}"></td>
@@ -33,7 +33,7 @@
               <td th:text="${event.room.displayValue}"></td>
             </tr>
             <tr>
-              <td><a th:if="${myEvents.empty}">Derzeit keine Termine</a></td>
+              <td><a th:if="${user.events.empty}">Derzeit keine Termine</a></td>
               <td></td>
               <td></td>
               <td></td>

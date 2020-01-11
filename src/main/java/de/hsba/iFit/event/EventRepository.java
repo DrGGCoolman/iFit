@@ -18,6 +18,7 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     List<Event> findByUserId(Integer id);
     
+    
 
     @Query("SELECT e FROM Event e WHERE e.startAt >= '08:00' AND e.startAt <= '12:00' ORDER BY e.weekday,e.startAt ")
     List<Event> findAllMorningEvents();
