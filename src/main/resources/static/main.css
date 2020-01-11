@@ -8,10 +8,16 @@
     margin-left: auto; 
     margin-right: auto; 
     display: block;
+    object-fit: cover;
 }
 
 .plan-img {
     height: 300px;
+    object-fit: cover;
+}
+
+.rounded-circle {
+    object-fit: cover;
 }
 
 .description {
