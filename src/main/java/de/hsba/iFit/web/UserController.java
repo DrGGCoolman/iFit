@@ -20,7 +20,6 @@ import de.hsba.ifit.course.CourseService;
 import de.hsba.ifit.daytime.Daytime.DaytimeName;
 import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.slot.SlotRepository;
-import de.hsba.ifit.slot.Weekday;
 import de.hsba.ifit.user.User;
 import de.hsba.ifit.user.UserRepository;
 import de.hsba.ifit.user.UserService;
