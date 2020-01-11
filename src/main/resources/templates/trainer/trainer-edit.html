@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 
@@ -10,26 +11,23 @@
 
     <div th:insert="~{shared/header :: copy}"></div>
 
-    <br>
-
-    <div class="container">
+    <div class="con-styling container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="cardbox p-4">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Trainer bearbeiten</h3>
-                        <br>
+                        <h3 class="card-title text-center mb-5">Trainer bearbeiten</h3>
                         <form class="form" th:action=" @{${'/owner/trainer/update/' + id}}" th:object="${trainerForm}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label for="inputName">Name</label>
                                     <input type="text" class="form-control" th:field="*{lastname}" id="inputName" placeholder="Name">
-                                    <label class="text-danger small" th:errors="*{lastname}"/>
+                                    <label class="text-danger small" th:errors="*{lastname}">
                                 </div>
                                 <div class="form-group col-6">
                                     <label for="inputVorname">Vorname</label>
                                     <input type="text" class="form-control" th:field="*{firstname}" id="inputVorname" placeholder="Vorname">
-                                        <label class="text-danger small" th:errors="*{firstname}"/>
+                                        <label class="text-danger small" th:errors="*{firstname}">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -37,7 +35,7 @@
                                     <label for="inputUsername">Benutzername</label>
                                     <input type="text" id="inputUsername" th:field="*{name}" class="form-control w-100"
                                         placeholder="Benutzername" autofocus>
-                                        <label class="text-danger small" th:errors="*{name}"/>
+                                        <label class="text-danger small" th:errors="*{name}">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -47,11 +45,10 @@
                                             Kleinbuchstabe)</small></label>
                                     <input type="password" id="inputPassword" class="form-control w-100" th:field="*{password}"
                                         placeholder="Passwort">
-                                        <label class="text-danger small" th:errors="*{password}"/>
+                                        <label class="text-danger small" th:errors="*{password}">
                                 </div>
                             </div>
-                            <br>
-                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Speichern</button>
+                            <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">Speichern</button>
                         </form>
 
                     </div>
@@ -60,11 +57,6 @@
         </div>
     </div>
     </div>
-
-
-
-    <br>
-    <br>
 
     <!-- FOOTER-->
     <div class="fixed-bottom">

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 
@@ -14,7 +15,7 @@
         <div class="row">
             <div class="col-md-12">
                 <img src="https://www.action360.com.br/wp-content/uploads/2018/01/brunetteworkout_Easy-Resize.com_.jpg"
-                    class="w-100" style="height: 300px;" alt="Tanzen">
+                    class="plan-img w-100" alt="Tanzen">
                 <div class="carousel-caption text-left">
                     <h5 class="h3 font-italic">Wochenplan von iFit</h5>
 
@@ -26,17 +27,13 @@
         </div>
     </div>
 
-    <br>
-    <br>
-
-    <div class="container">
+    <div class="con-styling container">
         <div class="row">
             <div class="mx-auto">
                 <h1 class="font-italic font-weight-bold text-uppercase">Wochenplan</h1>
             </div>
         </div>
-        <br>
-        <div class="row">
+        <div class="row mt-4">
             <div class="btn-group btn-group-lg mx-auto" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-dark">Montag</button>
                 <button type="button" class="btn btn-dark">Dienstag</button>
@@ -49,9 +46,7 @@
         </div>
     </div>
 
-    <br>
-    <hr>
-    <br>
+    <hr class="schedule-hr">
 
     <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
     <table class="table w-75 mx-auto">
@@ -102,12 +97,10 @@
         </tr>
     </table>
 
-    <br>
-
     <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
     <table class="table w-75 mx-auto">
         <thead class="thead-light">
-            <h5 class="table w-75 mx-auto">Mittags</h5>
+            <h5 class="table w-75 mx-auto mt-5">Mittags</h5>
             <th>Tag</th>
             <th>Beginn</th>
             <th>Ende</th>
@@ -153,13 +146,11 @@
         </tr>
     </table>
 
-    <br>
-
     <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
 
     <table class="table w-75 mx-auto">
         <thead class="thead-light">
-            <h5 class="table w-75 mx-auto">Abends</h5>
+            <h5 class="table w-75 mx-auto mt-5">Abends</h5>
             <th>Tag</th>
             <th>Beginn</th>
             <th>Ende</th>
@@ -205,22 +196,20 @@
         </tr>
     </table>
 
-    <br>
-    <hr>
-    <br>
+    <hr class="schedule-hr">
 
     <div class="w-75 mx-auto">
         <div class="row">
             <div class="text-left">
                 <h5 class="font-italic font-weight-bold text-uppercase">Kursübersicht</h5>
                 <h6 class="pt-4">Bodyweight</h6>
-                <p class="pt-2" style="line-height: 30px;">Als Bodyweight-Training oder auch Eigengewichtübungen
+                <p class="description pt-2">Als Bodyweight-Training oder auch Eigengewichtübungen
                     bezeichnet man eine sportliche
                     Übung, die nur
                     das eigene Körpergewicht als Widerstand nutzt. Diese Übungen sind eine Form des Fitness- und
                     Krafttrainings, die fast völlig auf Hilfsmittel wie Gewichte und Fitnessgeräte verzichtet.</p>
                 <h6 class="pt-3">Gewichte</h6>
-                <p class="pt-2" style="line-height: 30px;">Unter Gewichttraining versteht man das körperliche Training
+                <p class="description pt-2">Unter Gewichttraining versteht man das körperliche Training
                     mithilfe von Gewichten,
                     welches das Ziel verfolgt, körperliche Veränderungen,
                     etwa die Steigerung der Kraftfähigkeiten oder die Erhöhung der Muskelmasse zu erreichen. Eine
@@ -228,19 +217,19 @@
                     die
                     Medizinische Kräftigungstherapie.</p>
                 <h6 class="pt-3">Tanzen</h6>
-                <p class="pt-2" style="line-height: 30px;">Tanzen ist ein dynamisches Fitnesstraining in der Gruppe mit
+                <p class="description pt-2">Tanzen ist ein dynamisches Fitnesstraining in der Gruppe mit
                     rhythmischen Bewegungen zu
                     motivierender Musik. Die Grundelemente sind hauptsächlich Ausdauer und Koordination. Die in
                     einer Choreografie zusammengestellten Übungen sind eine Mischung aus klassischer Gymnastik und Tanz.
                 </p>
                 <h6 class="pt-3">Wassergymnastik</h6>
-                <p class="pt-2" style="line-height: 30px;">Wassergymnastik ist ein spezielles Bewegungstraining im
+                <p class="description pt-2">Wassergymnastik ist ein spezielles Bewegungstraining im
                     Wasser. Die Kraft- und Konditionsübungen
                     schonen aufgrund des Auftriebs des Wassers die Gelenke, Sehnen und
                     den Rücken und kräftigen die Muskulatur sowie das Herz-Kreislaufsystem. Durch den hohen Widerstand
                     des Wassers sind die Übungen teilweise anstrengender als außerhalb des Wassers.</p>
                 <h6 class="pt-3">Yoga</h6>
-                <p class="pt-2" style="line-height: 30px;">Yoga ist eine philosophische Lehre, deren ganzheitlicher
+                <p class="description pt-2">Yoga ist eine philosophische Lehre, deren ganzheitlicher
                     Ansatz Körper, Geist und Seele in Einklang
                     bringen soll. Dazu werden geistige und körperliche Übungen, wie Muskelan- und -entspannungsübungen,
                     Atemübungen, Meditation und Askese eingesetzt. </p>
@@ -248,14 +237,8 @@
         </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-
-
-
     <!-- FOOTER-->
-    <div class="fixed">
+    <div class="sched-footer fixed">
         <div th:insert="~{shared/footer :: copy}"></div>
     </div>
 

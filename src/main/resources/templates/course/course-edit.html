@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 
@@ -10,16 +11,12 @@
 
     <div th:insert="~{shared/header :: copy}"></div>
 
-    <br>
-
-    <div class="container">
+    <div class="con-styling container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="cardbox p-4">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Kurs bearbeiten</h3>
-                        <br>
-
+                        <h3 class="card-title text-center mb-5">Kurs bearbeiten</h3>
                         <form class="form" th:action=" @{${'/owner/course/update/' + id}}" th:object="${courseForm}"
                             method="post">
                             <div class="form-row">
@@ -27,7 +24,7 @@
                                     <label for="inputCourse">Kursname</label>
                                     <input type="text" class="form-control" id="inputCourse" th:field="*{name}"
                                         placeholder="Kursname">
-                                        <label class="text-danger small" th:errors="*{name}"/>
+                                        <label class="text-danger small" th:errors="*{name}">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -35,7 +32,7 @@
                                     <label for="inputDescription">Beschreibung</label>
                                     <textarea class="form-control" th:field="*{description}" id="inputDescription"
                                         placeholder="Beschreibung"></textarea>
-                                        <label class="text-danger small" th:errors="*{description}"/>
+                                        <label class="text-danger small" th:errors="*{description}">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -47,7 +44,7 @@
                                             th:value="${category}" th:text="${category.displayValue}">
                                         </option>
                                     </select>
-                                    <label class="text-danger small" th:errors="*{category}"/>
+                                    <label class="text-danger small" th:errors="*{category}">
                                 </div>
                             </div>
 
@@ -56,7 +53,7 @@
                                     <label for="inputMinutes">Minuten</label>
                                     <input type="number" class="form-control" id="inputMinutes" th:field="*{duration}"
                                         placeholder="Minuten">
-                                        <label class="text-danger small" th:errors="*{duration}"/>
+                                        <label class="text-danger small" th:errors="*{duration}">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -68,11 +65,10 @@
                                             th:value="${targetGroup}" th:text="${targetGroup.displayValue}">
                                         </option>
                                     </select>
-                                    <label class="text-danger small" th:errors="*{targetGroup}"/>
+                                    <label class="text-danger small" th:errors="*{targetGroup}">
                                 </div>
                             </div>
-                            <br>
-                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Änderungen
+                            <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">Änderungen
                                 Speichern</button>
                         </form>
 
@@ -82,11 +78,6 @@
         </div>
     </div>
     </div>
-
-
-
-    <br>
-    <br>
 
     <!-- FOOTER-->
     <div class="fixed-bottom">

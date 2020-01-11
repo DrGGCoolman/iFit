@@ -59,7 +59,10 @@ public class UserController {
 
     @RequestMapping("/trainer/events")
     public String myAppointments(Model model) {
-        model.addAttribute("myEvents", eventRepository.findMyEvents());
+
+        User currUser = User.getCurrentUser();
+
+        model.addAttribute("myEvents", eventRepository.findByUserId(currUser.getId()));
         return "user/trainer-events";
     }
 
