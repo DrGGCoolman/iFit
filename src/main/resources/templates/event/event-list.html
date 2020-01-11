@@ -11,7 +11,7 @@
 
   <div th:insert="~{shared/header :: copy}"></div>
 
-  <div class="ml-5 mr-5 mt-4 w-75 mx-auto">
+  <div class="ml-5 mr-5 m-4 w-75 mx-auto">
     <table class="table">
       <thead class="thead-light">
         <h5 class="table mx-auto">Terminliste</h5>
@@ -28,11 +28,6 @@
       </thead>
 
       <div class="col-10 mt-4">
-        <div th:switch="${events}">
-          <div th:case="null">
-            <span>Keine angelegten Termine gefunden</span>
-          </div>
-          <div th:case="*">
             <tr th:each="event : ${events}">
               <td th:text="${event.weekday.displayValue}"></td>
               <td th:text="${event.startAt}"></td>
@@ -47,32 +42,31 @@
               <td><a th:href="${'/owner/event/edit/' + event.id}">Trainer ändern</a> | <a
                   th:href="${'/owner/event/delete/' + event.id}">Löschen</a></td>
             </tr>
-          </div>
-        </div>
+            <tr>
+              <td>
+                <a th:if="${events.empty}">Derzeit keine Termine:</a>
+                <a th:href="${'/owner/event/create'}" sec:authorize="hasRole('ADMIN')">Termin hinzufügen..</a>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
       </div>
-
-      <tr>
-        <td>
-          <a th:if="${events.empty}">Derzeit keine Termine:</a>
-          <a th:href="${'/owner/event/create'}" sec:authorize="hasRole('ADMIN')">Termin hinzufügen..</a>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
     </table>
   </div>
 
 
 
 
+
+
   <!-- FOOTER-->
-  <div class="fixed-bottom">
-    <div th:insert="~{shared/footer :: copy}"></div>
+  <div class="ind-footer">
+    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
   </div>
 
 
