@@ -108,4 +108,9 @@ public class EventController {
         return "event/event-list";
     }
 
+    @GetMapping("{id}")
+    public String showEventDetails(@PathVariable("id") int id, Model model) {
+        model.addAttribute("events", eventRepository.findById(id));
+        return "event/event-details";
+    }
 }
