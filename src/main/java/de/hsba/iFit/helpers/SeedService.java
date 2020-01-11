@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import de.hsba.ifit.course.*;
 import de.hsba.ifit.daytime.DaytimeRepository;
 import de.hsba.ifit.daytime.DaytimeService;
+import de.hsba.ifit.daytime.Daytime.DaytimeName;
 import de.hsba.ifit.event.Event;
 import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.event.EventService;
@@ -48,34 +49,34 @@ public class SeedService {
 
                 // DAYTIME
                 if (daytimeRepository.count() == 0) {
-                        daytimeService.Seed("Morgens", LocalTime.of(8, 0), LocalTime.of(12, 0));
-                        daytimeService.Seed("Nachmittags", LocalTime.of(12, 0), LocalTime.of(16, 0));
-                        daytimeService.Seed("Abends", LocalTime.of(16, 0), LocalTime.of(20, 0));
+                        daytimeService.Seed(DaytimeName.MORGENS, LocalTime.of(8, 0), LocalTime.of(12, 0));
+                        daytimeService.Seed(DaytimeName.MITTAGS, LocalTime.of(12, 0), LocalTime.of(16, 0));
+                        daytimeService.Seed(DaytimeName.ABENDS, LocalTime.of(16, 0), LocalTime.of(20, 0));
                 }
 
                 // SlOTS
                 if (slotRepository.count() == 0) {
-                        slotService.Seed(Weekday.MO, daytimeRepository.findByName("Morgens"));
-                        slotService.Seed(Weekday.MO, daytimeRepository.findByName("Nachmittags"));
-                        slotService.Seed(Weekday.MO, daytimeRepository.findByName("Abends"));
-                        slotService.Seed(Weekday.TU, daytimeRepository.findByName("Morgens"));
-                        slotService.Seed(Weekday.TU, daytimeRepository.findByName("Nachmittags"));
-                        slotService.Seed(Weekday.TU, daytimeRepository.findByName("Abends"));
-                        slotService.Seed(Weekday.WE, daytimeRepository.findByName("Morgens"));
-                        slotService.Seed(Weekday.WE, daytimeRepository.findByName("Nachmittags"));
-                        slotService.Seed(Weekday.WE, daytimeRepository.findByName("Abends"));
-                        slotService.Seed(Weekday.TH, daytimeRepository.findByName("Morgens"));
-                        slotService.Seed(Weekday.TH, daytimeRepository.findByName("Nachmittags"));
-                        slotService.Seed(Weekday.TH, daytimeRepository.findByName("Abends"));
-                        slotService.Seed(Weekday.FR, daytimeRepository.findByName("Morgens"));
-                        slotService.Seed(Weekday.FR, daytimeRepository.findByName("Nachmittags"));
-                        slotService.Seed(Weekday.FR, daytimeRepository.findByName("Abends"));
-                        slotService.Seed(Weekday.SA, daytimeRepository.findByName("Morgens"));
-                        slotService.Seed(Weekday.SA, daytimeRepository.findByName("Nachmittags"));
-                        slotService.Seed(Weekday.SA, daytimeRepository.findByName("Abends"));
-                        slotService.Seed(Weekday.SU, daytimeRepository.findByName("Morgens"));
-                        slotService.Seed(Weekday.SU, daytimeRepository.findByName("Nachmittags"));
-                        slotService.Seed(Weekday.SU, daytimeRepository.findByName("Abends"));
+                        slotService.Seed(Weekday.MO, daytimeRepository.findByName(DaytimeName.MORGENS));
+                        slotService.Seed(Weekday.MO, daytimeRepository.findByName(DaytimeName.MITTAGS));
+                        slotService.Seed(Weekday.MO, daytimeRepository.findByName(DaytimeName.ABENDS));
+                        slotService.Seed(Weekday.TU, daytimeRepository.findByName(DaytimeName.MORGENS));
+                        slotService.Seed(Weekday.TU, daytimeRepository.findByName(DaytimeName.MITTAGS));
+                        slotService.Seed(Weekday.TU, daytimeRepository.findByName(DaytimeName.ABENDS));
+                        slotService.Seed(Weekday.WE, daytimeRepository.findByName(DaytimeName.MORGENS));
+                        slotService.Seed(Weekday.WE, daytimeRepository.findByName(DaytimeName.MITTAGS));
+                        slotService.Seed(Weekday.WE, daytimeRepository.findByName(DaytimeName.ABENDS));
+                        slotService.Seed(Weekday.TH, daytimeRepository.findByName(DaytimeName.MORGENS));
+                        slotService.Seed(Weekday.TH, daytimeRepository.findByName(DaytimeName.MITTAGS));
+                        slotService.Seed(Weekday.TH, daytimeRepository.findByName(DaytimeName.ABENDS));
+                        slotService.Seed(Weekday.FR, daytimeRepository.findByName(DaytimeName.MORGENS));
+                        slotService.Seed(Weekday.FR, daytimeRepository.findByName(DaytimeName.MITTAGS));
+                        slotService.Seed(Weekday.FR, daytimeRepository.findByName(DaytimeName.ABENDS));
+                        slotService.Seed(Weekday.SA, daytimeRepository.findByName(DaytimeName.MORGENS));
+                        slotService.Seed(Weekday.SA, daytimeRepository.findByName(DaytimeName.MITTAGS));
+                        slotService.Seed(Weekday.SA, daytimeRepository.findByName(DaytimeName.ABENDS));
+                        slotService.Seed(Weekday.SU, daytimeRepository.findByName(DaytimeName.MORGENS));
+                        slotService.Seed(Weekday.SU, daytimeRepository.findByName(DaytimeName.MITTAGS));
+                        slotService.Seed(Weekday.SU, daytimeRepository.findByName(DaytimeName.ABENDS));
                 }
 
                 // NUTZER
@@ -92,13 +93,13 @@ public class SeedService {
 
                         List<Slot> annesSlots = new ArrayList<>();
                         annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.MO, daytimeRepository.findByName("Morgens"))
+                                        .findByWeekdayAndDaytime(Weekday.MO, daytimeRepository.findByName(DaytimeName.MITTAGS))
                                         .orElseThrow());
                         annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.SU, daytimeRepository.findByName("Abends"))
+                                        .findByWeekdayAndDaytime(Weekday.SU, daytimeRepository.findByName(DaytimeName.MITTAGS))
                                         .orElseThrow());
                         annesSlots.add(slotRepository.findByWeekdayAndDaytime(Weekday.MO,
-                                        daytimeRepository.findByName("Nachmittags")).orElseThrow());
+                                        daytimeRepository.findByName(DaytimeName.MORGENS)).orElseThrow());
 
                         anne.setSlots(annesSlots);
                         userRepository.save(anne);
