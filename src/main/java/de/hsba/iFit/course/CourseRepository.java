@@ -21,4 +21,6 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
     @Query("SELECT MAX(duration) FROM Course")
     Integer findMaxDuration();
 
+    List<Course> findByUsersId(Integer id);
+
 }
