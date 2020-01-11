@@ -49,7 +49,7 @@
                                         <th th:text="${daytime.displayValue}"></th>
                                         <!-- Vorbearbeiten des Ausdruck um Liste der Slots je nach daytime auszutauschen -->
                                         <td th:each="slot : ${__${daytime}__Slots}">
-                                            <input type="checkbox">
+                                            <input type="checkbox" th:field="*{slots}" th:value="${slot.id}">
                                         </td>
 
                                     </tr>
