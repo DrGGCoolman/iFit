@@ -3,6 +3,7 @@ package de.hsba.ifit.user;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import de.hsba.ifit.course.Course;
 import de.hsba.ifit.slot.Slot;
 
 import java.util.List;
@@ -17,8 +18,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findAll();
 
-    List<User> findBySlotsId(Integer id);
+    List<User> findBySlotsIdAndCoursesId(Integer slotId, Integer courseId);
 
     Optional<User> findById(Integer id);
+
+
 
 }

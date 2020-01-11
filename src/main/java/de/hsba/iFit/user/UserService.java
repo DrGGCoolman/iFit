@@ -12,6 +12,7 @@ import de.hsba.ifit.slot.Weekday;
 import javax.transaction.Transactional;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -35,15 +36,22 @@ public class UserService {
         return userRepository.findByRole(User.USER_ROLE);
     }
 
-    public List<User> findFittingTrainer(Weekday day, LocalTime time, Course course) {
+    public List<User> findFittingTrainers(Weekday day, LocalTime time, Course selectedCourse) {
 
         // Hier wird aus Tag und Zeit ein Slot ausgewählt.
 
         Slot equivalentSlot = slotService.returnSlotForDayAndTime(day, time);
+        List<User> fittingTrainers;
+        if (equivalentSlot == null) {
 
-        List<User> fittingTrainer = userRepository.findBySlotsId(equivalentSlot.getId());
+            fittingTrainers = new ArrayList<User>();
 
-        return fittingTrainer;
+        } else {
+
+            fittingTrainers = userRepository.findBySlotsIdAndCoursesId(equivalentSlot.getId(), selectedCourse.getId());
+        }
+
+        return fittingTrainers;
 
     }
 

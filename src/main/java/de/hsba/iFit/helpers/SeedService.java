@@ -24,7 +24,6 @@ import javax.transaction.Transactional;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -107,6 +106,25 @@ public class SeedService {
 
                         anne.setSlots(annesSlots);
                         userRepository.save(anne);
+
+                        User admin = userRepository.findByName("admin");
+
+                        List<Slot> adminsSlots = new ArrayList<>();
+
+                        adminsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+
+                        admin.setSlots(adminsSlots);
+
+                        List<Course> adminsKurse = new ArrayList<>();
+
+                        adminsKurse.add(courseRepository.findByName("Hantel Workout"));
+
+                        admin.setCourses(adminsKurse);
+
+                        userRepository.save(admin);
 
                 }
 

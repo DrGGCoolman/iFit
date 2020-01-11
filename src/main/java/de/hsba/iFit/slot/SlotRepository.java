@@ -22,4 +22,6 @@ public interface SlotRepository extends JpaRepository<Slot, Integer> {
 
     Optional<Slot> findByWeekdayAndDaytime(Weekday weekday, Daytime daytime);
 
+    List<Slot> findByUsersId(Integer id);
+
 }

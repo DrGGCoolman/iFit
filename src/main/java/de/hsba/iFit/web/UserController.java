@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import de.hsba.ifit.course.CourseRepository;
+import de.hsba.ifit.course.CourseService;
 import de.hsba.ifit.daytime.Daytime.DaytimeName;
 import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.slot.SlotRepository;
-import de.hsba.ifit.slot.Weekday;
 import de.hsba.ifit.user.User;
 import de.hsba.ifit.user.UserRepository;
+import de.hsba.ifit.user.UserService;
 
 //Enthälten allgemeine Routen, die keinem Controller direkt zuzuordnen sind.
 @Controller
@@ -35,6 +36,7 @@ public class UserController {
     private CourseRepository courseRepository;
     @Autowired
     private EventRepository eventRepository;
+
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -81,6 +83,7 @@ public class UserController {
         model.addAttribute(DaytimeName.MORGENS + "Slots", slotRepository.findByDaytimeName(DaytimeName.MORGENS));
         model.addAttribute(DaytimeName.MITTAGS + "Slots", slotRepository.findByDaytimeName(DaytimeName.MITTAGS));
         model.addAttribute(DaytimeName.ABENDS + "Slots", slotRepository.findByDaytimeName(DaytimeName.ABENDS));
+        model.addAttribute("myWork", slotRepository.findByUsersId(currUser.getId()));
 
         return "user/trainer-work";
     }
@@ -106,5 +109,43 @@ public class UserController {
         // return "redirect:/kurs/" + id.toString();
         return "redirect:/trainer/events";
     }
+
+     // Aufruf der Kurs-Beaarbeiten ansicht.
+     @GetMapping("trainer/courses")
+     public String showCourseForm(Model model) {
+         User currUser = User.getCurrentUser();
+ 
+         User user = userRepository.findById(currUser.getId())
+                 .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+         model.addAttribute("user", user);
+         model.addAttribute("courses", courseRepository.findAll());
+         model.addAttribute("isUpdate", true);
+         model.addAttribute("myCourses", courseRepository.findByUsersId(currUser.getId()));
+ 
+ 
+         return "user/trainer-courses";
+     }
+ 
+     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
+     // formular.
+     @PostMapping("/trainer/courses/update/{id}")
+     public String updateCourses(@PathVariable("id") Integer id, @Valid User user, BindingResult result, Model model) {
+         if (result.hasErrors()) {
+             user.setId(id);
+             return "redirect:" + id.toString();
+         }
+ 
+         User currUser = User.getCurrentUser();
+         user.firstname = currUser.firstname;
+         user.lastname = currUser.lastname;
+         user.setPassword(currUser.getPassword());
+         user.setName(currUser.getName());
+         user.setRole(currUser.getRole());
+ 
+         userRepository.save(user);
+ 
+         // return "redirect:/kurs/" + id.toString();
+         return "redirect:/trainer/events";
+     }
 
 }
