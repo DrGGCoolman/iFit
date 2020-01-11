@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     List<User> findAll();
 
-    List<User> findBySlotsId(Integer id);
+    List<User> findBySlotsIdAndCoursesId(Integer slotId, Integer courseId);
 
     Optional<User> findById(Integer id);
 
