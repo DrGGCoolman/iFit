@@ -20,14 +20,44 @@
                         <form class="form" th:action="@{${'/trainer/work/update/'+ user.id}}" th:object="${user}"
                             method="post">
 
-                            <select class="form-control mb-5" id="multiSelectElementsSelected"
+                            <!-- <select class="form-control" id="multiSelectElementsSelected"
                                 name="multiSelectElementsSelected" multiple="multiple" th:field="*{slots}">
 
                                 <option th:each="slot : ${slots}" th:value="${slot.id}"
                                     th:text="${slot.weekday.displayValue + ' -------- ' + slot.daytime.name }"></option>
 
-                            </select>
-                            <h3 class="card-title text-center mb-5">Kurse wählen</h3>
+                            </select> -->
+
+
+
+
+
+                            <table class="table">
+
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th></th>
+                                        <th th:each="weekaday : ${T(de.hsba.ifit.slot.Weekday).values()}"
+                                            th:text="${weekaday.displayValue}"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="daytime : ${T(de.hsba.ifit.daytime.Daytime.DaytimeName).values()}">
+                                        <th th:text="${daytime.displayValue}"></th>
+                                        <!-- Vorbearbeiten des Ausdruck um Liste der Slots je nach daytime auszutauschen -->
+                                        <td th:each="slot : ${__${daytime}__Slots}">
+                                            <input type="checkbox" th:field="*{slots}" th:value="${slot.id}">
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+
+                            <h3 class="card-title text-center">Kurse wählen</h3>
+                            <br>
+
                             <select class="form-control" id="multiSelectElementsSelected"
                                 name="multiSelectElementsSelected" multiple="multiple" th:field="*{courses}">
                                 <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name }">
