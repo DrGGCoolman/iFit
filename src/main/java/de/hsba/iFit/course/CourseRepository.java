@@ -17,4 +17,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 
     Optional<Course> findById(Integer id);
 
+    List<Course> findByUsersId(Integer id);
+
+
 }

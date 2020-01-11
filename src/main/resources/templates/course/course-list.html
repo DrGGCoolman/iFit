@@ -25,11 +25,6 @@
       </thead>
 
       <div class="col-10 mt-4">
-        <div th:switch="${courses}">
-          <div th:case="null">
-            <span>Keine Kurse angelegt gefunden</span>
-          </div>
-          <div th:case="*">
             <tr th:each="course : ${courses}">
               <td th:text="${course.name}"></td>
               <td th:text="${course.category.displayValue}"></td>
@@ -47,7 +42,10 @@
       </div>
 
       <tr>
-        <td><a th:href="${'/owner/course/create'}" sec:authorize="hasRole('ADMIN')">Kurs hinzufügen..</a></td>
+        <td>
+          <a th:if="${courses.empty}">Derzeit keine Kurse:</a>
+          <a th:href="${'/owner/course/create'}" sec:authorize="hasRole('ADMIN')">Kurs hinzufügen..</a>
+        </td>
         <td></td>
         <td></td>
         <td></td>

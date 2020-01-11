@@ -25,11 +25,6 @@
       </thead>
   
       <div class="col-10 mt-4">
-        <div th:switch="${myEvents}">
-          <div th:case="null">
-            <span>Keine Termine</span>
-          </div>
-          <div th:case="*">
             <tr th:each="event : ${myEvents}">
               <td th:text="${event.weekday.displayValue}"></td>
               <td th:text="${event.startAt}"></td>
@@ -37,17 +32,15 @@
               <td th:text="${event.course.name}"></td>
               <td th:text="${event.room.displayValue}"></td>
             </tr>
+            <tr>
+              <td><a th:if="${myEvents.empty}">Derzeit keine Termine</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
           </div>
-        </div>
       </div>
-  
-      <tr>
-        <td><a th:href="${'/trainer/work'}">Arbeitszeit konfigurieren..</a></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
     </table>
     </div>
 

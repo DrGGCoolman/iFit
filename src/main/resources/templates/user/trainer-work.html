@@ -13,10 +13,15 @@
 
     <div class="con-styling container">
         <div class="row">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="col-sm-9 col-md-70 col-lg-50 mx-auto">
                 <div class="cardbox p-4">
                     <div class="card-body">
-                        <h3 class="card-title text-center mb-5">Arbeitszeit festlegen</h3>
+                        <div th:if="${!myWork.empty}">
+                            <h3 class="card-title text-center mb-4">Arbeitszeit ändern</h3>
+                        </div>
+                        <div th:if="${myWork.empty}">
+                                <h3 class="card-title text-center mb-4">Arbeitszeit festlegen</h3>
+                            </div>
                         <form class="form" th:action="@{${'/trainer/work/update/'+ user.id}}" th:object="${user}"
                             method="post">
 
@@ -31,10 +36,9 @@
 
 
 
-
                             <table class="table">
 
-                                <thead class="thead-dark">
+                                <thead class="thead-light">
                                     <tr>
                                         <th></th>
                                         <th th:each="weekaday : ${T(de.hsba.ifit.slot.Weekday).values()}"
@@ -53,18 +57,13 @@
                                 </tbody>
 
                             </table>
-
-
-                            <h3 class="card-title text-center mb-4">Kurse wählen</h3>
-
-                            <select class="form-control" id="multiSelectElementsSelected"
-                                name="multiSelectElementsSelected" multiple="multiple" th:field="*{courses}">
-                                <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name }">
-                                </option>
-                            </select>
+                            <div class="text-center">
+                                <button class="btn btn-lg btn-secondary mt-4 col-sm-5" type="submit">speichern</button>
+                            </div>
                     </div>
-                    <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">Speicher</button>
-                    </form>
+
+                
+                    
                 </div>
             </div>
         </div>
