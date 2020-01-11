@@ -52,7 +52,10 @@
       </div>
 
       <tr>
-        <td><a th:href="${'/owner/event/create'}">Termin hinzufügen..</a></td>
+        <td>
+          <a th:if="${events.empty}">Derzeit keine Termine:</a>
+          <a th:href="${'/owner/event/create'}" sec:authorize="hasRole('ADMIN')">Termin hinzufügen..</a>
+        </td>
         <td></td>
         <td></td>
         <td></td>

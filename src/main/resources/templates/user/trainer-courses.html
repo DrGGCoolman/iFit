@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{shared/header :: copy}"></div>
+
+    <div class="con-styling container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="cardbox p-4">
+                    <div class="card-body">
+                        <div th:if="${!myCourses.empty}">
+                            <h3 class="card-title text-center mb-4">Kurse ändern</h3>
+                        </div>
+                        <div th:if="${myCourses.empty}">
+                                <h3 class="card-title text-center mb-4">Kurse wählen</h3>
+                            </div>
+                        
+                
+
+                   <form class="form" th:action="@{${'/trainer/courses/update/'+ user.id}}" th:object="${user}"
+                   method="post">
+
+                            <select class="form-control" id="multiSelectElementsSelected"
+                                name="multiSelectElementsSelected" multiple="multiple" th:field="*{courses}">
+                                <option value="" selected>Keine</option>
+                                <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name }">
+                                </option>
+                            </select>
+                    </div>
+                    <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">speichern</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- FOOTER-->
+    <div class="fixed-bottom">
+        <div th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

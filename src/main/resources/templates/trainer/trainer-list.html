@@ -25,7 +25,7 @@
 
         <div class="col-10 mt-4">
           <div th:switch="${users}">
-            <div th:case="null">
+            <div th:case="empty">
               <span>Keine Trainer angelegt gefunden</span>
             </div>
             <div th:case="*">
@@ -40,7 +40,10 @@
           </div>
         </div>
         <tr>
-            <td><a th:href="${'/owner/trainer/create'}">Trainer hinzufügen..</a></td>
+            <td>
+              <a th:if="${users.empty}">Derzeit keine Trainer:</a>
+              <a th:href="${'/owner/trainer/create'}" sec:authorize="hasRole('ADMIN')">Trainer hinzufügen..</a>
+            </td>
             <td></td>
             <td></td>
             <td></td>
