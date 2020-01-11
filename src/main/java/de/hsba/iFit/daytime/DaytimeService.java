@@ -3,6 +3,8 @@ package de.hsba.ifit.daytime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import de.hsba.ifit.daytime.Daytime.DaytimeName;
+
 import javax.transaction.Transactional;
 
 import java.time.LocalTime;
@@ -15,7 +17,7 @@ public class DaytimeService {
 
     private final DaytimeRepository daytimeRepository;
 
-    public void Seed(String name, LocalTime start, LocalTime end) {
+    public void Seed(DaytimeName name, LocalTime start, LocalTime end) {
         daytimeRepository.save(new Daytime(name, start, end));
     }
 

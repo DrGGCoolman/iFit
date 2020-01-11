@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import de.hsba.ifit.course.CourseRepository;
+import de.hsba.ifit.daytime.Daytime.DaytimeName;
 import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.slot.SlotRepository;
+import de.hsba.ifit.slot.Weekday;
 import de.hsba.ifit.user.User;
 import de.hsba.ifit.user.UserRepository;
 
@@ -68,11 +70,15 @@ public class UserController {
 
         User user = userRepository.findById(currUser.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
-
         model.addAttribute("user", user);
         model.addAttribute("slots", slotRepository.findAll());
         model.addAttribute("courses", courseRepository.findAll());
         model.addAttribute("isUpdate", true);
+
+        model.addAttribute(DaytimeName.MORGENS + "Slots", slotRepository.findByDaytimeName(DaytimeName.MORGENS));
+        model.addAttribute(DaytimeName.MITTAGS + "Slots", slotRepository.findByDaytimeName(DaytimeName.MITTAGS));
+        model.addAttribute(DaytimeName.ABENDS + "Slots", slotRepository.findByDaytimeName(DaytimeName.ABENDS));
+
         return "user/trainer-work";
     }
 
@@ -90,9 +96,7 @@ public class UserController {
         user.lastname = currUser.lastname;
         user.setPassword(currUser.getPassword());
         user.setName(currUser.getName());
-        
         user.setRole(currUser.getRole());
-
 
         userRepository.save(user);
 
