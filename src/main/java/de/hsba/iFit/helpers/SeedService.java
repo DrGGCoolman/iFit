@@ -93,13 +93,17 @@ public class SeedService {
 
                         List<Slot> annesSlots = new ArrayList<>();
                         annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.MO, daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
                                         .orElseThrow());
                         annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.SU, daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
                                         .orElseThrow());
-                        annesSlots.add(slotRepository.findByWeekdayAndDaytime(Weekday.MO,
-                                        daytimeRepository.findByName(DaytimeName.MORGENS)).orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
 
                         anne.setSlots(annesSlots);
                         userRepository.save(anne);
@@ -177,6 +181,19 @@ public class SeedService {
 
                         eventService.Seed(LocalTime.of(19, 20), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("admin"), Room.GYM1, Weekday.TU);
+
+                        eventService.Seed(LocalTime.of(20, 15), courseRepository.findByName("Hantel Workout"),
+                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.TH);
+
+                        eventService.Seed(LocalTime.of(19, 45), courseRepository.findByName("Jumping Fit"),
+                                        userRepository.findByName("zoe.richter"), Room.GYM2, Weekday.FR);
+
+                        eventService.Seed(LocalTime.of(16, 15),
+                                        courseRepository.findByName("Krankengymnastik am Gerät"),
+                                        userRepository.findByName("zoe.richter"), Room.GYM2, Weekday.SA);
+
+                        eventService.Seed(LocalTime.of(12, 55), courseRepository.findByName("Hantel Workout"),
+                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.SU);
                 }
         }
 

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import de.hsba.ifit.event.Event;
 import de.hsba.ifit.event.EventRepository;
@@ -54,6 +55,12 @@ public class HomeController {
     public String Datenschutz() {
         return "privacy";
     }
+
+    // @GetMapping("/schedule")
+    // public String filterWeekday(@RequestParam(value = "wochentag", required = false) String weekday, Model model) {
+    //     model.addAttribute("events", eventRepository.findByWeekday(weekday));
+    //     return "schedule";
+    // }
 
 
 }
