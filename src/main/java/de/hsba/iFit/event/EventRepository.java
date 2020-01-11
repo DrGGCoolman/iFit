@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import de.hsba.ifit.slot.Weekday;
+
 // Detailierte Kommentare befinden sich im ProductTypeRepository.java
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
@@ -17,6 +19,8 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
     Optional<Event> findById(Integer id);
 
     List<Event> findByUserId(Integer id);
+
+    List<Event> findByWeekday(Weekday weekday);
     
     
 

@@ -53,7 +53,7 @@
                                     <label for="inputRoom">Raum</label>
                                     <select id="inputRoom" class="form-control" th:field="*{room}" disabled>
                                         <option value="" selected>Raum wählen..</option>
-                                        <option th:each="room : ${T(de.hsba.ifit.event.Room).values()}"
+                                        <option th:each="room : ${rooms}"
                                             th:value="${room}" th:text="${room.displayValue}">
                                         </option>
                                     </select>

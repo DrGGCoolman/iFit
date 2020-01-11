@@ -1,5 +1,8 @@
 package de.hsba.ifit.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * ProductTypeController
  */
@@ -17,16 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.event.*;
+import de.hsba.ifit.slot.Weekday;
+import de.hsba.ifit.user.User;
 import de.hsba.ifit.user.UserRepository;
 import de.hsba.ifit.user.UserService;
+import lombok.RequiredArgsConstructor;
 
 //Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
 @Controller
 @RequestMapping("/owner/event/")
 public class EventController {
-
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private RoomService roomService;
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
@@ -52,15 +59,21 @@ public class EventController {
         if (event.getWeekday() != null && event.getStartAt() != null && event.getUser() == null
                 && event.getRoom() == null) {
 
-            model.addAttribute("users",
-                    userService.findFittingTrainer(event.getWeekday(), event.getStartAt(), event.getCourse()));
+            List<User> availableTrainers = userService.findFittingTrainers(event.getWeekday(), event.getStartAt(),
+                    event.getCourse());
+
+            model.addAttribute("users", availableTrainers);
+
+            List<Room> availableRooms = roomService.findFreeRooms(event.getWeekday(), event.getStartAt(), event.getCourse().getDuration());
+
+            model.addAttribute("rooms", availableRooms);
+
             return "event/event-create/step2";
 
-
-            
         } else if (!result.hasErrors()) {
             eventRepository.save(event);
         }
+
         // if (result.hasErrors()) {
         // return "termin/termin-create";
         // }
@@ -105,14 +118,23 @@ public class EventController {
 
     // Gibt Listenansicht der Evente zurück
     @GetMapping("list")
-    public String showAllProducts(Model model) {
-        model.addAttribute("events", eventRepository.findAll());
+    public String showAllEvents(Model model) {
+        
+        List<List<Event>> structuredEvents = new ArrayList<List<Event>>();
+        
+        for (Weekday weekday : Weekday.values()) {
+            structuredEvents.add(eventRepository.findByWeekday(weekday));
+        }
+
+        model.addAttribute("eventsStruct", structuredEvents);
+        
         return "event/event-list";
     }
 
     @GetMapping("{id}")
     public String showEventDetails(@PathVariable("id") int id, Model model) {
-        model.addAttribute("events", eventRepository.findById(id));
+        model.addAttribute("event",
+                eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id)));
         return "event/event-details";
     }
 }
