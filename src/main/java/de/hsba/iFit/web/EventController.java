@@ -56,6 +56,8 @@ public class EventController {
                     userService.findFittingTrainer(event.getWeekday(), event.getStartAt(), event.getCourse()));
             return "event/event-create/step2";
 
+
+            
         } else if (!result.hasErrors()) {
             eventRepository.save(event);
         }

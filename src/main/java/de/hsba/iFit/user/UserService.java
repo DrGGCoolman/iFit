@@ -35,15 +35,16 @@ public class UserService {
         return userRepository.findByRole(User.USER_ROLE);
     }
 
-    public List<User> findFittingTrainer(Weekday day, LocalTime time, Course course) {
+    public List<User> findFittingTrainer(Weekday day, LocalTime time, Course selectedCourse) {
 
         // Hier wird aus Tag und Zeit ein Slot ausgewählt.
 
         Slot equivalentSlot = slotService.returnSlotForDayAndTime(day, time);
 
-        List<User> fittingTrainer = userRepository.findBySlotsId(equivalentSlot.getId());
+        List<User> fittingTrainers = userRepository.findBySlotsIdAndCoursesId(equivalentSlot.getId(),
+                selectedCourse.getId());
 
-        return fittingTrainer;
+        return fittingTrainers;
 
     }
 
