@@ -1,0 +1,53 @@
+<div class="ml-5 mr-5 mt-4 w-75 mx-auto" th:fragment="copy (list)">
+    <table class="table">
+        <thead class="thead-light">
+            <h5 class="table mx-auto" th:if="list[0].notNUll" th:text="${list[0].weekday.displayValue}"></h5>
+            <tr>
+                <th>Tag</th>
+                <th>Beginn</th>
+                <th>Ende</th>
+                <th>Kurs</th>
+                <th>Raum</th>
+                <th>Trainer</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <div class="col-10 mt-4">
+            <div th:switch="${list}">
+                <div th:case="null">
+                    <span>Keine Termine gefunden</span>
+                </div>
+                <div th:case="*">
+                    <tr th:each="event : ${list}">
+                        <td th:text="${event.weekday.displayValue}"></td>
+                        <td th:text="${event.startAt}"></td>
+                        <td th:text="${event.startAt.plusMinutes(event.course.duration)}"></td>
+                        <td th:text="${event.course.name}"></td>
+                        <td th:text="${event.room.displayValue}"></td>
+                        <td th:text="${event.user.firstname + ' ' + event.user.lastname }"></td>
+
+                        <!-- TODO: Logik fehlt -->
+                        <td>Läuft</td>
+
+                        <td><a th:href="@{${'/owner/event/' +  event.id}}">Details anzeigen</a> |
+                            <a th:href="${'/owner/event/edit/' + event.id}">Trainer ändern</a> |
+                            <a th:href="${'/owner/event/delete/' + event.id}">Löschen</a></td>
+                    </tr>
+                </div>
+            </div>
+        </div>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>

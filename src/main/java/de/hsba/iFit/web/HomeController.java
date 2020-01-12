@@ -55,5 +55,11 @@ public class HomeController {
         return "privacy";
     }
 
+    // @GetMapping("/schedule")
+    // public String filterWeekday(@RequestParam(value = "wochentag", required = false) String weekday, Model model) {
+    //     model.addAttribute("events", eventRepository.findByWeekday(weekday));
+    //     return "schedule";
+    // }
+
 
 }

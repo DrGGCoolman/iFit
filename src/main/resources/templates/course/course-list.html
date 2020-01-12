@@ -16,6 +16,7 @@
       <thead class="thead-light">
         <h5 class="table">Kursliste</h5>
         <tr>
+          <th class="font-italic">Nr</th>
           <th class="font-italic">Name</th>
           <th class="font-italic">Kategorie</th>
           <th class="font-italic">Zielgruppe</th>
@@ -25,7 +26,8 @@
       </thead>
 
       <div class="col-10 mt-4">
-            <tr th:each="course : ${courses}">
+            <tr th:each="course, amount : ${courses}">
+              <td th:text="${amount.count}"></td>
               <td th:text="${course.name}"></td>
               <td th:text="${course.category.displayValue}"></td>
               <td th:text="${course.targetGroup.displayValue}"></td>
@@ -37,31 +39,25 @@
                 </div>
               </td>
             </tr>
-          </div>
-        </div>
-      </div>
+   
 
       <tr>
-        <td>
-          <a th:if="${courses.empty}">Derzeit keine Kurse:</a>
+        <td colspan="6">
+          <span th:if="${courses.empty}">Derzeit keine Kurse:</span>
           <a th:href="${'/owner/course/create'}" sec:authorize="hasRole('ADMIN')">Kurs hinzufügen..</a>
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
+    </div>
     </table>
   </div>
 
 
 
 
-  <!-- FOOTER-->
-  <div class="fixed-bottom">
-    <div th:insert="~{shared/footer :: copy}"></div>
+   <!-- FOOTER-->
+   <div class="ind-footer">
+    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
   </div>
-
 
   <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
   <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>

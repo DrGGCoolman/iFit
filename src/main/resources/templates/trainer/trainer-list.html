@@ -16,48 +16,40 @@
       <thead class="thead-light">
         <h5 class="table mx-auto">Trainerliste</h5>
         <tr>
-          <th class="font-italic">Vorname</th>
+          <th class="font-italic">Nr</th>
           <th class="font-italic">Nachname</th>
+          <th class="font-italic">Vorname</th>
           <th class="font-italic">User</th>
           <th></th>
         </tr>
       </thead>
 
         <div class="col-10 mt-4">
-          <div th:switch="${users}">
-            <div th:case="empty">
-              <span>Keine Trainer angelegt gefunden</span>
-            </div>
-            <div th:case="*">
-              <tr th:each="user : ${users}">
-                <td th:text="${user.firstname}"></td>
+              <tr th:each="user, amount : ${users}">
+                <td th:text="${amount.count}"></td>
                 <td th:text="${user.lastname}"></td>
+                <td th:text="${user.firstname}"></td>
                 <td th:text="${user.name}"></td>
                 <td><a th:href="${'/owner/trainer/edit/' + user.id}">Bearbeiten</a> | <a
                   th:href="${'/owner/trainer/delete/' + user.id}">Löschen</a></td>
-              </tr>
-            </div>
-          </div>
-        </div>
+                </tr>
         <tr>
-            <td>
-              <a th:if="${users.empty}">Derzeit keine Trainer:</a>
+            <td colspan="5">
+              <span th:if="${users.empty}">Derzeit keine Trainer:</span>
               <a th:href="${'/owner/trainer/create'}" sec:authorize="hasRole('ADMIN')">Trainer hinzufügen..</a>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tr>
+      </div>
       </table>
     </div>
 
 
 
 
-  
-    <div class="fixed-bottom">
-        <div th:insert="~{shared/footer :: copy}"></div>
-    </div>
+   <!-- FOOTER-->
+   <div class="ind-footer">
+    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
+  </div>
 
 
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

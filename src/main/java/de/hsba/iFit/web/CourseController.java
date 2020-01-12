@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.hsba.ifit.course.Course;
 import de.hsba.ifit.course.CourseService;
@@ -87,7 +86,7 @@ public class CourseController {
     // Gibt Listenansicht der Kurse zurück
     @GetMapping("/trainer/course/list")
     public String showAllProducts(Model model) {
-        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("courses", courseRepository.findAllCourses());
         return "course/course-list";
     }
 

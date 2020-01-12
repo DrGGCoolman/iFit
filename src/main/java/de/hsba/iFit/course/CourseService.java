@@ -3,7 +3,6 @@ package de.hsba.ifit.course;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import de.hsba.ifit.user.User;
 
 import javax.transaction.Transactional;
 import java.util.List;
