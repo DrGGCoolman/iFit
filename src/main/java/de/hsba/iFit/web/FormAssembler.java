@@ -1,5 +1,7 @@
 package de.hsba.ifit.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import de.hsba.ifit.course.Course;
@@ -8,6 +10,8 @@ import de.hsba.ifit.user.User;
 
 @Component
 public class FormAssembler {
+    @Autowired
+    private PasswordEncoder Encoder;
 
     CourseForm toForm(Course course) {
         CourseForm form = new CourseForm();
@@ -43,7 +47,7 @@ public class FormAssembler {
         user.setFirstname(form.getFirstname());
         user.setLastname(form.getLastname());
         user.setName(form.getName());
-        user.setPassword(form.getPassword());
+        user.setPassword(Encoder.encode(form.getPassword()));
         user.setRole(form.getRole());
         return user;
     }
