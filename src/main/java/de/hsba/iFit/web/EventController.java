@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.event.*;
@@ -31,8 +30,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
 public class EventController {
-    @Autowired
-    private EventRepository eventRepository;
     @Autowired
     private RoomService roomService;
     @Autowired
@@ -77,7 +74,7 @@ public class EventController {
         } else if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null
                 && (eventForm.getUser() == null || eventForm.getRoom() == null)) {
 
-            //FIXME: ungenutzte Variable
+            // FIXME: ungenutzte Variable
             List<User> availableTrainers = userService.findFittingTrainers(eventForm.getWeekday(),
                     eventForm.getStartAt(), eventForm.getCourse());
             List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(),
@@ -102,8 +99,7 @@ public class EventController {
     // Aufruf der Event-Beaarbeiten ansicht.
     @GetMapping("/owner/event/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        Event event = eventRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id));
+        Event event = eventService.findById(id);
         model.addAttribute("isUpdate", true);
         model.addAttribute("event", event);
         return "event/event-edit";
@@ -118,7 +114,7 @@ public class EventController {
             return "redirect:" + id.toString();
         }
 
-        eventRepository.save(event);
+        eventService.save(event);
 
         // return "redirect:/Event/" + id.toString();
         return "redirect:/owner/event/list";
@@ -127,10 +123,9 @@ public class EventController {
     // Behandelt das Löschen eines Eventes.
     @GetMapping("/owner/event/delete/{id}")
     public String deleteCourse(@PathVariable("id") int id, Model model) {
-        Event event = eventRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id));
-        eventRepository.delete(event);
-        model.addAttribute("events", eventRepository.findAll());
+        Event event = eventService.findById(id);
+        eventService.delete(event);
+        model.addAttribute("events", eventService.findAll());
         return "redirect:/owner/event/list ";
     }
 
@@ -141,7 +136,7 @@ public class EventController {
         List<List<Event>> structuredEvents = new ArrayList<List<Event>>();
 
         for (Weekday weekday : Weekday.values()) {
-            structuredEvents.add(eventRepository.findByWeekday(weekday));
+            structuredEvents.add(eventService.findByWeekday(weekday));
         }
 
         model.addAttribute("eventsStruct", structuredEvents);
@@ -151,8 +146,7 @@ public class EventController {
 
     @GetMapping("/event/{id}")
     public String showEventDetails(@PathVariable("id") int id, Model model) {
-        model.addAttribute("event",
-                eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id)));
+        model.addAttribute("event", eventService.findById(id));
         return "event/event-details";
     }
 }
