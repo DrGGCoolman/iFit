@@ -6,7 +6,7 @@ public enum TargetGroup {
     // TODO: bessere Zielgruppen finden
     
     PREVENTION("Verletzungsvorbeugung"), RELAXED("Casual"), REHA("Rehabilitation"), WEIGHTLOSS("Gewichtsverlust"),
-    EXTREME("Extreme");
+    EXTREME("Extreme"), MUSCLES("Muskelaufbau");
 
     private final String displayValue;
 

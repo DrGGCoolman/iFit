@@ -2,7 +2,7 @@
 package de.hsba.ifit.course;
 
 public enum Category {
-    BODYWEIGHT("Bodyweight"), WEIGHTS("Gewichte"), DANCE("Tanzen"), AQUA("Wassergymnastik"), YOGA("Yoga");
+    BODYWEIGHT("Bodyweight"), WEIGHTS("Gewichte"), DANCE("Tanzen"), AQUA("Wassergymnastik");
 
     private final String displayValue;
 
