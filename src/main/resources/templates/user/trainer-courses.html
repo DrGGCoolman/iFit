@@ -20,20 +20,24 @@
                             <h3 class="card-title text-center mb-4">Kurse ändern</h3>
                         </div>
                         <div th:if="${myCourses.empty}">
-                                <h3 class="card-title text-center mb-4">Kurse wählen</h3>
+                            <h3 class="card-title text-center mb-4">Kurse wählen</h3>
+                        </div>
+
+
+
+                        <form class="form" th:action="@{${'/trainer/courses/update/'+ user.id}}" th:object="${user}"
+                            method="post">
+
+
+
+                            <div class="mt-1 mx-auto" th:each=" course : ${courses}">
+                                <label>
+                                    <input type="checkbox" th:field="*{courses}" th:value="${course.id}"
+                                        th:text="${course.name }" />
+
+                                </label>
                             </div>
-                        
-                
 
-                   <form class="form" th:action="@{${'/trainer/courses/update/'+ user.id}}" th:object="${user}"
-                   method="post">
-
-                            <select class="form-control" id="multiSelectElementsSelected"
-                                name="multiSelectElementsSelected" multiple="multiple" th:field="*{courses}">
-                                <option value="" selected>Keine</option>
-                                <option th:each="course : ${courses}" th:value="${course.id}" th:text="${course.name }">
-                                </option>
-                            </select>
                     </div>
                     <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">speichern</button>
                     </form>
