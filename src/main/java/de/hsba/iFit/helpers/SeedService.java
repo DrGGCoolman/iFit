@@ -89,25 +89,6 @@ public class SeedService {
 
                         // Testsettings für User anlegen
 
-                        User anne = userRepository.findByName("anne.baum");
-
-                        List<Slot> annesSlots = new ArrayList<>();
-                        annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.MO,
-                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
-                                        .orElseThrow());
-                        annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.SU,
-                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
-                                        .orElseThrow());
-                        annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.MO,
-                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
-                                        .orElseThrow());
-
-                        anne.setSlots(annesSlots);
-                        userRepository.save(anne);
-
                         User admin = userRepository.findByName("admin");
 
                         List<Slot> adminsSlots = new ArrayList<>();
@@ -126,6 +107,325 @@ public class SeedService {
                         admin.setCourses(adminsKurse);
 
                         userRepository.save(admin);
+
+                        User anne = userRepository.findByName("anne.baum");
+
+                        List<Slot> annesSlots = new ArrayList<>();
+
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        anne.setSlots(annesSlots);
+
+                        List<Course> annesKurse = new ArrayList<>();
+
+                        annesKurse.add(courseRepository.findByName("Jumping Fit"));
+                        annesKurse.add(courseRepository.findByName("Krankengymnastik am Gerät"));
+                        annesKurse.add(courseRepository.findByName("Hantel Workout"));
+                        annesKurse.add(courseRepository.findByName("Zumba"));
+
+                        anne.setCourses(annesKurse);
+
+                        userRepository.save(anne);
+
+                        User benedikt = userRepository.findByName("benedikt.müller");
+
+                        List<Slot> benediktsSlots = new ArrayList<>();
+
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        benedikt.setSlots(benediktsSlots);
+
+                        List<Course> benediktsKurse = new ArrayList<>();
+
+                        benediktsKurse.add(courseRepository.findByName("Hantel Workout"));
+
+                        benedikt.setCourses(benediktsKurse);
+
+                        userRepository.save(benedikt);
+
+                        User charlotte = userRepository.findByName("charlotte.tulpe");
+
+                        List<Slot> charlottesSlots = new ArrayList<>();
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        charlotte.setSlots(charlottesSlots);
+
+                        List<Course> charlottesKurse = new ArrayList<>();
+
+                        charlottesKurse.add(courseRepository.findByName("Hantel Workout"));
+
+                        charlotte.setCourses(charlottesKurse);
+
+                        userRepository.save(charlotte);
+
+                        User zoe = userRepository.findByName("zoe.richter");
+
+                        List<Slot> zoesSlots = new ArrayList<>();
+
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        zoe.setSlots(zoesSlots);
+
+                        List<Course> zoesKurse = new ArrayList<>();
+
+                        zoesKurse.add(courseRepository.findByName("Hantel Workout"));
+
+                        zoe.setCourses(zoesKurse);
+
+                        userRepository.save(zoe);
+
+                        User max = userRepository.findByName("max.meier");
+
+                        List<Slot> maxensSlots = new ArrayList<>();
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        max.setSlots(maxensSlots);
+
+                        List<Course> maxensKurse = new ArrayList<>();
+
+                        maxensKurse.add(courseRepository.findByName("Hantel Workout"));
+
+                        max.setCourses(maxensKurse);
+
+                        userRepository.save(max);
 
                 }
 
