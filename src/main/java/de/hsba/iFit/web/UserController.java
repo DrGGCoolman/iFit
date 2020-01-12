@@ -35,7 +35,6 @@ public class UserController {
     @Autowired
     private DaytimeRepository daytimeRepository;
 
-
     @RequestMapping("/login")
     public String login(Model model) {
 
@@ -63,7 +62,7 @@ public class UserController {
         User currUser = User.getCurrentUser();
 
         User user = userRepository.findById(currUser.getId())
-        .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
         model.addAttribute("user", user);
         return "user/trainer-events";
     }
@@ -106,6 +105,7 @@ public class UserController {
         user.setPassword(currUser.getPassword());
         user.setName(currUser.getName());
         user.setRole(currUser.getRole());
+        user.setCourses(currUser.getCourses());
 
         userRepository.save(user);
 
@@ -113,42 +113,42 @@ public class UserController {
         return "redirect:/trainer/events";
     }
 
-     // Aufruf der Kurs-Beaarbeiten ansicht.
-     @GetMapping("trainer/courses")
-     public String showCourseForm(Model model) {
-         User currUser = User.getCurrentUser();
- 
-         User user = userRepository.findById(currUser.getId())
-                 .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
-         model.addAttribute("user", user);
-         model.addAttribute("courses", courseRepository.findAll());
-         model.addAttribute("isUpdate", true);
-         model.addAttribute("myCourses", courseRepository.findByUsersId(currUser.getId()));
- 
- 
-         return "user/trainer-courses";
-     }
- 
-     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
-     // formular.
-     @PostMapping("/trainer/courses/update/{id}")
-     public String updateCourses(@PathVariable("id") Integer id, @Valid User user, BindingResult result, Model model) {
-         if (result.hasErrors()) {
-             user.setId(id);
-             return "redirect:" + id.toString();
-         }
- 
-         User currUser = User.getCurrentUser();
-         user.firstname = currUser.firstname;
-         user.lastname = currUser.lastname;
-         user.setPassword(currUser.getPassword());
-         user.setName(currUser.getName());
-         user.setRole(currUser.getRole());
- 
-         userRepository.save(user);
- 
-         // return "redirect:/kurs/" + id.toString();
-         return "redirect:/trainer/events";
-     }
+    // Aufruf der Kurs-Beaarbeiten ansicht.
+    @GetMapping("trainer/courses")
+    public String showCourseForm(Model model) {
+        User currUser = User.getCurrentUser();
+
+        User user = userRepository.findById(currUser.getId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+        model.addAttribute("user", user);
+        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("isUpdate", true);
+        model.addAttribute("myCourses", courseRepository.findByUsersId(currUser.getId()));
+
+        return "user/trainer-courses";
+    }
+
+    // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
+    // formular.
+    @PostMapping("/trainer/courses/update/{id}")
+    public String updateCourses(@PathVariable("id") Integer id, @Valid User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            user.setId(id);
+            return "redirect:" + id.toString();
+        }
+
+        User currUser = User.getCurrentUser();
+        user.firstname = currUser.firstname;
+        user.lastname = currUser.lastname;
+        user.setPassword(currUser.getPassword());
+        user.setName(currUser.getName());
+        user.setRole(currUser.getRole());
+        user.setSlots(currUser.getSlots());
+
+        userRepository.save(user);
+
+        // return "redirect:/kurs/" + id.toString();
+        return "redirect:/trainer/events";
+    }
 
 }

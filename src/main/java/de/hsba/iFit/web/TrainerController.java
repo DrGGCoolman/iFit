@@ -59,6 +59,11 @@ public class TrainerController {
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
     // formular.
+
+    // TODO: Das muss noch in den FormKlassen gemappt werden, falls das noch nicht
+    // gemacht wird user.setRole(currUser.getRole());
+    // user.setSlots(currUser.getSlots());
+    
     @PostMapping("update/{id}")
     public String updateTrainer(@PathVariable("id") Integer id, @Valid TrainerForm form, BindingResult bindingResult,
             Model model) {
@@ -66,6 +71,7 @@ public class TrainerController {
             return "trainer/trainer-edit";
         }
         User user = userService.findUser(id);
+
         userService.save(formAssembler.update(user, form));
         // return "redirect:/kurs/" + id.toString();
         return "redirect:/owner/trainer/list";
