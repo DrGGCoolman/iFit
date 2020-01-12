@@ -48,9 +48,9 @@ public class SeedService {
 
                 // DAYTIME
                 if (daytimeRepository.count() == 0) {
-                        daytimeService.Seed(DaytimeName.MORGENS, LocalTime.of(8, 0), LocalTime.of(12, 0));
-                        daytimeService.Seed(DaytimeName.MITTAGS, LocalTime.of(12, 0), LocalTime.of(16, 0));
-                        daytimeService.Seed(DaytimeName.ABENDS, LocalTime.of(16, 0), LocalTime.of(20, 0));
+                        daytimeService.Seed(DaytimeName.MORGENS, LocalTime.of(8, 00), LocalTime.of(11,59));
+                        daytimeService.Seed(DaytimeName.MITTAGS, LocalTime.of(12, 00), LocalTime.of(15, 59));
+                        daytimeService.Seed(DaytimeName.ABENDS, LocalTime.of(16, 00), LocalTime.of(20, 00));
                 }
 
                 // SlOTS
@@ -136,7 +136,7 @@ public class SeedService {
                                         Category.DANCE, TargetGroup.WEIGHTLOSS, 60);
 
                         courseService.Seed("Bodyweight kompakt",
-                                        "Mit Bodyweight-Übungen wie Klimmzüge, Kniebeugen und Liegestütz forderst du alle Muskeln deines Körpers. Du kräftigst mehrere Muskeln gleichzeitig und trainierst ihr Zusammenspiel."
+                                        "Mit Bodyweight-Übungen wie Klimmzügem, Kniebeugen und Liegestützen forderst du alle Muskeln deines Körpers. Du kräftigst mehrere Muskeln gleichzeitig und trainierst ihr Zusammenspiel."
                                                         + " So baust du Fett ab und definierst deine Muskeln. Gleichzeitig verbesserst du mit jedem Bodyweight-Training deine Koordination und forderst deine Stabilität. Dein Core ist immer im Einsatz."
                                                         + " Das Resultat: Mit jedem Workout stärkst du deine Rumpfmuskulatur und es fällt dir leichter, dein Gleichgewicht zu halten. Das Bodyweight Kompakttraining kombiniert viele Elemente.",
                                         Category.BODYWEIGHT, TargetGroup.MUSCLES, 60);
@@ -614,7 +614,7 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(8, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.TH);
 
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Zumba"),
+                        eventService.Seed(LocalTime.of(12, 00), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.TH);
 
                         eventService.Seed(LocalTime.of(14, 30), courseRepository.findByName("Hantel Workout"),
