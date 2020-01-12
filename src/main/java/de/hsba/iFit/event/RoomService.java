@@ -43,7 +43,12 @@ public class RoomService {
         HashSet<Room> blockedRooms = new LinkedHashSet<Room>();
 
         for (Event event : allEventsInTimeslot) {
-            blockedRooms.add(event.getRoom());
+
+            if (this.checkIfEventOverlapsWithStartTime(startTime, event)) {
+
+                blockedRooms.add(event.getRoom());
+            }
+
         }
 
         List<Room> allRooms = new ArrayList<>(Arrays.asList(Room.values()));
@@ -51,6 +56,10 @@ public class RoomService {
         allRooms.removeAll(blockedRooms);
 
         return allRooms;
+    }
+
+    private boolean checkIfEventOverlapsWithStartTime(LocalTime startTime, Event event) {
+        return startTime.isBefore(event.getStartAt().plusMinutes(event.getCourse().getDuration()));
     }
 
 }

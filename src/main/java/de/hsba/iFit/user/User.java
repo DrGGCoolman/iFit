@@ -92,7 +92,7 @@ public class User implements Comparable<User> {
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    @OneToMany(mappedBy = "user")
     @OrderBy("weekday ASC, startAt ASC")
     private List<Event> events;
 
