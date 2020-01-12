@@ -81,8 +81,8 @@
                                 th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
                                 th:href="@{${'/event/' +  event.id}}"></a></td>
-                        <!-- TODO: Logik fehlt -->
-                        <td><a>Läuft</a></td>
+                        <td><a class="t-link btn" th:text="${event.eventState.displayValue}"
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                     </tr>
                 </div>
             </div>
@@ -113,20 +113,19 @@
                 <div th:case="*">
                     <tr class="t-hover" th:each="event : ${eventsAfternoon}">
                         <td><a class="t-link btn" th:text="${event.weekday.displayValue}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.startAt}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.startAt}" th:href="@{${'/event/' +  event.id}}"></a>
+                        </td>
                         <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.course.name}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.room.displayValue}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
-
-                        <!-- TODO: Logik fehlt -->
-                        <td>Läuft</td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.eventState.displayValue}"
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                     </tr>
                 </div>
             </div>
@@ -158,20 +157,19 @@
                 <div th:case="*">
                     <tr class="t-hover" th:each="event : ${eventsEvening}">
                         <td><a class="t-link btn" th:text="${event.weekday.displayValue}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.startAt}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.startAt}" th:href="@{${'/event/' +  event.id}}"></a>
+                        </td>
                         <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.course.name}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.room.displayValue}"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
-                               th:href="@{${'/event/' +  event.id}}"></a></td>
-
-                        <!-- TODO: Logik fehlt -->
-                        <td>Läuft</td>
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.eventState.displayValue}"
+                                th:href="@{${'/event/' +  event.id}}"></a></td>
                     </tr>
                 </div>
             </div>
