@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import de.hsba.ifit.event.EventRepository;
+import de.hsba.ifit.event.EventService;
 import de.hsba.ifit.slot.Weekday;
 
 //Enthälten allgemeine Routen, die keinem Controller direkt zuzuordnen sind.
@@ -16,7 +15,7 @@ import de.hsba.ifit.slot.Weekday;
 public class HomeController {
 
     @Autowired
-    private EventRepository eventRepository;
+    private EventService eventService;
 
     @RequestMapping("/")
     public String root() {
@@ -34,9 +33,9 @@ public class HomeController {
     public String showAllCourses(@RequestParam(required = false) Weekday selectedWeekday, Model model) {
 
         selectedWeekday = (selectedWeekday == null) ? Weekday.MO : selectedWeekday;
-        model.addAttribute("eventsMorning", eventRepository.findAllMorningEventsForWeekday(selectedWeekday));
-        model.addAttribute("eventsAfternoon", eventRepository.findAllAfternoonEventsForWeekday(selectedWeekday));
-        model.addAttribute("eventsEvening", eventRepository.findAllEveningEventsForWeekday(selectedWeekday));
+        model.addAttribute("eventsMorning", eventService.findAllMorningEventsForWeekday(selectedWeekday));
+        model.addAttribute("eventsAfternoon", eventService.findAllAfternoonEventsForWeekday(selectedWeekday));
+        model.addAttribute("eventsEvening", eventService.findAllEveningEventsForWeekday(selectedWeekday));
 
         return "schedule";
     }
@@ -50,12 +49,5 @@ public class HomeController {
     public String Datenschutz() {
         return "privacy";
     }
-
-    // @GetMapping("/schedule")
-    // public String filterWeekday(@RequestParam(value = "wochentag", required =
-    // false) String weekday, Model model) {
-    // model.addAttribute("events", eventRepository.findByWeekday(weekday));
-    // return "schedule";
-    // }
 
 }

@@ -1,8 +1,11 @@
 package de.hsba.ifit.event;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
 
@@ -16,6 +19,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 public class Event {
+
     @GeneratedValue
     @Id
     @Getter
@@ -44,6 +48,11 @@ public class Event {
     @Setter
     @ManyToOne
     private User user;
+
+    @Transient
+    @Getter
+    @Setter
+    private EventState eventState;
 
     public Event(LocalTime startAt, Course course, User user, Room room, Weekday weekday) {
         this.startAt = startAt;

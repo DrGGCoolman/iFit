@@ -27,9 +27,7 @@
                         <td th:text="${event.course.name}"></td>
                         <td th:text="${event.room.displayValue}"></td>
                         <td th:text="${event.user.firstname + ' ' + event.user.lastname }"></td>
-
-                        <!-- TODO: Logik fehlt -->
-                        <td>Läuft</td>
+                        <td th:text="${event.eventState.displayValue}"></td>
 
                         <td><a th:href="@{${'/event/' +  event.id}}">Details anzeigen</a> |
                             <a th:href="${'/owner/event/edit/' + event.id}">Trainer ändern</a> |
