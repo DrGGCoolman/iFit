@@ -15,12 +15,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/index", "/webjars/**").permitAll()
-                .antMatchers("/trainer/*").hasRole("USER")
-                .antMatchers("/owner/**", "/trainer/*").hasRole("ADMIN")
-                .and()
-                    .logout().permitAll().and()
-                    .formLogin()
-                    .failureUrl("/login?error=true").loginPage("/login");
+                .antMatchers("/trainer/**").access("hasRole('USER') or hasRole('ADMIN')")
+                .antMatchers("/owner/**").hasRole("ADMIN")
+                .and().logout().permitAll().and().formLogin().failureUrl("/login?error=true")
+                .loginPage("/login");
 
     }
 
