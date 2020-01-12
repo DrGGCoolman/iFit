@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import de.hsba.ifit.course.Course;
+import de.hsba.ifit.event.Event;
 import de.hsba.ifit.slot.Slot;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @Getter
@@ -86,5 +88,10 @@ public class User implements Comparable<User> {
     @Setter
     @ManyToMany
     private List<Course> courses;
+
+    @Getter
+    @Setter
+    @OneToMany(mappedBy = "user", orphanRemoval = true)
+    private List<Event> event;
 
 }
