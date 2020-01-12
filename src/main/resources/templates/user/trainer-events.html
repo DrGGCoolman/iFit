@@ -35,7 +35,7 @@
               <td th:text="${event.room.displayValue}"></td>
             </tr>
             <tr>
-              <td colspan="6"><a th:if="${user.events.empty}">Derzeit keine Termine</a></td>
+              <td colspan="6"><span th:if="${user.events.empty}">Derzeit keine Termine</span></td>
             </tr>
           </div>
 

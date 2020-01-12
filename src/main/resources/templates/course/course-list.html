@@ -43,7 +43,7 @@
 
       <tr>
         <td colspan="6">
-          <a th:if="${courses.empty}">Derzeit keine Kurse:</a>
+          <span th:if="${courses.empty}">Derzeit keine Kurse:</span>
           <a th:href="${'/owner/course/create'}" sec:authorize="hasRole('ADMIN')">Kurs hinzufügen..</a>
         </td>
       </tr>
