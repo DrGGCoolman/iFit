@@ -24,7 +24,7 @@ public class Event {
     
     @Getter
     @Setter
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    @DateTimeFormat(pattern = "HH:mm")
     private LocalTime startAt;
 
     @Getter

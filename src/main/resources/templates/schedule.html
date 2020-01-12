@@ -35,13 +35,15 @@
         </div>
         <div class="row mt-4">
             <div class="btn-group btn-group-lg mx-auto" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-dark">Montag</button>
-                <button type="button" class="btn btn-dark">Dienstag</button>
-                <button type="button" class="btn btn-dark">Mittwoch</button>
-                <button type="button" class="btn btn-dark">Donnerstag</button>
-                <button type="button" class="btn btn-dark">Freitag</button>
-                <button type="button" class="btn btn-dark">Samstag</button>
-                <button type="button" class="btn btn-dark">Sonntag</button>
+                <a th:href="@{/schedule/monday}" type="button" class="btn">Montag</a>
+                <a th:href="@{/schedule/tuesday}" type="button" class="btn">Dienstag</a>
+                <a th:href="@{/schedule/wednesday}" type="button" class="btn">Mittwoch</a>
+                <a th:href="@{/schedule/thursday}" type="button" class="btn">Donnerstag</a>
+                <a th:href="@{/schedule/friday}" type="button" class="btn">Freitag</a>
+                <a th:href="@{/schedule/saturday}" type="button" class="btn">Samstag</a>
+                <a th:href="@{/schedule/sunday}" type="button" class="btn">Sonntag</a>
+  
+          
             </div>
         </div>
     </div>
@@ -71,12 +73,12 @@
                 </div>
                 <div th:case="*">
                     <tr class="t-hover" th:each="event : ${eventsMorning}">
-                        <td><a class="t-link btn" th:text="${event.weekday.displayValue}" th:href="@{${'/owner/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.startAt}" th:href="@{${'/owner/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}" th:href="@{${'/owner/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.course.name}" th:href="@{${'/owner/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.room.displayValue}" th:href="@{${'/owner/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }" th:href="@{${'/owner/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.weekday.displayValue}" th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.startAt}" th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}" th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.course.name}" th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.room.displayValue}" th:href="@{${'/event/' +  event.id}}"></a></td>
+                        <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }" th:href="@{${'/event/' +  event.id}}"></a></td>
                         <!-- TODO: Logik fehlt -->
                         <td><a>Läuft</a></td>
                     </tr>
