@@ -60,44 +60,41 @@ public class EventController {
     public String addEvent(@ModelAttribute("eventForm") @Valid EventForm eventForm, BindingResult result, Model model) {
         model.addAttribute("courses", courseRepository.findAll());
 
-       if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null && eventForm.getUser() == null
-         && eventForm.getRoom() == null) {
+        if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null
+                && eventForm.getUser() == null && eventForm.getRoom() == null) {
 
-            List<User> availableTrainers = userService.findFittingTrainers(eventForm.getWeekday(), eventForm.getStartAt(),
-            eventForm.getCourse());
+            List<User> availableTrainers = userService.findFittingTrainers(eventForm.getWeekday(),
+                    eventForm.getStartAt(), eventForm.getCourse());
 
             model.addAttribute("users", availableTrainers);
 
-            List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(), eventForm.getCourse().getDuration());
+            List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(),
+                    eventForm.getCourse().getDuration());
 
             model.addAttribute("rooms", availableRooms);
 
-
             return "event/event-create/step2";
-            }
-            else if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null && (eventForm.getUser() == null
-            || eventForm.getRoom() == null)) {
-                
-                List<User> availableTrainers = userService.findFittingTrainers(eventForm.getWeekday(), eventForm.getStartAt(),
-                eventForm.getCourse());
-                List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(), eventForm.getCourse().getDuration());
+        } else if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null
+                && (eventForm.getUser() == null || eventForm.getRoom() == null)) {
 
-                model.addAttribute("rooms", availableRooms);
-                return "event/event-create/step2";
-            }
-            else if (eventForm.getWeekday() == null || eventForm.getStartAt() == null || eventForm.getCourse() == null) {
-                return "event/event-create/step1";
-            }
-            else if (!result.hasErrors()) {
-                eventService.save(formAssembler.update(new Event(), eventForm));
-            }
-            //else return "event/event-create/step1";
-        //else if (eventForm.getWeekday() == null || eventForm.getStartAt() == null || eventForm.getCourse() == null) {
-         //   return "event/event-create/step1";
-        //}
-            
+            //FIXME: ungenutzte Variable
+            List<User> availableTrainers = userService.findFittingTrainers(eventForm.getWeekday(),
+                    eventForm.getStartAt(), eventForm.getCourse());
+            List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(),
+                    eventForm.getCourse().getDuration());
 
-     
+            model.addAttribute("rooms", availableRooms);
+            return "event/event-create/step2";
+        } else if (eventForm.getWeekday() == null || eventForm.getStartAt() == null || eventForm.getCourse() == null) {
+            return "event/event-create/step1";
+        } else if (!result.hasErrors()) {
+            eventService.save(formAssembler.update(new Event(), eventForm));
+        }
+        // else return "event/event-create/step1";
+        // else if (eventForm.getWeekday() == null || eventForm.getStartAt() == null ||
+        // eventForm.getCourse() == null) {
+        // return "event/event-create/step1";
+        // }
 
         return "redirect:/owner/event/list";
     }
@@ -140,15 +137,15 @@ public class EventController {
     // Gibt Listenansicht der Evente zurück
     @GetMapping("/owner/event/list")
     public String showAllEvents(Model model) {
-        
+
         List<List<Event>> structuredEvents = new ArrayList<List<Event>>();
-        
+
         for (Weekday weekday : Weekday.values()) {
             structuredEvents.add(eventRepository.findByWeekday(weekday));
         }
 
         model.addAttribute("eventsStruct", structuredEvents);
-        
+
         return "event/event-list";
     }
 

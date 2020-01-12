@@ -6,9 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import de.hsba.ifit.event.Event;
 import de.hsba.ifit.event.EventRepository;
+import de.hsba.ifit.slot.Weekday;
 
 //Enthälten allgemeine Routen, die keinem Controller direkt zuzuordnen sind.
 @Controller
@@ -29,22 +30,16 @@ public class HomeController {
     }
 
     // Gibt Listenansicht (Plan) der Kurse zurück
-    @GetMapping(path = "/schedule/{selectedWeekday}")
-    public String showAllCourses(@PathVariable String selectedWeekday, Model model) {
-        model.addAttribute("eventsMorning", eventRepository.findAllMorningEvents());
-        model.addAttribute("eventsAfternoon", eventRepository.findAllAfternoonEvents());
-        model.addAttribute("eventsEvening", eventRepository.findAllEveningEvents());
-        model.addAttribute("weekday", selectedWeekday);
+    @GetMapping(path = "/schedule")
+    public String showAllCourses(@RequestParam(required = false) Weekday selectedWeekday, Model model) {
+
+        selectedWeekday = (selectedWeekday == null) ? Weekday.MO : selectedWeekday;
+        model.addAttribute("eventsMorning", eventRepository.findAllMorningEventsForWeekday(selectedWeekday));
+        model.addAttribute("eventsAfternoon", eventRepository.findAllAfternoonEventsForWeekday(selectedWeekday));
+        model.addAttribute("eventsEvening", eventRepository.findAllEveningEventsForWeekday(selectedWeekday));
+
         return "schedule";
     }
-
-    //@GetMapping("/schedule/{id}")
-    //public String showEventDetails(@PathVariable("id") Integer id, Model model) {
-    //    Event event = eventRepository.findById(id)
-    //            .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
-     //   model.addAttribute("event", event);
-     //   return "event/event-details";
-    //}
 
     @RequestMapping("/information")
     public String Impressum() {
@@ -57,10 +52,10 @@ public class HomeController {
     }
 
     // @GetMapping("/schedule")
-    // public String filterWeekday(@RequestParam(value = "wochentag", required = false) String weekday, Model model) {
-    //     model.addAttribute("events", eventRepository.findByWeekday(weekday));
-    //     return "schedule";
+    // public String filterWeekday(@RequestParam(value = "wochentag", required =
+    // false) String weekday, Model model) {
+    // model.addAttribute("events", eventRepository.findByWeekday(weekday));
+    // return "schedule";
     // }
-
 
 }
