@@ -21,22 +21,21 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputWeekday">Wochentag</label>
-                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" 
-                                        autofocus>
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" autofocus>
                                         <option value="" selected>Wochentag wählen..</option>
                                         <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
                                             th:value="${weekday}" th:text="${weekday.displayValue}">
                                         </option>
                                     </select>
-                                    <label class="text-danger small" th:errors="*{weekday}"/>
+                                    <label class="text-danger small" th:errors="*{weekday}" />
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputStartAt">Beginn</label>
                                     <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
-                                        placeholder="Beginn">
-                                        <label class="text-danger small" th:errors="*{startAt}"/>
+                                        placeholder="Beginn" min="08:00:00" max="20:00:00" required>
+                                    <label class="text-danger small" th:errors="*{startAt}" />
                                 </div>
                             </div>
                             <div class="form-row">
@@ -48,7 +47,7 @@
                                             th:text="${course.name}">
                                         </option>
                                     </select>
-                                    <label class="text-danger small" th:errors="*{course}"/>
+                                    <label class="text-danger small" th:errors="*{course}" />
                                 </div>
                             </div>
                             <div class="form-row">
@@ -56,8 +55,8 @@
                                     <label for="inputRoom">Raum</label>
                                     <select id="inputRoom" class="form-control" th:field="*{room}" disabled>
                                         <option value="" selected>Raum wählen..</option>
-                                        <option th:each="room : ${rooms}"
-                                            th:value="${room}" th:text="${room.displayValue}">
+                                        <option th:each="room : ${rooms}" th:value="${room}"
+                                            th:text="${room.displayValue}">
                                         </option>
                                     </select>
                                 </div>
@@ -85,10 +84,10 @@
 
 
 
-     <!-- FOOTER-->
-     <div class="ind-footer">
+    <!-- FOOTER-->
+    <div class="ind-footer">
         <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
-      </div>
+    </div>
 
 
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

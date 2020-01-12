@@ -29,21 +29,22 @@ public class HomeController {
     }
 
     // Gibt Listenansicht (Plan) der Kurse zurück
-    @GetMapping("/schedule")
-    public String showAllCourses(Model model) {
+    @GetMapping(path = "/schedule/{selectedWeekday}")
+    public String showAllCourses(@PathVariable String selectedWeekday, Model model) {
         model.addAttribute("eventsMorning", eventRepository.findAllMorningEvents());
         model.addAttribute("eventsAfternoon", eventRepository.findAllAfternoonEvents());
         model.addAttribute("eventsEvening", eventRepository.findAllEveningEvents());
+        model.addAttribute("weekday", selectedWeekday);
         return "schedule";
     }
 
-    @GetMapping("/schedule/{id}")
-    public String showEventDetails(@PathVariable("id") Integer id, Model model) {
-        Event event = eventRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
-        model.addAttribute("event", event);
-        return "event/event-details";
-    }
+    //@GetMapping("/schedule/{id}")
+    //public String showEventDetails(@PathVariable("id") Integer id, Model model) {
+    //    Event event = eventRepository.findById(id)
+    //            .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
+     //   model.addAttribute("event", event);
+     //   return "event/event-details";
+    //}
 
     @RequestMapping("/information")
     public String Impressum() {
