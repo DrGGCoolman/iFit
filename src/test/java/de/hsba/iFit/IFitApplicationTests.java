@@ -1,4 +1,4 @@
-package de.hsba.ifit;
+package de.hsba.iFit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
