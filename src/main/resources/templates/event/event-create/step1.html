@@ -17,24 +17,26 @@
                 <div class="cardbox p-4">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-5">Termin anlegen</h3>
-                        <form class="form" th:action="@{/owner/event/add}" th:object="${event}" method="post">
+                        <form class="form" th:action="@{/owner/event/add}" th:object="${eventForm}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputWeekday">Wochentag</label>
-                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" required
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" 
                                         autofocus>
                                         <option value="" selected>Wochentag wählen..</option>
                                         <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
                                             th:value="${weekday}" th:text="${weekday.displayValue}">
                                         </option>
                                     </select>
+                                    <label class="text-danger small" th:errors="*{weekday}"/>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputStartAt">Beginn</label>
                                     <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
-                                        placeholder="Beginn" required>
+                                        placeholder="Beginn">
+                                        <label class="text-danger small" th:errors="*{startAt}"/>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -46,6 +48,7 @@
                                             th:text="${course.name}">
                                         </option>
                                     </select>
+                                    <label class="text-danger small" th:errors="*{course}"/>
                                 </div>
                             </div>
                             <div class="form-row">

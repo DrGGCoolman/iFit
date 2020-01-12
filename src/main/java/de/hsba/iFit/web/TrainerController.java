@@ -41,7 +41,7 @@ public class TrainerController {
     @PostMapping("add")
     public String addCourse(@ModelAttribute("trainerForm") @Valid TrainerForm trainerForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "owner/trainer/trainer-create";
+            return "trainer/trainer-create";
         }
         userService.save(formAssembler.update(new User(), trainerForm));
         return "redirect:/owner/trainer/list";
