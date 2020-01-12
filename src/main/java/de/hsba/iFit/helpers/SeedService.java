@@ -78,57 +78,6 @@ public class SeedService {
                         slotService.Seed(Weekday.SU, daytimeRepository.findByName(DaytimeName.ABENDS));
                 }
 
-                // NUTZER
-                if (userRepository.count() == 0) {
-                        userService.Seed("Anne", "Baum", "anne.baum", "password", User.USER_ROLE);
-                        userService.Seed("Benedikt", "Müller", "benedikt.müller", "password", User.USER_ROLE);
-                        userService.Seed("Charlotte", "Tulpe", "charlotte.tulpe", "password", User.USER_ROLE);
-                        userService.Seed("Zoe", "Richter", "zoe.richter", "password", User.USER_ROLE);
-                        userService.Seed("Max", "Meier", "max.meier", "password", User.USER_ROLE);
-                        userService.Seed("admin", "admin", "admin", "admin", User.ADMIN_ROLE);
-
-                        // Testsettings für User anlegen
-
-                        User anne = userRepository.findByName("anne.baum");
-
-                        List<Slot> annesSlots = new ArrayList<>();
-                        annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.MO,
-                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
-                                        .orElseThrow());
-                        annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.SU,
-                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
-                                        .orElseThrow());
-                        annesSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.MO,
-                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
-                                        .orElseThrow());
-
-                        anne.setSlots(annesSlots);
-                        userRepository.save(anne);
-
-                        User admin = userRepository.findByName("admin");
-
-                        List<Slot> adminsSlots = new ArrayList<>();
-
-                        adminsSlots.add(slotRepository
-                                        .findByWeekdayAndDaytime(Weekday.MO,
-                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
-                                        .orElseThrow());
-
-                        admin.setSlots(adminsSlots);
-
-                        List<Course> adminsKurse = new ArrayList<>();
-
-                        adminsKurse.add(courseRepository.findByName("Hantel Workout"));
-
-                        admin.setCourses(adminsKurse);
-
-                        userRepository.save(admin);
-
-                }
-
                 // KURSE
                 if (courseRepository.count() == 0) {
                         courseService.Seed("Jumping Fit",
@@ -193,12 +142,461 @@ public class SeedService {
                                         Category.BODYWEIGHT, TargetGroup.MUSCLES, 60);
 
                 }
+
+                // NUTZER
+                if (userRepository.count() == 0) {
+                        userService.Seed("Anne", "Baum", "anne.baum", "password", User.USER_ROLE);
+                        userService.Seed("Benedikt", "Müller", "benedikt.müller", "password", User.USER_ROLE);
+                        userService.Seed("Charlotte", "Tulpe", "charlotte.tulpe", "password", User.USER_ROLE);
+                        userService.Seed("Max", "Meier", "max.meier", "password", User.USER_ROLE);
+                        userService.Seed("Tom", "Wagner", "tom.wagner", "password", User.USER_ROLE);
+                        userService.Seed("Zoe", "Richter", "zoe.richter", "password", User.USER_ROLE);
+                        userService.Seed("admin", "admin", "admin", "admin", User.ADMIN_ROLE);
+
+                        // Testsettings für User anlegen
+
+                        User admin = userRepository.findByName("admin");
+
+                        List<Slot> adminsSlots = new ArrayList<>();
+
+                        adminsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+
+                        admin.setSlots(adminsSlots);
+
+                        List<Course> adminsKurse = new ArrayList<>();
+
+                        adminsKurse.add(courseRepository.findByName("Hantel Workout"));
+
+                        admin.setCourses(adminsKurse);
+
+                        userRepository.save(admin);
+
+                        User anne = userRepository.findByName("anne.baum");
+
+                        List<Slot> annesSlots = new ArrayList<>();
+
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        annesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        anne.setSlots(annesSlots);
+
+                        List<Course> annesKurse = new ArrayList<>();
+
+                        annesKurse.add(courseRepository.findByName("Jumping Fit"));
+                        annesKurse.add(courseRepository.findByName("Krankengymnastik am Gerät"));
+                        annesKurse.add(courseRepository.findByName("Hantel Workout"));
+                        annesKurse.add(courseRepository.findByName("Zumba"));
+
+                        anne.setCourses(annesKurse);
+
+                        userRepository.save(anne);
+
+                        User benedikt = userRepository.findByName("benedikt.müller");
+
+                        List<Slot> benediktsSlots = new ArrayList<>();
+
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        benediktsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        benedikt.setSlots(benediktsSlots);
+
+                        List<Course> benediktsKurse = new ArrayList<>();
+
+                        benediktsKurse.add(courseRepository.findByName("Krankengymnastik am Gerät"));
+                        benediktsKurse.add(courseRepository.findByName("Jumping Fit"));
+                        benediktsKurse.add(courseRepository.findByName("Krankengymnastik am Gerät"));
+                        benediktsKurse.add(courseRepository.findByName("Hantel Workout"));
+
+                        benedikt.setCourses(benediktsKurse);
+
+                        userRepository.save(benedikt);
+
+                        User charlotte = userRepository.findByName("charlotte.tulpe");
+
+                        List<Slot> charlottesSlots = new ArrayList<>();
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        charlottesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        charlotte.setSlots(charlottesSlots);
+
+                        List<Course> charlottesKurse = new ArrayList<>();
+
+                        charlottesKurse.add(courseRepository.findByName("Aqua Cycling"));
+                        charlottesKurse.add(courseRepository.findByName("Aqua Kick Punch"));
+                        charlottesKurse.add(courseRepository.findByName("Aqua Jogging"));
+                        charlottesKurse.add(courseRepository.findByName("BOKWA"));
+
+                        charlotte.setCourses(charlottesKurse);
+
+                        userRepository.save(charlotte);
+
+                        User max = userRepository.findByName("max.meier");
+
+                        List<Slot> maxensSlots = new ArrayList<>();
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        maxensSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        max.setSlots(maxensSlots);
+
+                        List<Course> maxensKurse = new ArrayList<>();
+
+                        maxensKurse.add(courseRepository.findByName("Krankengymnastik am Gerät"));
+                        maxensKurse.add(courseRepository.findByName("Jumping Fit"));
+                        maxensKurse.add(courseRepository.findByName("Krankengymnastik am Gerät"));
+                        maxensKurse.add(courseRepository.findByName("Hantel Workout"));
+
+                        max.setCourses(maxensKurse);
+
+                        userRepository.save(max);
+
+                        User tom = userRepository.findByName("tom.wagner");
+
+                        List<Slot> tomsSlots = new ArrayList<>();
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SA,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        tomsSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        tom.setSlots(tomsSlots);
+
+                        List<Course> tomsKurse = new ArrayList<>();
+
+                        tomsKurse.add(courseRepository.findByName("NIA"));
+                        tomsKurse.add(courseRepository.findByName("Zumba"));
+                        tomsKurse.add(courseRepository.findByName("BOKWA"));
+                        tomsKurse.add(courseRepository.findByName("Aqua Kick Punch"));
+
+                        tom.setCourses(tomsKurse);
+
+                        userRepository.save(tom);
+
+                        User zoe = userRepository.findByName("zoe.richter");
+
+                        List<Slot> zoesSlots = new ArrayList<>();
+
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.MO,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.WE,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.TH,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.FR,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MORGENS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.MITTAGS))
+                                        .orElseThrow());
+                        zoesSlots.add(slotRepository
+                                        .findByWeekdayAndDaytime(Weekday.SU,
+                                                        daytimeRepository.findByName(DaytimeName.ABENDS))
+                                        .orElseThrow());
+                        zoe.setSlots(zoesSlots);
+
+                        List<Course> zoesKurse = new ArrayList<>();
+
+                        zoesKurse.add(courseRepository.findByName("Krankengymnastik am Gerät"));
+                        zoesKurse.add(courseRepository.findByName("Zumba"));
+                        zoesKurse.add(courseRepository.findByName("Hantel Workout"));
+                        zoesKurse.add(courseRepository.findByName("Bodyweight kompakt"));
+
+                        zoe.setCourses(zoesKurse);
+
+                        userRepository.save(zoe);
+
+                }
+
                 // TERMINE
                 if (eventRepository.count() == 0) {
                         eventService.Seed(LocalTime.of(8, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.MO);
 
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Jumping Fit"),
+                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.MO);
 
                         eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Hantel Workout"),
@@ -207,35 +605,16 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(16, 30), courseRepository.findByName("Bodyweight kompakt"),
                                         userRepository.findByName("zoe.richter"), Room.CROSS, Weekday.MO);
 
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(18, 30), courseRepository.findByName("Bodyweight kompakt"),
-                                        userRepository.findByName("zoe.richter"), Room.CROSS, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(10, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.WE);
-
-                        eventService.Seed(LocalTime.of(13, 00), courseRepository.findByName("Jumping Fit"),
+                        eventService.Seed(LocalTime.of(13, 00), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.WE);
 
                         eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.WE);
-
-                        eventService.Seed(LocalTime.of(18, 30), courseRepository.findByName("Bodyweight kompakt"),
-                                        userRepository.findByName("zoe.richter"), Room.CROSS, Weekday.WE);
 
                         eventService.Seed(LocalTime.of(8, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.TH);
 
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Jumping Fit"),
+                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.TH);
 
                         eventService.Seed(LocalTime.of(14, 30), courseRepository.findByName("Hantel Workout"),
@@ -247,7 +626,7 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.FR);
 
-                        eventService.Seed(LocalTime.of(13, 00), courseRepository.findByName("Jumping Fit"),
+                        eventService.Seed(LocalTime.of(13, 00), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.FR);
 
                         eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("Hantel Workout"),
@@ -256,23 +635,11 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(17, 00), courseRepository.findByName("Bodyweight kompakt"),
                                         userRepository.findByName("zoe.richter"), Room.CROSS, Weekday.FR);
 
-                        eventService.Seed(LocalTime.of(8, 00), courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.SA);
-
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.SA);
-
-                        eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.SA);
-
-                        eventService.Seed(LocalTime.of(18, 30), courseRepository.findByName("Bodyweight kompakt"),
-                                        userRepository.findByName("zoe.richter"), Room.CROSS, Weekday.SA);
-
                         eventService.Seed(LocalTime.of(10, 00),
                                         courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.SU);
 
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Jumping Fit"),
+                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.SU);
 
                         eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Hantel Workout"),
@@ -291,7 +658,7 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.MO);
 
-                        eventService.Seed(LocalTime.of(17, 30), courseRepository.findByName("Zumba"),
+                        eventService.Seed(LocalTime.of(16, 30), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("anne.baum"), Room.DANCING, Weekday.MO);
 
                         eventService.Seed(LocalTime.of(10, 30), courseRepository.findByName("Jumping Fit"),
@@ -304,7 +671,7 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.TU);
 
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Zumba"),
+                        eventService.Seed(LocalTime.of(18, 30), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("anne.baum"), Room.DANCING, Weekday.TU);
 
                         eventService.Seed(LocalTime.of(11, 00), courseRepository.findByName("Jumping Fit"),
@@ -317,34 +684,8 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.WE);
 
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Zumba"),
+                        eventService.Seed(LocalTime.of(17, 30), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("anne.baum"), Room.DANCING, Weekday.WE);
-
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(13, 30),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(15, 30), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("anne.baum"), Room.DANCING, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(10, 30), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(14, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("anne.baum"), Room.DANCING, Weekday.FR);
 
                         eventService.Seed(LocalTime.of(9, 00), courseRepository.findByName("Jumping Fit"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.SA);
@@ -356,45 +697,8 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.SA);
 
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Zumba"),
+                        eventService.Seed(LocalTime.of(18, 30), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("anne.baum"), Room.DANCING, Weekday.SA);
-
-                        eventService.Seed(LocalTime.of(11, 00), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.SU);
-
-                        eventService.Seed(LocalTime.of(13, 30),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.SU);
-
-                        eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.SU);
-
-                        eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("anne.baum"), Room.DANCING, Weekday.SU);
-
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Aqua Cycling"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("Aqua Jogging"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(17, 30), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(10, 30), courseRepository.findByName("Aqua Cycling"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("Aqua Jogging"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.TU);
 
                         eventService.Seed(LocalTime.of(11, 00), courseRepository.findByName("Aqua Cycling"),
                                         userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.WE);
@@ -417,9 +721,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(15, 30), courseRepository.findByName("Aqua Jogging"),
                                         userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.TH);
 
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.TH);
-
                         eventService.Seed(LocalTime.of(10, 30), courseRepository.findByName("Aqua Cycling"),
                                         userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.FR);
 
@@ -428,9 +729,6 @@ public class SeedService {
 
                         eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("Aqua Jogging"),
                                         userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.FR);
 
                         eventService.Seed(LocalTime.of(9, 00), courseRepository.findByName("Aqua Cycling"),
                                         userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.SA);
@@ -456,89 +754,62 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("BOKWA"),
                                         userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.SU);
 
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("NIA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.MO);
-
                         eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.MO);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.MO);
 
                         eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.MO);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.MO);
 
                         eventService.Seed(LocalTime.of(17, 30), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(10, 30), courseRepository.findByName("NIA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(11, 00), courseRepository.findByName("NIA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.WE);
-
-                        eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.WE);
-
-                        eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.WE);
-
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.WE);
+                                        userRepository.findByName("tom.wagner"), Room.SWIMMING, Weekday.MO);
 
                         eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("NIA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.TH);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.TH);
 
                         eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.TH);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.TH);
 
                         eventService.Seed(LocalTime.of(15, 30), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.TH);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.TH);
 
                         eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.TH);
+                                        userRepository.findByName("tom.wagner"), Room.SWIMMING, Weekday.TH);
 
                         eventService.Seed(LocalTime.of(10, 30), courseRepository.findByName("NIA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.FR);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.FR);
 
                         eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.FR);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.FR);
 
                         eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.FR);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.FR);
 
                         eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.FR);
+                                        userRepository.findByName("tom.wagner"), Room.SWIMMING, Weekday.FR);
 
                         eventService.Seed(LocalTime.of(9, 00), courseRepository.findByName("NIA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.SA);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SA);
 
                         eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.SA);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SA);
 
                         eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.SA);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SA);
 
                         eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.SA);
+                                        userRepository.findByName("tom.wagner"), Room.SWIMMING, Weekday.SA);
 
                         eventService.Seed(LocalTime.of(11, 00), courseRepository.findByName("NIA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.SU);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SU);
 
                         eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.SU);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SU);
 
                         eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.SU);
+                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SU);
 
                         eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.SU);
+                                        userRepository.findByName("tom.wagner"), Room.SWIMMING, Weekday.SU);
 
                         eventService.Seed(LocalTime.of(8, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.MO);
@@ -590,22 +861,6 @@ public class SeedService {
                                         courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.TH);
 
-                        eventService.Seed(LocalTime.of(18, 30), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM1, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(13, 00), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("benedikt.müller"), Room.CROSS, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(15, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(17, 00), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM1, Weekday.FR);
-
                         eventService.Seed(LocalTime.of(8, 00), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.SA);
 
@@ -619,22 +874,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(18, 30), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("benedikt.müller"), Room.GYM1, Weekday.SA);
 
-                        eventService.Seed(LocalTime.of(10, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.SU);
-
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("benedikt.müller"), Room.CROSS, Weekday.SU);
-
-                        eventService.Seed(LocalTime.of(14, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.SU);
-
-                        eventService.Seed(LocalTime.of(17, 00), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM1, Weekday.SU);
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("max.meier"), Room.GYM2, Weekday.MO);
-
                         eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Jumping Fit"),
                                         userRepository.findByName("max.meier"), Room.CROSS, Weekday.MO);
 
@@ -644,10 +883,6 @@ public class SeedService {
 
                         eventService.Seed(LocalTime.of(17, 30), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("max.meier"), Room.GYM1, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(10, 30),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("max.meier"), Room.GYM2, Weekday.TU);
 
                         eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Jumping Fit"),
                                         userRepository.findByName("max.meier"), Room.CROSS, Weekday.TU);
@@ -659,10 +894,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("max.meier"), Room.GYM1, Weekday.TU);
 
-                        eventService.Seed(LocalTime.of(11, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("max.meier"), Room.GYM2, Weekday.WE);
-
                         eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Jumping Fit"),
                                         userRepository.findByName("max.meier"), Room.CROSS, Weekday.WE);
 
@@ -672,33 +903,6 @@ public class SeedService {
 
                         eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("max.meier"), Room.GYM1, Weekday.WE);
-
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("max.meier"), Room.GYM2, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("max.meier"), Room.CROSS, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(15, 30),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("max.meier"), Room.GYM2, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("max.meier"), Room.GYM1, Weekday.TH);
-
-                        eventService.Seed(LocalTime.of(10, 30),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("max.meier"), Room.GYM2, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("max.meier"), Room.CROSS, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(16, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("max.meier"), Room.GYM2, Weekday.FR);
-
-                        eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("max.meier"), Room.GYM1, Weekday.FR);
 
                         eventService.Seed(LocalTime.of(9, 00), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("max.meier"), Room.GYM2, Weekday.SA);
