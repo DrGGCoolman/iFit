@@ -34,20 +34,19 @@
                                 <div class="form-group col-12">
                                     <label for="inputUsername">Benutzername</label>
                                     <input type="text" id="inputUsername" th:field="*{name}" class="form-control w-100"
-                                        placeholder="Benutzername" autofocus>
+                                        placeholder="Benutzername">
                                         <label class="text-danger small" th:errors="*{name}">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label for="inputPassword">Passwort
-                                        <small>(Mind.: 8 Zeichen, eine Zahl, einen Groß- und einen
-                                            Kleinbuchstabe)</small></label>
+                                    <label for="inputPassword">Passwort</label>
                                     <input type="password" id="inputPassword" class="form-control w-100" th:field="*{password}"
                                         placeholder="Passwort">
                                         <label class="text-danger small" th:errors="*{password}">
                                 </div>
                             </div>
+                            <input type="hidden" value="USER" name="role">
                             <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">Speichern</button>
                         </form>
 
@@ -58,10 +57,10 @@
     </div>
     </div>
 
-    <!-- FOOTER-->
-    <div class="fixed-bottom">
-        <div th:insert="~{shared/footer :: copy}"></div>
-    </div>
+  <!-- FOOTER-->
+  <div class="ind-footer">
+    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
+  </div>
 
 
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

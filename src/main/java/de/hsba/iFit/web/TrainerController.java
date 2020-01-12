@@ -41,7 +41,7 @@ public class TrainerController {
     @PostMapping("add")
     public String addCourse(@ModelAttribute("trainerForm") @Valid TrainerForm trainerForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "owner/trainer/trainer-create";
+            return "trainer/trainer-create";
         }
         userService.save(formAssembler.update(new User(), trainerForm));
         return "redirect:/owner/trainer/list";
@@ -83,7 +83,7 @@ public class TrainerController {
 
     @GetMapping("list")
     public String showAllTrainers(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users", userRepository.findAllTrainers());
         return "trainer/trainer-list";
 
     }
