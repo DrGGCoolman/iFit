@@ -21,7 +21,7 @@ public class Event {
     @Getter
     @Setter
     private Integer id;
-    
+
     @Getter
     @Setter
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
