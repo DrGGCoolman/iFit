@@ -30,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 //Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/owner/event/")
 public class EventController {
     @Autowired
     private EventRepository eventRepository;
@@ -47,7 +46,7 @@ public class EventController {
     private final FormAssembler formAssembler;
 
     // Aufruf der Event-Anlegen ansicht.
-    @GetMapping("create")
+    @GetMapping("/owner/event/create")
     public String showCreateFrom(Model model) {
         model.addAttribute("eventForm", new EventForm());
         model.addAttribute("courses", courseRepository.findAll());
@@ -57,7 +56,7 @@ public class EventController {
 
     // Behandelt das Anlegen eines Produktes. Validiert das Event-Anlegen
     // formular.
-    @PostMapping("add")
+    @PostMapping("/owner/event/add")
     public String addEvent(@ModelAttribute("eventForm") @Valid EventForm eventForm, BindingResult result, Model model) {
         model.addAttribute("courses", courseRepository.findAll());
 
@@ -104,7 +103,7 @@ public class EventController {
     }
 
     // Aufruf der Event-Beaarbeiten ansicht.
-    @GetMapping("edit/{id}")
+    @GetMapping("/owner/event/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id));
@@ -115,7 +114,7 @@ public class EventController {
 
     // Behandelt das Bearbeiten eines Eventes. Validiert das Event-Bearbeiten
     // formular.
-    @PostMapping("update/{id}")
+    @PostMapping("/owner/event/update/{id}")
     public String updateCourse(@PathVariable("id") Integer id, @Valid Event event, BindingResult result, Model model) {
         if (result.hasErrors()) {
             event.setId(id);
@@ -129,7 +128,7 @@ public class EventController {
     }
 
     // Behandelt das Löschen eines Eventes.
-    @GetMapping("/delete/{id}")
+    @GetMapping("/owner/event/delete/{id}")
     public String deleteCourse(@PathVariable("id") int id, Model model) {
         Event event = eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id));
@@ -139,7 +138,7 @@ public class EventController {
     }
 
     // Gibt Listenansicht der Evente zurück
-    @GetMapping("list")
+    @GetMapping("/owner/event/list")
     public String showAllEvents(Model model) {
         
         List<List<Event>> structuredEvents = new ArrayList<List<Event>>();
@@ -153,7 +152,7 @@ public class EventController {
         return "event/event-list";
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/event/{id}")
     public String showEventDetails(@PathVariable("id") int id, Model model) {
         model.addAttribute("event",
                 eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid Event Id:" + id)));
