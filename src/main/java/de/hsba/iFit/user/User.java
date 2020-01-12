@@ -19,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 @Getter
@@ -92,6 +93,7 @@ public class User implements Comparable<User> {
     @Getter
     @Setter
     @OneToMany(mappedBy = "user", orphanRemoval = true)
-    private List<Event> event;
+    @OrderBy("weekday ASC, startAt ASC")
+    private List<Event> events;
 
 }

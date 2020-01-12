@@ -17,11 +17,11 @@
                 <div class="cardbox p-4">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-5">Termin anlegen</h3>
-                        <form class="form" th:action="@{/owner/event/add}" th:object="${event}" method="post">
+                        <form class="form" th:action="@{/owner/event/add}" th:object="${eventForm}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputWeekday">Wochentag</label>
-                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}">
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" >
                                         <option value="" selected>Wochentag wählen..</option>
                                         <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
                                             th:value="${weekday}" th:text="${weekday.displayValue}">
@@ -33,7 +33,7 @@
                                 <div class="form-group col-12">
                                     <label for="inputStartAt">Beginn</label>
                                     <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
-                                        placeholder="Beginn">
+                                        placeholder="Beginn" >
                                 </div>
                             </div>
                             <div class="form-row">
@@ -57,6 +57,7 @@
                                             th:text="${room.displayValue}">
                                         </option>
                                     </select>
+                                    <label class="text-danger small" th:errors="*{room}"/>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -68,6 +69,7 @@
                                             th:text="${user.firstname + ' ' + user.lastname }">
                                         </option>
                                     </select>
+                                    <label class="text-danger small" th:errors="*{user}"/>
                                 </div>
                             </div>
                     </div>
@@ -82,10 +84,10 @@
 
 
 
-    <!-- FOOTER-->
-    <div class="fixed-bottom">
-        <div th:insert="~{shared/footer :: copy}"></div>
-    </div>
+       <!-- FOOTER-->
+   <div class="ind-footer">
+    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
+  </div>
 
 
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

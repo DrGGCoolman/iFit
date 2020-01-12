@@ -24,18 +24,18 @@
                             <div class="form-label-group pt-2 pb-2">
                                 <label for="inputUsername w-100 pb-2">Nutzername</label>
                                 <input type="text" id="inputUsername" class="form-control w-100" placeholder="Nutzername"
-                                    name="username" required autofocus>
+                                    name="username" autofocus>
                             </div>
 
                             <div class="form-label-group pt-2 pb-4">
                                 <label for="inputPassword pb-2">Passwort</label>
                                 <input type="password" id="inputPassword" class="form-control w-100" name="password"
-                                    placeholder="Passwort" required>
+                                    placeholder="Passwort">
                             </div>
                             <button class="btn btn-lg btn-secondary btn-block pure-button pure-button-primary"
                                 type="submit">Einloggen</button>
                         </form>
-                        <span class="msg color-light-red" role="alert" th:text="${msg}">
+                        <span class="text-danger small" role="alert" th:text="${msg}">
                         </span>
                     </div>
                 </div>

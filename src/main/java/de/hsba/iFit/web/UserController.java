@@ -16,13 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import de.hsba.ifit.course.CourseRepository;
-import de.hsba.ifit.course.CourseService;
+import de.hsba.ifit.daytime.DaytimeRepository;
 import de.hsba.ifit.daytime.Daytime.DaytimeName;
-import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.slot.SlotRepository;
 import de.hsba.ifit.user.User;
 import de.hsba.ifit.user.UserRepository;
-import de.hsba.ifit.user.UserService;
 
 //Enthälten allgemeine Routen, die keinem Controller direkt zuzuordnen sind.
 @Controller
@@ -35,7 +33,7 @@ public class UserController {
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
-    private EventRepository eventRepository;
+    private DaytimeRepository daytimeRepository;
 
 
     @RequestMapping("/login")
@@ -64,7 +62,9 @@ public class UserController {
 
         User currUser = User.getCurrentUser();
 
-        model.addAttribute("myEvents", eventRepository.findByUserId(currUser.getId()));
+        User user = userRepository.findById(currUser.getId())
+        .orElseThrow(() -> new IllegalArgumentException("Invalid user"));
+        model.addAttribute("user", user);
         return "user/trainer-events";
     }
 
@@ -83,7 +83,10 @@ public class UserController {
         model.addAttribute(DaytimeName.MORGENS + "Slots", slotRepository.findByDaytimeName(DaytimeName.MORGENS));
         model.addAttribute(DaytimeName.MITTAGS + "Slots", slotRepository.findByDaytimeName(DaytimeName.MITTAGS));
         model.addAttribute(DaytimeName.ABENDS + "Slots", slotRepository.findByDaytimeName(DaytimeName.ABENDS));
+
         model.addAttribute("myWork", slotRepository.findByUsersId(currUser.getId()));
+
+        model.addAttribute("daytimes", daytimeRepository.findAll());
 
         return "user/trainer-work";
     }
