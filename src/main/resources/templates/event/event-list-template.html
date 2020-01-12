@@ -17,7 +17,7 @@
         <div class="col-10 mt-4">
             <div th:switch="${list}">
                 <div th:case="null">
-                    <span>Keine angelegten Termine gefunden</span>
+                    <span>Keine Termine gefunden</span>
                 </div>
                 <div th:case="*">
                     <tr th:each="event : ${list}">

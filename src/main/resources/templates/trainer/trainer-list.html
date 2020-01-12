@@ -35,7 +35,7 @@
                 </tr>
         <tr>
             <td colspan="5">
-              <a th:if="${users.empty}">Derzeit keine Trainer:</a>
+              <span th:if="${users.empty}">Derzeit keine Trainer:</span>
               <a th:href="${'/owner/trainer/create'}" sec:authorize="hasRole('ADMIN')">Trainer hinzufügen..</a>
             </td>
         </tr>
