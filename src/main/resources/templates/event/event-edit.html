@@ -19,6 +19,25 @@
                         <h3 class="card-title text-center mb-5">Termin bearbeiten</h3>
                         <form class="form" th:action=" @{${'/owner/event/update/' + id}}" th:object="${event}"
                             method="post">
+
+                            <!-- Kontext halten mittels hidden-fields-->
+
+
+                            <select id="inputWeekday" class="form-control" th:field="*{weekday}" hidden>
+                                <option value="" selected>Wochentag wählen..</option>
+                                <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
+                                    th:value="${weekday}" th:text="${weekday.displayValue}">
+                                </option>
+                            </select>
+
+                            <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
+                                placeholder="Beginn" min="08:00:00" max="20:00:00" hidden>
+
+                            <select th:field="*{course}" id="inputCourse" class="form-control" hidden>
+                                <option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.name}">
+                                </option>
+                            </select>
+
                             <div class="form-row">
                                 <div class="form-group col-12">
 
@@ -30,11 +49,6 @@
 
                                 </div>
                             </div>
-
-
-                            <input type="time" th:field="*{startAt}" hidden>
-                            <input type="text" th:field="*{course}" hidden>
-                            <input type="time" th:field="*{weekday}" hidden>
 
                             <div class="form-row">
                                 <div class="form-group col-12">

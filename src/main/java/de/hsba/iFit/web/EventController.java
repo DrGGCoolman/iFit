@@ -102,6 +102,7 @@ public class EventController {
         Event event = eventService.findById(id);
         model.addAttribute("isUpdate", true);
         model.addAttribute("event", event);
+        model.addAttribute("courses", courseRepository.findAll());
 
         List<User> availableTrainers = userService.findFittingTrainers(event.getWeekday(), event.getStartAt(),
                 event.getCourse());

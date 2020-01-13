@@ -19,6 +19,7 @@
                         <h3 class="card-title text-center mb-5">Termin anlegen</h3>
                         <form class="form" th:action="@{/owner/event/add}" th:object="${eventForm}" method="post">
 
+                            <!-- Kontext halten mittels hidden-fields-->
 
 
                             <select id="inputWeekday" class="form-control" th:field="*{weekday}" hidden>
