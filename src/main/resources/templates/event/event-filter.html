@@ -1,51 +1,53 @@
 <div th:fragment="copy(filter)">
-    <div class="">
-        <div class="container">
-            <div class="pt-4 pb-4">
-                <form>
-                    <a li class="list-group-wb-item main-item" href="#wochentag" data-toggle="collapse">Wochentag
-                        <i class="fa fa-angle-down"></i>
-                    </a>
-                    <ul class="list-group-wb">
-                        <li href="#" id="wochentag" class="collapse list-group-wb-item pl-5">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                            </label>
-                        </li>
-                    </ul>
-                    <a li class="list-group-wb-item main-item" href="#slot" data-toggle="collapse">Slot
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="list-group-wb">
-                            <li href="#" id="slot" class="collapse list-group-wb-item pl-5">
-                                <input class="form-check-input" type="checkbox">
-                                <label class="form-check-label">
-                                </label>
-                            </li>
-                        </ul>
-                    <a li class="list-group-wb-item main-item" href="#kurs" data-toggle="collapse">Kurs
-                        <i class="fa fa-angle-down"></i>
-                    </a>
-                    <ul class="list-group-wb">
-                        <li href="#" id="klasse" class="collapse list-group-wb-item pl-5">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                            </label>
-                        </li>
-                    </ul>
-                    <a li class="list-group-wb-item main-item" href="#trainer" data-toggle="collapse">Trainer
-                        <i class="fa fa-angle-down"></i>
-                    </a>
-                    <ul class="list-group-wb">
-                        <li href="#" id="trainer" class="collapse list-group-wb-item pl-5">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                            </label>
-                        </li>
-                    </ul>
-                    <input class="btn btn-secondary" type="submit" value="Submit" />
-                </form>
-            </div>
+
+    <div class="container">
+        <div class="pt-4 pb-4 pl-2">
+            <form method="POST" th:action="@{/filtered-events}" th:object="${filter}">
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="inputWeekday">Wochentag</label>
+                        <select id="inputWeekday" class="form-control" th:field="*{selectedWeekday}" autofocus>
+                            <option th:value="${null}" selected>Wochentag wählen..</option>
+                            <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}" th:value="${weekday}"
+                                th:text="${weekday.displayValue}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="inputWeekday">Tageszeit</label>
+                        <select id="inputWeekday" class="form-control" th:field="*{selectedDaytime}" autofocus>
+                            <option th:value="${null}" selected>Tageszeit wählen..</option>
+                            <option th:each="daytime : ${daytimes}" th:value="${daytime.id}"
+                                th:text="${daytime.name.displayValue}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="inputCourse">Kurs*</label>
+                        <select th:field="*{selectedCourse}" id="inputCourse" class="form-control">
+                            <option th:value="${null}" selected>Kurs wählen..</option>
+                            <option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="inputUser">Trainer*</label>
+                        <select th:field="*{selectedUser}" id="inputUser" class="form-control">
+                            <option th:value="${null}" selected>Trainer wählen..</option>
+                            <option th:each="user: ${users}" th:value="${user.id}"
+                                th:text="${user.firstname + ' ' + user.lastname }">
+                            </option>
+                        </select>
+                    </div>
+                </div>
         </div>
+        <input class="btn btn-secondary" type="submit" value="Anzeigen" />
+        </form>
     </div>
 </div>

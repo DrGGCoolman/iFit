@@ -118,6 +118,23 @@ public class EventService {
 
     public boolean isStepTwoValid(@Valid EventForm eventForm) {
         return (eventForm.getUser() != null && eventForm.getRoom() != null);
+    }
+
+    public List<Event> findByCourseId(Integer id) {
+        List<Event> events = eventRepository.findByCourseId(id);
+        for (Event event : events) {
+            event.setEventState(computeEventState(event));
+        }
+        return events;
+
+    }
+
+    public List<Event> findBetweenTimewindow(LocalTime start, LocalTime end) {
+        List<Event> events = eventRepository.findBetweenTimewindow(start, end);
+        for (Event event : events) {
+            event.setEventState(computeEventState(event));
+        }
+        return events;
     };
 
 }
