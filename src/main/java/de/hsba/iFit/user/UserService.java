@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import de.hsba.ifit.course.Course;
 import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.event.Event;
-import de.hsba.ifit.event.EventRepository;
 import de.hsba.ifit.event.EventService;
 import de.hsba.ifit.slot.Slot;
 import de.hsba.ifit.slot.SlotService;
@@ -17,10 +16,10 @@ import javax.transaction.Transactional;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -45,9 +44,11 @@ public class UserService {
         return userRepository.findByRole(User.USER_ROLE);
     }
 
-    public List<User> findFittingTrainers(Weekday weekday, LocalTime time, Course selectedCourse) {
+    public Set<User> findFittingTrainers(Weekday weekday, LocalTime time, Course selectedCourse) {
 
-        // Hier wird aus Tag und Zeit ein Slot ausgewählt.
+        // Hier wird aus Tag und Zeit ein Slot ausgewählt und anschließend Trainer vom
+        // Repository abgerufen, welche bereit sind zu dieser Zeit , diesen Kurs zu
+        // leiten.
 
         Slot equivalentSlot = slotService.returnSlotForDayAndTime(weekday, time);
         List<User> trainersWithFittingPreferences;
@@ -61,19 +62,21 @@ public class UserService {
                     selectedCourse.getId());
         }
 
+        // Nun muss noch geprüft werden, ob die Trainer nicht bereits gebucht ist.
         List<User> availableTrainers = this.checkIfTrainersReallyHaveTime(weekday, trainersWithFittingPreferences, time,
                 selectedCourse.getDuration());
 
-        return availableTrainers;
+        // Es wird zu einem HashSet convertiert um Duplikate zu entfernen
+        return new HashSet<User>(availableTrainers);
 
     }
 
-    private List<User> checkIfTrainersReallyHaveTime(Weekday weekday, List<User> fittingTrainers, LocalTime eventTime,
-            Integer duration) {
+    private List<User> checkIfTrainersReallyHaveTime(Weekday weekday, List<User> fittingTrainers,
+            LocalTime eventStartTime, Integer duration) {
 
         int maxDuration = courseRepository.findMaxDuration();
-        LocalTime timeWindowStart = eventTime.minusMinutes(maxDuration);
-        LocalTime timeWindowEnd = eventTime.plusMinutes(duration);
+        LocalTime timeWindowStart = eventStartTime.minusMinutes(maxDuration);
+        LocalTime timeWindowEnd = eventStartTime.plusMinutes(duration);
 
         List<Event> allEventsThisDay = eventService.findByWeekdayOrderByStartAtAscCourseAsc(weekday);
 
@@ -89,7 +92,7 @@ public class UserService {
 
         for (Event event : allEventsInTimeWindow) {
 
-            if (this.checkIfEventOverlapsWithStartTime(eventTime, event)) {
+            if (this.checkIfEventOverlapsWithStartTime(eventStartTime, event)) {
 
                 blockedTrainers.add(event.getUser());
             }

@@ -8,8 +8,10 @@ import de.hsba.ifit.slot.Slot;
 import de.hsba.ifit.slot.SlotService;
 import de.hsba.ifit.slot.Weekday;
 import de.hsba.ifit.user.User;
+import de.hsba.ifit.web.EventForm;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -106,6 +108,16 @@ public class EventService {
 
     public void save(Event event) {
         eventRepository.save(event);
+    }
+
+    public boolean isStepOneValid(@Valid EventForm eventForm) {
+
+        return (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null);
+
+    }
+
+    public boolean isStepTwoValid(@Valid EventForm eventForm) {
+        return (eventForm.getUser() != null && eventForm.getRoom() != null);
     };
 
 }

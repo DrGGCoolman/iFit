@@ -57,13 +57,6 @@ public class TrainerController {
         return "trainer/trainer-edit";
     }
 
-    // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
-    // formular.
-
-    // TODO: Das muss noch in den FormKlassen gemappt werden, falls das noch nicht
-    // gemacht wird user.setRole(currUser.getRole());
-    // user.setSlots(currUser.getSlots());
-    
     @PostMapping("update/{id}")
     public String updateTrainer(@PathVariable("id") Integer id, @Valid TrainerForm form, BindingResult bindingResult,
             Model model) {
