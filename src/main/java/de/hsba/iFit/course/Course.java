@@ -46,7 +46,7 @@ public class Course {
     @OneToMany(mappedBy = "course", orphanRemoval = true)
     private List<Event> events;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses", cascade = CascadeType.ALL)
     private List<User> users;
 
     public Course(String name, String description, Category category, TargetGroup targetGroup, Integer duration) {
