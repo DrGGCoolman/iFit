@@ -36,6 +36,7 @@ public class HomeController {
         model.addAttribute("eventsMorning", eventService.findAllMorningEventsForWeekday(selectedWeekday));
         model.addAttribute("eventsAfternoon", eventService.findAllAfternoonEventsForWeekday(selectedWeekday));
         model.addAttribute("eventsEvening", eventService.findAllEveningEventsForWeekday(selectedWeekday));
+        model.addAttribute("selectedWeekday", selectedWeekday);
 
         return "schedule";
     }

@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 pl-0 pr-0">
                 <img src="https://www.action360.com.br/wp-content/uploads/2018/01/brunetteworkout_Easy-Resize.com_.jpg"
                     class="plan-img w-100" alt="Tanzen">
                 <div class="carousel-caption text-left">
@@ -37,7 +37,7 @@
 
             <div class="btn-group btn-group-lg mx-auto" role="group" aria-label="Basic example">
                 <a th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
-                    th:href="@{/schedule/(selectedWeekday = ${weekday})}" class="btn"
+                    th:href="@{/schedule/(selectedWeekday = ${weekday})}" th:class="${weekday == selectedWeekday} ? 'btn btn-outline-dark' : 'btn btn-secondary'"  
                     th:text="${weekday.displayValue}"></a>
 
             </div>
@@ -51,13 +51,11 @@
         <thead class="thead-light">
             <h5 class="table w-75 mx-auto">Morgens</h5>
             <tr class="text-center">
-                <th>Tag</th>
                 <th>Beginn</th>
                 <th>Ende</th>
                 <th>Kurs</th>
                 <th>Raum</th>
                 <th>Trainer</th>
-                <th>Status</th>
             </tr>
         </thead>
 
@@ -69,8 +67,6 @@
                 </div>
                 <div th:case="*">
                     <tr class="t-hover" th:each="event : ${eventsMorning}">
-                        <td><a class="t-link btn" th:text="${event.weekday.displayValue}"
-                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.startAt}" th:href="@{${'/event/' +  event.id}}"></a>
                         </td>
                         <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}"
@@ -81,8 +77,9 @@
                                 th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
                                 th:href="@{${'/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.eventState.displayValue}"
-                                th:href="@{${'/event/' +  event.id}}"></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
                     </tr>
                 </div>
             </div>
@@ -94,13 +91,11 @@
         <thead class="thead-light">
             <h5 class="table w-75 mx-auto mt-5">Mittags</h5>
             <tr class="text-center">
-                <th>Tag</th>
                 <th>Beginn</th>
                 <th>Ende</th>
                 <th>Kurs</th>
                 <th>Raum</th>
                 <th>Trainer</th>
-                <th>Status</th>
             </tr>
         </thead>
 
@@ -112,8 +107,6 @@
                 </div>
                 <div th:case="*">
                     <tr class="t-hover" th:each="event : ${eventsAfternoon}">
-                        <td><a class="t-link btn" th:text="${event.weekday.displayValue}"
-                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.startAt}" th:href="@{${'/event/' +  event.id}}"></a>
                         </td>
                         <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}"
@@ -124,8 +117,9 @@
                                 th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
                                 th:href="@{${'/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.eventState.displayValue}"
-                                th:href="@{${'/event/' +  event.id}}"></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
                     </tr>
                 </div>
             </div>
@@ -138,13 +132,11 @@
         <thead class="thead-light">
             <h5 class="table w-75 mx-auto mt-5">Abends</h5>
             <tr class="text-center">
-                <th>Tag</th>
                 <th>Beginn</th>
                 <th>Ende</th>
                 <th>Kurs</th>
                 <th>Raum</th>
                 <th>Trainer</th>
-                <th>Status</th>
             </tr>
         </thead>
 
@@ -156,8 +148,6 @@
                 </div>
                 <div th:case="*">
                     <tr class="t-hover" th:each="event : ${eventsEvening}">
-                        <td><a class="t-link btn" th:text="${event.weekday.displayValue}"
-                                th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.startAt}" th:href="@{${'/event/' +  event.id}}"></a>
                         </td>
                         <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}"
@@ -168,8 +158,9 @@
                                 th:href="@{${'/event/' +  event.id}}"></a></td>
                         <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
                                 th:href="@{${'/event/' +  event.id}}"></a></td>
-                        <td><a class="t-link btn" th:text="${event.eventState.displayValue}"
-                                th:href="@{${'/event/' +  event.id}}"></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"></td>
                     </tr>
                 </div>
             </div>

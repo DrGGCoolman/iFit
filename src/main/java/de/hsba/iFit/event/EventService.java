@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import de.hsba.ifit.course.Course;
-import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.slot.Slot;
 import de.hsba.ifit.slot.SlotService;
 import de.hsba.ifit.slot.Weekday;
@@ -14,7 +13,6 @@ import javax.transaction.Transactional;
 
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -71,7 +69,7 @@ public class EventService {
     };
 
     public List<Event> findByWeekday(Weekday weekday) {
-        List<Event> events = eventRepository.findByWeekday(weekday);
+        List<Event> events = eventRepository.findByWeekdayOrderByStartAtAscCourseAsc(weekday);
         for (Event event : events) {
             event.setEventState(computeEventState(event));
         }

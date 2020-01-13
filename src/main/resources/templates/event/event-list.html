@@ -11,9 +11,10 @@
 
   <div th:insert="~{shared/header :: copy}"></div>
 
-  <div class="container col-12 mx-auto">
+  <div class="container col-12">
     <div class="row">
-      <div class="col-12 mt-4 mx-auto">
+        <div class="col-2 mt-4" th:insert="~{event/event-filter :: copy(filter)}"></div>
+      <div class="col-9 mt-4">
         <div th:switch="${eventsStruct}">
           <div th:case="null">
             <span>Keine Termine gefunden</span>
@@ -34,7 +35,7 @@
 
   <!-- FOOTER-->
   <div class="ind-footer">
-    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
+    <div class="fixed" th:insert="~{shared/footer :: copy}"></div>
   </div>
 
 
