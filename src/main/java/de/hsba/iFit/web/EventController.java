@@ -142,7 +142,7 @@ public class EventController {
         List<List<Event>> structuredEvents = new ArrayList<List<Event>>();
 
         for (Weekday weekday : Weekday.values()) {
-            structuredEvents.add(eventService.findByWeekday(weekday));
+            structuredEvents.add(eventService.findByWeekdayOrderByStartAtAscCourseAsc(weekday));
         }
 
         model.addAttribute("eventsStruct", structuredEvents);
