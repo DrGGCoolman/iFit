@@ -3,8 +3,13 @@ package de.hsba.ifit.web;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+
+import de.hsba.ifit.course.Course;
+import de.hsba.ifit.event.Event;
 
 public class TrainerForm {
 
@@ -31,5 +36,13 @@ public class TrainerForm {
     @Getter
     @Setter
     private String role;
+
+    @Getter
+    @Setter
+    private List<Event> events;
+
+    @Getter
+    @Setter
+    private List<Course> courses;
 
 }

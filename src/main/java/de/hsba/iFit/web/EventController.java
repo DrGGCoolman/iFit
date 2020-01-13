@@ -21,12 +21,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import de.hsba.ifit.course.CourseRepository;
 import de.hsba.ifit.event.*;
 import de.hsba.ifit.slot.Weekday;
-import de.hsba.ifit.user.User;
 import de.hsba.ifit.user.UserRepository;
 import de.hsba.ifit.user.UserService;
 import lombok.RequiredArgsConstructor;
 
-//Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
+//Behandelt alle Anfragen bzgl. der Events.
 @RequiredArgsConstructor
 @Controller
 public class EventController {
@@ -57,42 +56,24 @@ public class EventController {
     public String addEvent(@ModelAttribute("eventForm") @Valid EventForm eventForm, BindingResult result, Model model) {
         model.addAttribute("courses", courseRepository.findAll());
 
-        if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null
-                && eventForm.getUser() == null && eventForm.getRoom() == null) {
+        if (eventService.isStepOneValid(eventForm) && !eventService.isStepTwoValid(eventForm)) {
 
-            List<User> availableTrainers = userService.findFittingTrainers(eventForm.getWeekday(),
-                    eventForm.getStartAt(), eventForm.getCourse());
+            model.addAttribute("users", userService.findFittingTrainers(eventForm.getWeekday(), eventForm.getStartAt(),
+                    eventForm.getCourse()));
 
-            model.addAttribute("users", availableTrainers);
-
-            List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(),
-                    eventForm.getCourse().getDuration());
-
-            model.addAttribute("rooms", availableRooms);
+            model.addAttribute("rooms", roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(),
+                    eventForm.getCourse().getDuration()));
 
             return "event/event-create/step2";
-        } else if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null
-                && (eventForm.getUser() == null || eventForm.getRoom() == null)) {
 
-            List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(),
-                    eventForm.getCourse().getDuration());
+        } else if (eventService.isStepOneValid(eventForm) && eventService.isStepTwoValid(eventForm)) {
 
-            model.addAttribute("rooms", availableRooms);
-            return "event/event-create/step2";
-        } else if (eventForm.getWeekday() == null || eventForm.getStartAt() == null || eventForm.getCourse() == null) {
-            return "event/event-create/step1";
-        } else if (!result.hasErrors()) {
             eventService.save(formAssembler.update(new Event(), eventForm));
             return "redirect:/owner/event/list";
 
         } else {
             return "event/event-create/step1";
         }
-        // else return "event/event-create/step1";
-        // else if (eventForm.getWeekday() == null || eventForm.getStartAt() == null ||
-        // eventForm.getCourse() == null) {
-        // return "event/event-create/step1";
-        // }
 
     }
 
@@ -104,15 +85,13 @@ public class EventController {
         model.addAttribute("event", event);
         model.addAttribute("courses", courseRepository.findAll());
 
-        List<User> availableTrainers = userService.findFittingTrainers(event.getWeekday(), event.getStartAt(),
-                event.getCourse());
-
-        model.addAttribute("users", availableTrainers);
+        model.addAttribute("users",
+                userService.findFittingTrainers(event.getWeekday(), event.getStartAt(), event.getCourse()));
 
         return "event/event-edit";
     }
 
-    // Behandelt das Bearbeiten eines Eventes. Validiert das Event-Bearbeiten
+    // Behandelt das Bearbeiten eines Events. Validiert das Event-Bearbeiten
     // formular.
     @PostMapping("/owner/event/update/{id}")
     public String updateCourse(@PathVariable("id") Integer id, @Valid Event event, BindingResult result, Model model) {
@@ -127,7 +106,7 @@ public class EventController {
         return "redirect:/owner/event/list";
     }
 
-    // Behandelt das Löschen eines Eventes.
+    // Behandelt das Löschen eines Events.
     @GetMapping("/owner/event/delete/{id}")
     public String deleteCourse(@PathVariable("id") int id, Model model) {
         Event event = eventService.findById(id);
@@ -136,7 +115,7 @@ public class EventController {
         return "redirect:/owner/event/list ";
     }
 
-    // Gibt Listenansicht der Evente zurück
+    // Gibt Listenansicht der Events zurück
     @GetMapping("/owner/event/list")
     public String showAllEvents(Model model) {
 
@@ -147,12 +126,12 @@ public class EventController {
         }
 
         model.addAttribute("eventsStruct", structuredEvents);
-
         return "event/event-list";
     }
 
     @GetMapping("/event/{id}")
     public String showEventDetails(@PathVariable("id") int id, Model model) {
+
         model.addAttribute("event", eventService.findById(id));
         return "event/event-details";
     }

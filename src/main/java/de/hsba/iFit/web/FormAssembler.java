@@ -49,6 +49,9 @@ public class FormAssembler {
         user.setName(form.getName());
         user.setPassword(Encoder.encode(form.getPassword()));
         user.setRole(form.getRole());
+        user.setCourses(form.getCourses());
+        user.setEvents(form.getEvents());
+
         return user;
     }
 
