@@ -727,9 +727,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Aqua Kick Punch"),
                                         userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.FR);
 
-                        eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("Aqua Jogging"),
-                                        userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.FR);
-
                         eventService.Seed(LocalTime.of(9, 00), courseRepository.findByName("Aqua Cycling"),
                                         userRepository.findByName("charlotte.tulpe"), Room.SWIMMING, Weekday.SA);
 
