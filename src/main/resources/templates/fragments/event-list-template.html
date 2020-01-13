@@ -32,7 +32,8 @@
 
                         <td><a th:href="@{${'/event/' +  event.id}}">Details</a> |
                             <a th:if="${event.eventState == event.eventState.CONFLICT}"
-                                th:href="${'/owner/event/edit/' + event.id}">Konflikt lösen |</a>
+                                th:href="${'/owner/event/edit/' + event.id}">Konflikt lösen</a> 
+                                <a th:if="${event.eventState == event.eventState.CONFLICT}">|</a>
                             <a th:href="${'/owner/event/delete/' + event.id}">Löschen</a></td>
                     </tr>
                 </div>
