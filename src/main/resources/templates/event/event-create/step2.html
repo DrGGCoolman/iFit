@@ -18,10 +18,33 @@
                     <div class="card-body">
                         <h3 class="card-title text-center mb-5">Termin anlegen</h3>
                         <form class="form" th:action="@{/owner/event/add}" th:object="${eventForm}" method="post">
+
+                            <!-- Kontext halten mittels hidden-fields-->
+
+
+                            <select id="inputWeekday" class="form-control" th:field="*{weekday}" hidden>
+                                <option value="" selected>Wochentag wählen..</option>
+                                <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
+                                    th:value="${weekday}" th:text="${weekday.displayValue}">
+                                </option>
+                            </select>
+
+                            <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
+                                placeholder="Beginn" min="08:00:00" max="20:00:00" hidden>
+
+                            <select th:field="*{course}" id="inputCourse" class="form-control" hidden>
+                                <option value="" selected>Kurs wählen..</option>
+                                <option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.name}">
+                                </option>
+                            </select>
+
+
+
+
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputWeekday">Wochentag</label>
-                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}">
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" disabled>
                                         <option value="" selected>Wochentag wählen..</option>
                                         <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
                                             th:value="${weekday}" th:text="${weekday.displayValue}">
@@ -33,7 +56,8 @@
                                 <div class="form-group col-12">
                                     <label for="inputStartAt">Beginn</label>
                                     <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
-                                        placeholder="Beginn" min="08:00:00" max="20:00:00">
+                                        placeholder="Beginn" min="08:00:00" max="20:00:00" disabled>
+
 
                                 </div>
                             </div>
@@ -41,12 +65,13 @@
                                 <div class="form-group col-12">
                                     <label for="inputCourse">Kurs*</label>
                                     <select th:field="*{course}" id="inputCourse" class="form-control" required
-                                        autofocus>
+                                        disabled>
                                         <option value="" selected>Kurs wählen..</option>
                                         <option th:each="course: ${courses}" th:value="${course.id}"
                                             th:text="${course.name}">
                                         </option>
                                     </select>
+
                                 </div>
                             </div>
                             <div class="form-row">
@@ -58,7 +83,7 @@
                                             th:text="${room.displayValue}">
                                         </option>
                                     </select>
-                                    <label class="text-danger small" th:errors="*{room}" />
+                                    <label class=" small" th:errors="*{room}" />
                                 </div>
                             </div>
                             <div class="form-row">
@@ -70,7 +95,7 @@
                                             th:text="${user.firstname + ' ' + user.lastname }">
                                         </option>
                                     </select>
-                                    <label class="text-danger small" th:errors="*{user}" />
+                                    <label class=" small" th:errors="*{user}" />
                                 </div>
                             </div>
                     </div>

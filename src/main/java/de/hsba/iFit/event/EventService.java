@@ -68,7 +68,7 @@ public class EventService {
         return events;
     };
 
-    public List<Event> findByWeekday(Weekday weekday) {
+    public List<Event> findByWeekdayOrderByStartAtAscCourseAsc(Weekday weekday) {
         List<Event> events = eventRepository.findByWeekdayOrderByStartAtAscCourseAsc(weekday);
         for (Event event : events) {
             event.setEventState(computeEventState(event));

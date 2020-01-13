@@ -28,12 +28,12 @@ public class Daytime {
 
     @Getter
     @Setter
-    @DateTimeFormat(pattern = "HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime start;
 
     @Getter
     @Setter
-    @DateTimeFormat(pattern = "HH:mm")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime end;
 
     @OneToMany(mappedBy = "daytime")

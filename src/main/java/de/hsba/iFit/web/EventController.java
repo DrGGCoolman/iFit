@@ -83,6 +83,10 @@ public class EventController {
             return "event/event-create/step1";
         } else if (!result.hasErrors()) {
             eventService.save(formAssembler.update(new Event(), eventForm));
+            return "redirect:/owner/event/list";
+
+        } else {
+            return "event/event-create/step1";
         }
         // else return "event/event-create/step1";
         // else if (eventForm.getWeekday() == null || eventForm.getStartAt() == null ||
@@ -90,7 +94,6 @@ public class EventController {
         // return "event/event-create/step1";
         // }
 
-        return "redirect:/owner/event/list";
     }
 
     // Aufruf der Event-Beaarbeiten ansicht.
@@ -99,6 +102,13 @@ public class EventController {
         Event event = eventService.findById(id);
         model.addAttribute("isUpdate", true);
         model.addAttribute("event", event);
+        model.addAttribute("courses", courseRepository.findAll());
+
+        List<User> availableTrainers = userService.findFittingTrainers(event.getWeekday(), event.getStartAt(),
+                event.getCourse());
+
+        model.addAttribute("users", availableTrainers);
+
         return "event/event-edit";
     }
 
@@ -133,7 +143,7 @@ public class EventController {
         List<List<Event>> structuredEvents = new ArrayList<List<Event>>();
 
         for (Weekday weekday : Weekday.values()) {
-            structuredEvents.add(eventService.findByWeekday(weekday));
+            structuredEvents.add(eventService.findByWeekdayOrderByStartAtAscCourseAsc(weekday));
         }
 
         model.addAttribute("eventsStruct", structuredEvents);
