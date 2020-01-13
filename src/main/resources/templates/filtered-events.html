@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{shared/header :: copy}"></div>
+
+    <div class="container col-12">
+        <div class="row">
+            <div class="col-2 mt-4" th:insert="~{event/event-filter :: copy(filter)}"></div>
+            <div class="col-9 mt-4">
+                <div th:switch="${events}">
+                    <div th:case="null">
+                        <span>Keine Termine gefunden</span>
+                    </div>
+                    <div th:case="*">
+                        <div th:insert="~{fragments/filtered-event-list-template :: copy(${events})}"></div>
+                    </div>
+                    <div><a class="ml-5 mr-5 mt-4 w-75 mx-auto" th:href="${'/owner/event/create'}"
+                            sec:authorize="hasRole('ADMIN')">Termin hinzufügen..</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER-->
+    <div class="ind-footer">
+        <div class="fixed" th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

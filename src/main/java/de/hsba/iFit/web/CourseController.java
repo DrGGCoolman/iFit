@@ -67,6 +67,7 @@ public class CourseController {
         if (bindingResult.hasErrors()) {
             return "course/course-edit";
         }
+
         Course course = courseService.findCourse(id);
         courseService.save(formAssembler.update(course, form));
         // return "redirect:/kurs/" + id.toString();
