@@ -74,9 +74,6 @@ public class EventController {
         } else if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null
                 && (eventForm.getUser() == null || eventForm.getRoom() == null)) {
 
-            // FIXME: ungenutzte Variable
-            List<User> availableTrainers = userService.findFittingTrainers(eventForm.getWeekday(),
-                    eventForm.getStartAt(), eventForm.getCourse());
             List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(),
                     eventForm.getCourse().getDuration());
 
@@ -86,6 +83,10 @@ public class EventController {
             return "event/event-create/step1";
         } else if (!result.hasErrors()) {
             eventService.save(formAssembler.update(new Event(), eventForm));
+            return "redirect:/owner/event/list";
+
+        } else {
+            return "event/event-create/step1";
         }
         // else return "event/event-create/step1";
         // else if (eventForm.getWeekday() == null || eventForm.getStartAt() == null ||
@@ -93,7 +94,6 @@ public class EventController {
         // return "event/event-create/step1";
         // }
 
-        return "redirect:/owner/event/list";
     }
 
     // Aufruf der Event-Beaarbeiten ansicht.
@@ -102,6 +102,12 @@ public class EventController {
         Event event = eventService.findById(id);
         model.addAttribute("isUpdate", true);
         model.addAttribute("event", event);
+
+        List<User> availableTrainers = userService.findFittingTrainers(event.getWeekday(), event.getStartAt(),
+                event.getCourse());
+
+        model.addAttribute("users", availableTrainers);
+
         return "event/event-edit";
     }
 

@@ -17,7 +17,7 @@
                 <div class="cardbox p-4">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-5">Termin bearbeiten</h3>
-                        <form class="form" th:action=" @{${'/owner/events/update/' + id}}" th:object="${event}"
+                        <form class="form" th:action=" @{${'/owner/event/update/' + id}}" th:object="${event}"
                             method="post">
                             <div class="form-row">
                                 <div class="form-group col-12">
@@ -31,6 +31,10 @@
                                 </div>
                             </div>
 
+
+                            <input type="time" th:field="*{startAt}" hidden>
+                            <input type="text" th:field="*{course}" hidden>
+                            <input type="time" th:field="*{weekday}" hidden>
 
                             <div class="form-row">
                                 <div class="form-group col-12">
@@ -71,10 +75,10 @@
 
 
 
-   <!-- FOOTER-->
-   <div class="ind-footer">
-    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
-  </div>
+    <!-- FOOTER-->
+    <div class="ind-footer">
+        <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
+    </div>
 
 
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
