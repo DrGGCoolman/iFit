@@ -596,9 +596,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(8, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.MO);
 
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.MO);
-
                         eventService.Seed(LocalTime.of(14, 00), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("zoe.richter"), Room.GYM1, Weekday.MO);
 
@@ -648,9 +645,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(17, 00), courseRepository.findByName("Bodyweight kompakt"),
                                         userRepository.findByName("zoe.richter"), Room.CROSS, Weekday.SU);
 
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.MO);
-
                         eventService.Seed(LocalTime.of(13, 30),
                                         courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.MO);
@@ -664,10 +658,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(10, 30), courseRepository.findByName("Jumping Fit"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.TU);
 
-                        eventService.Seed(LocalTime.of(13, 30),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.TU);
-
                         eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.TU);
 
@@ -675,10 +665,6 @@ public class SeedService {
                                         userRepository.findByName("anne.baum"), Room.DANCING, Weekday.TU);
 
                         eventService.Seed(LocalTime.of(11, 00), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("anne.baum"), Room.GYM1, Weekday.WE);
-
-                        eventService.Seed(LocalTime.of(14, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("anne.baum"), Room.GYM1, Weekday.WE);
 
                         eventService.Seed(LocalTime.of(16, 00), courseRepository.findByName("Hantel Workout"),
@@ -751,15 +737,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("BOKWA"),
                                         userRepository.findByName("charlotte.tulpe"), Room.DANCING, Weekday.SU);
 
-                        eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Zumba"),
-                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("BOKWA"),
-                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(17, 30), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("tom.wagner"), Room.SWIMMING, Weekday.MO);
-
                         eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("NIA"),
                                         userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.TH);
 
@@ -784,9 +761,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("Aqua Kick Punch"),
                                         userRepository.findByName("tom.wagner"), Room.SWIMMING, Weekday.FR);
 
-                        eventService.Seed(LocalTime.of(9, 00), courseRepository.findByName("NIA"),
-                                        userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SA);
-
                         eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Zumba"),
                                         userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SA);
 
@@ -805,9 +779,6 @@ public class SeedService {
                         eventService.Seed(LocalTime.of(15, 00), courseRepository.findByName("BOKWA"),
                                         userRepository.findByName("tom.wagner"), Room.DANCING, Weekday.SU);
 
-                        eventService.Seed(LocalTime.of(18, 00), courseRepository.findByName("Aqua Kick Punch"),
-                                        userRepository.findByName("tom.wagner"), Room.SWIMMING, Weekday.SU);
-
                         eventService.Seed(LocalTime.of(8, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
                                         userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.MO);
 
@@ -820,19 +791,6 @@ public class SeedService {
 
                         eventService.Seed(LocalTime.of(16, 30), courseRepository.findByName("Hantel Workout"),
                                         userRepository.findByName("benedikt.müller"), Room.GYM1, Weekday.MO);
-
-                        eventService.Seed(LocalTime.of(9, 30), courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(12, 30), courseRepository.findByName("Jumping Fit"),
-                                        userRepository.findByName("benedikt.müller"), Room.CROSS, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(15, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM2, Weekday.TU);
-
-                        eventService.Seed(LocalTime.of(18, 30), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("benedikt.müller"), Room.GYM1, Weekday.TU);
 
                         eventService.Seed(LocalTime.of(10, 00),
                                         courseRepository.findByName("Krankengymnastik am Gerät"),
@@ -906,13 +864,6 @@ public class SeedService {
 
                         eventService.Seed(LocalTime.of(13, 30), courseRepository.findByName("Jumping Fit"),
                                         userRepository.findByName("max.meier"), Room.CROSS, Weekday.SA);
-
-                        eventService.Seed(LocalTime.of(16, 00),
-                                        courseRepository.findByName("Krankengymnastik am Gerät"),
-                                        userRepository.findByName("max.meier"), Room.GYM2, Weekday.SA);
-
-                        eventService.Seed(LocalTime.of(19, 30), courseRepository.findByName("Hantel Workout"),
-                                        userRepository.findByName("max.meier"), Room.GYM1, Weekday.SA);
 
                         eventService.Seed(LocalTime.of(11, 00),
                                         courseRepository.findByName("Krankengymnastik am Gerät"),
