@@ -20,7 +20,6 @@
                 <div class="carousel-caption text-left">
                     <h5 class="h3 font-italic">Wochenplan von iFit</h5>
 
-                    <!--TODO: xD Niklas der Meme-Lord -->
                     <p class="h4 font-italic font-weight-lighter">Wählen Sie aus den besten und modernsten Kursen aus.
                     </p>
                 </div>
@@ -48,15 +47,14 @@
         <div class="row">
 
 
-            <div class="col-3 ">
+            <div class="col-2 ">
                 <hr class="schedule-hr">
-                <div th:insert="~{event/event-filter :: copy(filter)}"></div>
+                <div th:insert="~{fragments/event-filter :: copy(filter)}"></div>
             </div>
 
-            <div class="col-9">
+            <div class="col-10">
                 <hr class="schedule-hr">
 
-                <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
                 <table class="table  mx-auto">
                     <thead class="thead-light">
                         <h5 class="table  mx-auto">Morgens</h5>
@@ -100,7 +98,6 @@
                     </div>
                 </table>
 
-                <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
                 <table class="table  mx-auto">
                     <thead class="thead-light">
                         <h5 class="table  mx-auto mt-5">Mittags</h5>
@@ -143,7 +140,6 @@
                     </div>
                 </table>
 
-                <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
 
                 <table class="table  mx-auto">
                     <thead class="thead-light">

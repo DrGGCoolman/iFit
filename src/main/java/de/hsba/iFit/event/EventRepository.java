@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import de.hsba.ifit.slot.Weekday;
 
-// Detailierte Kommentare befinden sich im ProductTypeRepository.java
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
 

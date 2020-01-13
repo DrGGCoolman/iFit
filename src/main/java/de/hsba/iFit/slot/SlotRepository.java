@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import de.hsba.ifit.daytime.Daytime;
 import de.hsba.ifit.daytime.Daytime.DaytimeName;
 
-// Detailierte Kommentare befinden sich im ProductTypeRepository.java
 @Repository
 public interface SlotRepository extends JpaRepository<Slot, Integer> {
 
