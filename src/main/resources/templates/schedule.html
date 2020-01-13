@@ -13,7 +13,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 pl-0 pr-0">
                 <img src="https://www.action360.com.br/wp-content/uploads/2018/01/brunetteworkout_Easy-Resize.com_.jpg"
                     class="plan-img w-100" alt="Tanzen">
                 <div class="carousel-caption text-left">
@@ -37,7 +37,7 @@
 
             <div class="btn-group btn-group-lg mx-auto" role="group" aria-label="Basic example">
                 <a th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
-                    th:href="@{/schedule/(selectedWeekday = ${weekday})}" class="btn"
+                    th:href="@{/schedule/(selectedWeekday = ${weekday})}" th:class="${weekday == selectedWeekday} ? 'btn btn-outline-dark' : 'btn btn-secondary'"  
                     th:text="${weekday.displayValue}"></a>
 
             </div>
