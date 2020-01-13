@@ -3,48 +3,47 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-main">
 
     <div th:insert="~{shared/header :: copy}"></div>
 
-    <br>
-
-    <div class="container">
+    <div class="con-styling container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="cardbox p-4">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Kurs anlegen</h3>
-                        <br>
-                        <form class="form" th:action="@{/owner/course/add}" th:object="${course}" method="post">
+                        <h3 class="card-title text-center mb-5">Kurs anlegen</h3>
+                        <form class="form" th:action="@{/owner/course/add}" th:object="${courseForm}" method="post">
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCourse">Kursname</label>
                                     <input type="text" class="form-control" th:field="*{name}" id="inputCourse"
-                                        placeholder="Kursname" required>
+                                        placeholder="Kursname">
+                                        <label class="text-danger small" th:errors="*{name}">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputDescription">Beschreibung</label>
                                     <textarea class="form-control" th:field="*{description}" id="inputDescription"
-                                        placeholder="Beschreibung" required></textarea>
+                                        placeholder="Beschreibung"></textarea>
+                                        <label class="text-danger small" th:errors="*{description}">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCategory">Kategorie</label>
-                                    <select id="inputCategory" class="form-control" th:field="*{category}" required>
+                                    <select id="inputCategory" class="form-control" th:field="*{category}">
                                         <option value="" selected>Kategorie wählen..</option>
                                         <option th:each="category : ${T(de.hsba.ifit.course.Category).values()}"
                                             th:value="${category}" th:text="${category.displayValue}">
                                         </option>
                                     </select>
+                                    <label class="text-danger small" th:errors="*{category}">
                                 </div>
                             </div>
 
@@ -52,22 +51,23 @@
                                 <div class="form-group col-12">
                                     <label for="inputMinutes">Minuten</label>
                                     <input type="number" class="form-control" th:field="*{duration}" id="inputMinutes"
-                                        placeholder="Minuten" required>
+                                        placeholder="Minuten">
+                                        <label class="text-danger small" th:errors="*{duration}">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCategory">Zielgruppe</label>
-                                    <select id="inputCategory" class="form-control" th:field="*{targetGroup}" required>
+                                    <select id="inputCategory" class="form-control" th:field="*{targetGroup}">
                                         <option value="" selected>Zielgruppe wählen..</option>
                                         <option th:each="targetGroup : ${T(de.hsba.ifit.course.TargetGroup).values()}"
                                             th:value="${targetGroup}" th:text="${targetGroup.displayValue}">
                                         </option>
                                     </select>
+                                    <label class="text-danger small" th:errors="*{targetGroup}">
                                 </div>
                             </div>
-                            <br>
-                            <button class="btn btn-lg btn-secondary btn-block" type="submit">Anlegen</button>
+                            <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">Anlegen</button>
                         </form>
 
                     </div>
@@ -77,17 +77,10 @@
     </div>
     </div>
 
-
-
-    <br>
-    <br>
-
-
-
-    <!-- FOOTER-->
-    <div class="fixed">
-        <div th:insert="~{shared/footer :: copy}"></div>
-    </div>
+       <!-- FOOTER-->
+   <div class="ind-footer">
+    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
+  </div>
 
 
     <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

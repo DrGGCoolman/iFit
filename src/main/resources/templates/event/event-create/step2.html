@@ -3,30 +3,48 @@
 
 <head>
     <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-main">
 
     <div th:insert="~{shared/header :: copy}"></div>
 
-
-    <br>
-
-    <div class="container">
+    <div class="con-styling container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                 <div class="cardbox p-4">
                     <div class="card-body">
-                        <h3 class="card-title text-center">Termin anlegen</h3>
-                        <br>
-                        <form class="form" th:action="@{/owner/events/add}" th:object="${event}" method="post">
+                        <h3 class="card-title text-center mb-5">Termin anlegen</h3>
+                        <form class="form" th:action="@{/owner/event/add}" th:object="${eventForm}" method="post">
+
+                            <!-- Kontext halten mittels hidden-fields-->
+
+
+                            <select id="inputWeekday" class="form-control" th:field="*{weekday}" hidden>
+                                <option value="" selected>Wochentag wählen..</option>
+                                <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
+                                    th:value="${weekday}" th:text="${weekday.displayValue}">
+                                </option>
+                            </select>
+
+                            <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
+                                placeholder="Beginn" min="08:00:00" max="20:00:00" hidden>
+
+                            <select th:field="*{course}" id="inputCourse" class="form-control" hidden>
+                                <option value="" selected>Kurs wählen..</option>
+                                <option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.name}">
+                                </option>
+                            </select>
+
+
+
+
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputWeekday">Wochentag</label>
-                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" required autofocus>
+                                    <select id="inputWeekday" class="form-control" th:field="*{weekday}" disabled>
                                         <option value="" selected>Wochentag wählen..</option>
                                         <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
                                             th:value="${weekday}" th:text="${weekday.displayValue}">
@@ -37,47 +55,51 @@
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputStartAt">Beginn</label>
-                                    <input type="time" class="form-control" th:field="*{startAt}"
-                                        id="inputStartAt" placeholder="Beginn" required>
+                                    <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
+                                        placeholder="Beginn" min="08:00:00" max="20:00:00" disabled>
+
+
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputCourse">Kurs*</label>
-                                    <select th:field="*{course}" id="inputCourse" class="form-control"
+                                    <select th:field="*{course}" id="inputCourse" class="form-control" required
                                         disabled>
                                         <option value="" selected>Kurs wählen..</option>
                                         <option th:each="course: ${courses}" th:value="${course.id}"
                                             th:text="${course.name}">
                                         </option>
                                     </select>
+
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputRoom">Raum</label>
-                                    <select id="inputRoom" class="form-control" th:field="*{room}" disabled>
+                                    <select id="inputRoom" class="form-control" th:field="*{room}">
                                         <option value="" selected>Raum wählen..</option>
-                                        <option th:each="room : ${T(de.hsba.ifit.event.Room).values()}"
-                                            th:value="${room}" th:text="${room.displayValue}">
+                                        <option th:if="${rooms}" th:each="room : ${rooms}" th:value="${room}"
+                                            th:text="${room.displayValue}">
                                         </option>
                                     </select>
+                                    <label class=" small" th:errors="*{room}" />
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
                                     <label for="inputUser">Trainer*</label>
-                                    <select th:field="*{user}" id="inputUser" class="form-control" disabled>
+                                    <select th:field="*{user}" id="inputUser" class="form-control">
                                         <option value="" selected>Trainer wählen..</option>
                                         <option th:each="user: ${users}" th:value="${user.id}"
                                             th:text="${user.firstname + ' ' + user.lastname }">
                                         </option>
                                     </select>
+                                    <label class=" small" th:errors="*{user}" />
                                 </div>
                             </div>
                     </div>
-                    <br>
-                    <button class="btn btn-lg btn-secondary btn-block" type="submit">Weiter ..</button>
+                    <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">Anlegen</button>
                     </form>
 
                 </div>
@@ -89,8 +111,8 @@
 
 
     <!-- FOOTER-->
-    <div class="fixed-bottom">
-        <div th:insert="~{shared/footer :: copy}"></div>
+    <div class="ind-footer">
+        <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
     </div>
 
 

@@ -3,6 +3,7 @@ package de.hsba.ifit.course;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -19,6 +20,14 @@ public class CourseService {
 
     public List<Course> findAll() {
         return courseRepository.findAll();
+    }
+
+    public Course save(Course course) {
+        return courseRepository.save(course);
+    }
+
+    public Course findCourse(Integer id) {
+        return courseRepository.findById(id).orElse(null);
     }
 
 }

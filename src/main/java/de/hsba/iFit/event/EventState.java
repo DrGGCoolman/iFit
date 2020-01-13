@@ -1,12 +1,11 @@
-
 package de.hsba.ifit.event;
 
-public enum Room {
-    SWIMMING("Schwimmbad"), GYM1("Fitnessraum 1"), GYM2("Fitnessraum 2"), CROSS("Crossfit Area"), DANCING("Tanzstudio");
+public enum EventState {
+    OK("Ok"), CONFLICT("Konflikt");
 
     private final String displayValue;
 
-    private Room(String displayValue) {
+    private EventState(String displayValue) {
         this.displayValue = displayValue;
     }
 

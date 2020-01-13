@@ -1,9 +1,5 @@
 package de.hsba.ifit.web;
 
-/**
- * ProductTypeController
- */
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,92 +7,83 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import de.hsba.ifit.course.Course;
+import de.hsba.ifit.course.CourseService;
 import de.hsba.ifit.course.CourseRepository;
+import lombok.RequiredArgsConstructor;
 
-//Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
+@RequiredArgsConstructor
 @Controller
-@RequestMapping("/owner/course/")
 public class CourseController {
 
     @Autowired
     private CourseRepository courseRepository;
 
-    // Gibt Daten zu einem bestimmten Course zurück. Benötigt dazu beim Aufruf
-    // eine Id.
-    // Die Daten stammen aus der Datenbank und werden über das entsprechen
-    // Repository bezogen.
-    @GetMapping("{id}")
-    public String showCourseDetails(@PathVariable("id") Integer id, Model model) {
-        Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
-        model.addAttribute("course", course);
-        return "kurs/kurs-detail";
-    }
+    private final CourseService courseService;
+    private final FormAssembler formAssembler;
 
     // Aufruf der Kurs-Anlegen ansicht.
-    @GetMapping("create")
+    @GetMapping("/owner/course/create")
     public String showCreateFrom(Model model) {
-        model.addAttribute("course", new Course());
-        return "kurs/kurs-create";
+        model.addAttribute("courseForm", new CourseForm());
+        return "course/course-create";
     }
 
     // Behandelt das Anlegen eines Produktes. Validiert das Kurs-Anlegen
     // formular.
-    @PostMapping("add")
-    public String addCourse(@Valid Course course, BindingResult result, Model model) {
+    @PostMapping("/owner/course/add")
+    public String addCourse(@ModelAttribute("courseForm") @Valid CourseForm courseForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "kurs/kurs-create";
+            return "course/course-create";
         }
-        courseRepository.save(course);
-        return "redirect:/owner/course/list";
+
+        courseService.save(formAssembler.update(new Course(), courseForm));
+        return "redirect:/trainer/course/list";
     }
 
     // Aufruf der Kurs-Beaarbeiten ansicht.
-    @GetMapping("edit/{id}")
+    @GetMapping("/owner/course/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
+        Course course = courseService.findCourse(id);
+        model.addAttribute("courseForm", formAssembler.toForm(course));
         model.addAttribute("isUpdate", true);
-        model.addAttribute("course", course);
-        return "kurs/kurs-edit";
+        return "course/course-edit";
     }
 
     // Behandelt das Bearbeiten eines Kurses. Validiert das Kurs-Bearbeiten
     // formular.
-    @PostMapping("update/{id}")
-    public String updateCourse(@PathVariable("id") Integer id, @Valid Course course, BindingResult result,
-            Model model) {
-        if (result.hasErrors()) {
-            course.setId(id);
-            return "redirect:" + id.toString();
+    @PostMapping("/owner/course/update/{id}")
+    public String updateCourse(@PathVariable("id") Integer id, @ModelAttribute("courseForm") @Valid CourseForm form,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "course/course-edit";
         }
 
-        courseRepository.save(course);
-
+        Course course = courseService.findCourse(id);
+        courseService.save(formAssembler.update(course, form));
         // return "redirect:/kurs/" + id.toString();
-        return "redirect:/owner/course/list";
+        return "redirect:/trainer/course/list";
     }
 
     // Behandelt das Löschen eines Kurses.
-    @GetMapping("/delete/{id}")
+    @GetMapping("/owner/course/delete/{id}")
     public String deleteCourse(@PathVariable("id") int id, Model model) {
         Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid course Id:" + id));
         courseRepository.delete(course);
         model.addAttribute("courses", courseRepository.findAll());
-        return "redirect:/owner/course/list ";
+        return "redirect:/trainer/course/list ";
     }
 
     // Gibt Listenansicht der Kurse zurück
-    @GetMapping("list")
+    @GetMapping("/trainer/course/list")
     public String showAllProducts(Model model) {
-        model.addAttribute("courses", courseRepository.findAll());
-        return "kurs/kurs-liste";
+        model.addAttribute("courses", courseRepository.findAllCourses());
+        return "course/course-list";
     }
 
 }

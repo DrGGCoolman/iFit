@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{shared/header :: copy}"></div>
+
+    <div class="card mb-3 mt-5 mx-auto">
+        <div class="row no-gutters">
+            <div class="col-md-3">
+                <img src="http://www.centralevangelicalchurch.co.uk/wp-content/uploads/2013/01/background-grey-1080.jpg"
+                    class="card-img" alt="...">
+            </div>
+            <div class="col-md-9">
+                <div class="card-body">
+                    <h4 class="card-title" th:text="${event.course.name}"></h4>
+                    <div class="row">
+                        <div class="col-sm mb-1 mt-2 font-italic text-uppercase">
+                            Wann:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm" th:text="${event.weekday.displayValue + ' von ' + event.startAt + ' bis ' + event.startAt.plusMinutes(event.course.duration)}"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mb-1 mt-3 font-italic text-uppercase">
+                            Wo:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm" th:text="${event.room.displayValue}"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mb-1 mt-3 font-italic text-uppercase">
+                            Wer:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm" th:text="${event.user.firstname + ' ' + event.user.lastname + ' leitet den Kurs'}"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mb-1 mt-3 font-italic text-uppercase">
+                            Was:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm" th:text="${event.course.category.displayValue + '-Training' + ' in der Kategorie ' + event.course.targetGroup.displayValue}"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm mb-1 mt-3 font-italic text-uppercase">
+                            Beschreibung:
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="det-descript col-sm" th:text="${event.course.description}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- FOOTER-->
+    <div class="fixed-bottom">
+        <div th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

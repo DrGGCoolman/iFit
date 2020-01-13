@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" th:href="@{/main.css}">
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+
+<body class="bg-main">
+
+  <div th:insert="~{shared/header :: copy}"></div>
+
+  <div class="ml-5 mr-5 mt-4 w-75 mx-auto">
+    <table class="table">
+      <thead class="thead-light">
+        <h5 class="table">Kursliste</h5>
+        <tr>
+          <th class="font-italic">Nr</th>
+          <th class="font-italic">Name</th>
+          <th class="font-italic">Kategorie</th>
+          <th class="font-italic">Zielgruppe</th>
+          <th class="font-italic">Dauer</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <div class="col-10 mt-4">
+            <tr th:each="course, amount : ${courses}">
+              <td th:text="${amount.count}"></td>
+              <td th:text="${course.name}"></td>
+              <td th:text="${course.category.displayValue}"></td>
+              <td th:text="${course.targetGroup.displayValue}"></td>
+              <td th:text="${course.duration}"></td>
+              <td>
+                <div sec:authorize="hasRole('ADMIN')">
+                  <a th:href="${'/owner/course/edit/' + course.id}">Bearbeiten</a> | <a
+                    th:href="${'/owner/course/delete/' + course.id}">Löschen</a>
+                </div>
+              </td>
+            </tr>
+   
+
+      <tr>
+        <td colspan="6">
+          <span th:if="${courses.empty}">Derzeit keine Kurse:</span>
+          <a th:href="${'/owner/course/create'}" sec:authorize="hasRole('ADMIN')">Kurs hinzufügen..</a>
+        </td>
+      </tr>
+    </div>
+    </table>
+  </div>
+
+
+
+
+   <!-- FOOTER-->
+   <div class="ind-footer">
+    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
+  </div>
+
+  <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

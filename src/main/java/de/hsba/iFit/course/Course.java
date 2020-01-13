@@ -43,7 +43,7 @@ public class Course {
     @Setter
     private Integer duration;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", orphanRemoval = true)
     private List<Event> events;
 
     @ManyToMany(mappedBy = "courses")
@@ -55,6 +55,16 @@ public class Course {
         this.category = category;
         this.targetGroup = targetGroup;
         this.duration = duration;
+    }
+
+    // Durch die Dreiecksbeziehung zwischen User, Event und Kurs lässt sich
+    // schwer eine Kaskade per Annotation festsetzen. Deshalb wird hier vor dem
+    // löschen des Kurses die Verbindung Kurs-Trainer gelöst
+    @PreRemove
+    private void removeCoursessFromUsers() {
+        for (User u : users) {
+            u.getCourses().remove(this);
+        }
     }
 
 }

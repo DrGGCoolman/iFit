@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{shared/header :: copy}"></div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12 pl-0 pr-0">
+                <img src="https://www.action360.com.br/wp-content/uploads/2018/01/brunetteworkout_Easy-Resize.com_.jpg"
+                    class="plan-img w-100" alt="Tanzen">
+                <div class="carousel-caption text-left">
+                    <h5 class="h3 font-italic">Wochenplan von iFit</h5>
+
+                    <p class="h4 font-italic font-weight-lighter">Wählen Sie aus den besten und modernsten Kursen aus.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="con-styling container-fluid">
+        <div class="row">
+            <div class="mx-auto">
+                <h1 class="font-italic font-weight-bold text-uppercase">Wochenplan</h1>
+            </div>
+        </div>
+        <div class="row mt-4">
+
+            <div class="btn-group btn-group-lg mx-auto" role="group" aria-label="Basic example">
+                <a th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
+                    th:href="@{/schedule/(selectedWeekday = ${weekday})}"
+                    th:class="${weekday == selectedWeekday} ? 'btn btn-outline-dark' : 'btn btn-secondary'"
+                    th:text="${weekday.displayValue}"></a>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+
+            <div class="col-2 ">
+                <hr class="schedule-hr">
+                <div th:insert="~{fragments/event-filter :: copy(filter)}"></div>
+            </div>
+
+            <div class="col-10">
+                <hr class="schedule-hr">
+
+                <table class="table  mx-auto">
+                    <thead class="thead-light">
+                        <h5 class="table  mx-auto">Morgens</h5>
+                        <tr class="text-center">
+                            <th>Beginn</th>
+                            <th>Ende</th>
+                            <th>Kurs</th>
+                            <th>Raum</th>
+                            <th>Trainer</th>
+                        </tr>
+                    </thead>
+
+
+
+                    <div class="col-10 mt-4">
+                        <div th:switch="${eventsMorning}">
+                            <div th:case="null">
+                                <span>Keine Kurse angelegt gefunden</span>
+                            </div>
+                            <div th:case="*">
+                                <tr class="t-hover" th:each="event : ${eventsMorning}">
+                                    <td><a class="t-link btn" th:text="${event.startAt}"
+                                            th:href="@{${'/event/' +  event.id}}"></a>
+                                    </td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.startAt.plusMinutes(event.course.duration)}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.course.name}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.room.displayValue}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.user.firstname + ' ' + event.user.lastname }"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                </tr>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+
+                <table class="table  mx-auto">
+                    <thead class="thead-light">
+                        <h5 class="table  mx-auto mt-5">Mittags</h5>
+                        <tr class="text-center">
+                            <th>Beginn</th>
+                            <th>Ende</th>
+                            <th>Kurs</th>
+                            <th>Raum</th>
+                            <th>Trainer</th>
+                        </tr>
+                    </thead>
+
+
+                    <div class="col-10 mt-4">
+                        <div th:switch="${eventsAfternoon}">
+                            <div th:case="null">
+                                <span>Keine Kurse angelegt gefunden</span>
+                            </div>
+                            <div th:case="*">
+                                <tr class="t-hover" th:each="event : ${eventsAfternoon}">
+                                    <td><a class="t-link btn" th:text="${event.startAt}"
+                                            th:href="@{${'/event/' +  event.id}}"></a>
+                                    </td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.startAt.plusMinutes(event.course.duration)}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.course.name}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.room.displayValue}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.user.firstname + ' ' + event.user.lastname }"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                </tr>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+
+
+                <table class="table  mx-auto">
+                    <thead class="thead-light">
+                        <h5 class="table  mx-auto mt-5">Abends</h5>
+                        <tr class="text-center">
+                            <th>Beginn</th>
+                            <th>Ende</th>
+                            <th>Kurs</th>
+                            <th>Raum</th>
+                            <th>Trainer</th>
+                        </tr>
+                    </thead>
+
+
+                    <div class="col-10 mt-4">
+                        <div th:switch="${eventsEvening}">
+                            <div th:case="null">
+                                <span>Keine Kurse angelegt gefunden</span>
+                            </div>
+                            <div th:case="*">
+                                <tr class="t-hover" th:each="event : ${eventsEvening}">
+                                    <td><a class="t-link btn" th:text="${event.startAt}"
+                                            th:href="@{${'/event/' +  event.id}}"></a>
+                                    </td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.startAt.plusMinutes(event.course.duration)}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.course.name}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.room.displayValue}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.user.firstname + ' ' + event.user.lastname }"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                </tr>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr class="schedule-hr">
+
+    <div class="w-75 mx-auto">
+        <div class="row">
+            <div class="text-left">
+                <h5 class="font-italic font-weight-bold text-uppercase">Kursübersicht</h5>
+                <h6 class="pt-4">Bodyweight</h6>
+                <p class="description pt-2">Als Bodyweight-Training oder auch Eigengewichtübungen
+                    bezeichnet man eine sportliche
+                    Übung, die nur
+                    das eigene Körpergewicht als Widerstand nutzt. Diese Übungen sind eine Form des Fitness- und
+                    Krafttrainings, die fast völlig auf Hilfsmittel wie Gewichte und Fitnessgeräte verzichtet.</p>
+                <h6 class="pt-3">Gewichte</h6>
+                <p class="description pt-2">Unter Gewichttraining versteht man das körperliche Training
+                    mithilfe von Gewichten,
+                    welches das Ziel verfolgt, körperliche Veränderungen,
+                    etwa die Steigerung der Kraftfähigkeiten oder die Erhöhung der Muskelmasse zu erreichen. Eine
+                    wichtige Rolle spielt Gewichttraining für das Bodybuilding und die Kraftsportarten, aber auch für
+                    die
+                    Medizinische Kräftigungstherapie.</p>
+                <h6 class="pt-3">Tanzen</h6>
+                <p class="description pt-2">Tanzen ist ein dynamisches Fitnesstraining in der Gruppe mit
+                    rhythmischen Bewegungen zu
+                    motivierender Musik. Die Grundelemente sind hauptsächlich Ausdauer und Koordination. Die in
+                    einer Choreografie zusammengestellten Übungen sind eine Mischung aus klassischer Gymnastik und Tanz.
+                </p>
+                <h6 class="pt-3">Wassergymnastik</h6>
+                <p class="description pt-2">Wassergymnastik ist ein spezielles Bewegungstraining im
+                    Wasser. Die Kraft- und Konditionsübungen
+                    schonen aufgrund des Auftriebs des Wassers die Gelenke, Sehnen und
+                    den Rücken und kräftigen die Muskulatur sowie das Herz-Kreislaufsystem. Durch den hohen Widerstand
+                    des Wassers sind die Übungen teilweise anstrengender als außerhalb des Wassers.</p>
+                <h6 class="pt-3">Yoga</h6>
+                <p class="description pt-2">Yoga ist eine philosophische Lehre, deren ganzheitlicher
+                    Ansatz Körper, Geist und Seele in Einklang
+                    bringen soll. Dazu werden geistige und körperliche Übungen, wie Muskelan- und -entspannungsübungen,
+                    Atemübungen, Meditation und Askese eingesetzt. </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER-->
+    <div class="sched-footer fixed">
+        <div th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

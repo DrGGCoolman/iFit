@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+
+<body class="bg-main">
+
+    <div th:insert="~{shared/header :: copy}"></div>
+
+    <div class="con-styling container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="cardbox p-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-5">Termin bearbeiten</h3>
+                        <form class="form" th:action=" @{${'/owner/event/update/' + id}}" th:object="${event}"
+                            method="post">
+
+                            <!-- Kontext halten mittels hidden-fields-->
+
+
+                            <select id="inputWeekday" class="form-control" th:field="*{weekday}" hidden>
+                                <option value="" selected>Wochentag wählen..</option>
+                                <option th:each="weekday : ${T(de.hsba.ifit.slot.Weekday).values()}"
+                                    th:value="${weekday}" th:text="${weekday.displayValue}">
+                                </option>
+                            </select>
+
+                            <input type="time" class="form-control" th:field="*{startAt}" id="inputStartAt"
+                                placeholder="Beginn" min="08:00:00" max="20:00:00" hidden>
+
+                            <select th:field="*{course}" id="inputCourse" class="form-control" hidden>
+                                <option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.name}">
+                                </option>
+                            </select>
+
+                            <div class="form-row">
+                                <div class="form-group col-12">
+
+                                    <p class="h6" th:text="${ event.course.name }">
+                                    </p>
+                                    <p th:text="${  event.weekday.displayValue + ' um ' + event.startAt}">
+                                    </p>
+
+
+                                </div>
+                            </div>
+
+                            <div th:if="${users.empty}">
+                                <span class="danger">Keine passenden Trainer gefunden:</span>
+                                <a class="btn btn-lg btn-danger btn-block mt-4"
+                                    th:href="${'/owner/event/delete/' + id}">Termin
+                                    Löschen</a>
+                                </td>
+                            </div>
+
+                            <div th:if="${!users.empty}">
+                                <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label for="inputRoom">Raum</label>
+                                        <select id="inputRoom" class="form-control" th:field="*{room}" required>
+                                            <option value="" selected>Raum wählen..</option>
+                                            <option th:each="room : ${T(de.hsba.ifit.event.Room).values()}"
+                                                th:value="${room}" th:text="${room.displayValue}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-12">
+                                        <label for="inputUser">Trainer*</label>
+                                        <select th:field="*{user}" id="inputUser" class="form-control" required>
+                                            <option value="" selected>Trainer wählen..</option>
+                                            <option th:each="user: ${users}" th:value="${user.id}"
+                                                th:text="${user.firstname + ' ' + user.lastname }">
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button class="btn btn-lg btn-secondary btn-block mt-4" type="submit">Änderungen
+                                    Speichern</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+    <!-- FOOTER-->
+    <div class="ind-footer">
+        <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
+    </div>
+
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+
+</html>
