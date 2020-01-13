@@ -30,7 +30,7 @@ public class RoomService {
         LocalTime timeWindowStart = startTime.minusMinutes(maxDuration);
         LocalTime timeWindowEnd = startTime.plusMinutes(duration);
 
-        List<Event> allEventsThisDay = eventRepository.findByWeekday(weekday);
+        List<Event> allEventsThisDay = eventRepository.findByWeekdayOrderByStartAtAscCourseAsc(weekday);
 
         List<Event> allEventsInTimeslot = new ArrayList<>();
 

@@ -74,9 +74,6 @@ public class EventController {
         } else if (eventForm.getWeekday() != null && eventForm.getStartAt() != null && eventForm.getCourse() != null
                 && (eventForm.getUser() == null || eventForm.getRoom() == null)) {
 
-            // FIXME: ungenutzte Variable
-            List<User> availableTrainers = userService.findFittingTrainers(eventForm.getWeekday(),
-                    eventForm.getStartAt(), eventForm.getCourse());
             List<Room> availableRooms = roomService.findFreeRooms(eventForm.getWeekday(), eventForm.getStartAt(),
                     eventForm.getCourse().getDuration());
 
