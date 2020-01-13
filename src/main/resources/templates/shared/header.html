@@ -59,7 +59,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav" sec:authorize="authenticated">
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" sec:authorize="hasRole('USER')">
                         <a class="d-inline-block nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="${#httpServletRequest.remoteUser}"></a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -70,6 +70,9 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" th:href="@{/trainer/courses}">Meine Kurse</a>
                         </div>
+                    </li>
+                    <li class="nav-item"sec:authorize="hasRole('ADMIN')">
+                        <span class="nav-link" th:text="${#httpServletRequest.remoteUser}"></span>
                     </li>
                     <li class="nav-item">
                             <span class="d-inline-block nav-link">|</span>

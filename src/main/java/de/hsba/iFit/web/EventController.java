@@ -3,10 +3,6 @@ package de.hsba.ifit.web;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * ProductTypeController
- */
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;

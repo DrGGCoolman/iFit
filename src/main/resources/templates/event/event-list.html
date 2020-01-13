@@ -14,28 +14,27 @@
   <div class="container col-12">
     <div class="row">
       <div class="col-12 mt-4">
-        <div th:switch="${eventsStruct}">
-          <div th:case="null">
-            <span>Keine Termine gefunden</span>
-          </div>
-          <div th:case="*">
-            <div th:each="events : ${eventsStruct}">
-              <div th:if="${!events.empty}">
-                <div th:insert="~{fragments/event-list-template :: copy(${events})}"></div>
-              </div>
+      <div th:switch="${eventsStruct}">
+        <div th:case="null">
+          <span>Keine Termine gefunden</span>
+        </div>
+        <div th:case="*">
+          <div th:each="events : ${eventsStruct}">
+            <div th:if="${!events.empty}">
+              <div th:insert="~{fragments/event-list-template :: copy(${events})}"></div>
             </div>
           </div>
-          <div><a class="ml-5 mr-5 mt-4 w-75 mx-auto" th:href="${'/owner/event/create'}"
-              sec:authorize="hasRole('ADMIN')">Termin hinzufügen..</a></div>
         </div>
+        <div><a class="ml-5 mr-5 mt-4 w-75 mx-auto" th:href="${'/owner/event/create'}"
+            sec:authorize="hasRole('ADMIN')">Termin hinzufügen..</a></div>
       </div>
     </div>
   </div>
-
+</div>
 
   <!-- FOOTER-->
   <div class="ind-footer">
-    <div class="fixed" th:insert="~{shared/footer :: copy}"></div>
+    <div class="fixed-bottom" th:insert="~{shared/footer :: copy}"></div>
   </div>
 
 

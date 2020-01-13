@@ -74,7 +74,7 @@ public class TrainerController {
     @GetMapping("/delete/{id}")
     public String deleteTrainer(@PathVariable("id") Integer id, Model model) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid course Id:" + id));
         userRepository.delete(user);
         model.addAttribute("users", userRepository.findAll());
         return "redirect:/owner/trainer/list ";

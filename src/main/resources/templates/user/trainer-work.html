@@ -25,17 +25,6 @@
                         <form class="form" th:action="@{${'/trainer/work/update/'+ user.id}}" th:object="${user}"
                             method="post">
 
-                            <!-- <select class="form-control" id="multiSelectElementsSelected"
-                                name="multiSelectElementsSelected" multiple="multiple" th:field="*{slots}">
-
-                                <option th:each="slot : ${slots}" th:value="${slot.id}"
-                                    th:text="${slot.weekday.displayValue + ' -------- ' + slot.daytime.name }"></option>
-
-                            </select> -->
-
-
-
-
                             <table class="table">
                                 <caption>
                                     *<a th:each="daytime, amount : ${daytimes}">
@@ -56,7 +45,7 @@
                                 <tbody>
                                     <tr th:each="daytime : ${T(de.hsba.ifit.daytime.Daytime.DaytimeName).values()}">
                                         <th th:text="${daytime.displayValue}"></th>
-                                        <!-- Vorbearbeiten des Ausdruck um Liste der Slots je nach daytime auszutauschen -->
+                                        <!-- Vorbearbeiten des Ausdrucks um Liste der Slots je nach daytime auszutauschen -->
                                         <td th:each="slot : ${__${daytime}__Slots}">
                                             <input type="checkbox" th:field="*{slots}" th:value="${slot.id}">
                                         </td>

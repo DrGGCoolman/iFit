@@ -1,9 +1,5 @@
 package de.hsba.ifit.web;
 
-/**
- * ProductTypeController
- */
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +16,6 @@ import de.hsba.ifit.course.CourseService;
 import de.hsba.ifit.course.CourseRepository;
 import lombok.RequiredArgsConstructor;
 
-//Behandelt alle Anfragen bzgl. der ProductTypes. Alle routen werden unter /products/* gruppiert.
 @RequiredArgsConstructor
 @Controller
 public class CourseController {
@@ -78,7 +73,7 @@ public class CourseController {
     @GetMapping("/owner/course/delete/{id}")
     public String deleteCourse(@PathVariable("id") int id, Model model) {
         Course course = courseRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid ProductType Id:" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid course Id:" + id));
         courseRepository.delete(course);
         model.addAttribute("courses", courseRepository.findAll());
         return "redirect:/trainer/course/list ";
