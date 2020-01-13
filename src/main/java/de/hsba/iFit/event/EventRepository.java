@@ -21,7 +21,7 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     List<Event> findByUserId(Integer id);
 
-    List<Event> findByWeekday(Weekday weekday);
+    List<Event> findByWeekdayOrderByStartAtAscCourseAsc(Weekday weekday);
 
     @Query("SELECT e FROM Event e WHERE e.startAt >= '08:00' AND e.startAt < '12:00' AND e.weekday = :#{#weekday} ORDER BY e.weekday,e.startAt ")
     List<Event> findAllMorningEventsForWeekday(@Param("weekday") Weekday weekday);

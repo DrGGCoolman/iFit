@@ -33,7 +33,7 @@
                             <div class="mt-1 mx-auto" th:each=" course : ${courses}">
                                 <label>
                                     <input type="checkbox" th:field="*{courses}" th:value="${course.id}"
-                                        th:text="${course.name }" />
+                                        th:text="${' '+ course.name}" />
 
                                 </label>
                             </div>
