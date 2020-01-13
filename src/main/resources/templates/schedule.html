@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="con-styling container">
+    <div class="con-styling container-fluid">
         <div class="row">
             <div class="mx-auto">
                 <h1 class="font-italic font-weight-bold text-uppercase">Wochenplan</h1>
@@ -44,138 +44,149 @@
 
             </div>
         </div>
-    </div>
-    <div class="row">
 
-        <div class="col-2 " th:insert="~{event/event-filter :: copy(filter)}"></div>
-
-        <div class="col-10">
-            <hr class="schedule-hr">
-
-            <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
-            <table class="table w-75 mx-auto">
-                <thead class="thead-light">
-                    <h5 class="table w-75 mx-auto">Morgens</h5>
-                    <tr class="text-center">
-                        <th>Beginn</th>
-                        <th>Ende</th>
-                        <th>Kurs</th>
-                        <th>Raum</th>
-                        <th>Trainer</th>
-                    </tr>
-                </thead>
+        <div class="row">
 
 
+            <div class="col-3 ">
+                <hr class="schedule-hr">
+                <div th:insert="~{event/event-filter :: copy(filter)}"></div>
+            </div>
 
-                <div class="col-10 mt-4">
-                    <div th:switch="${eventsMorning}">
-                        <div th:case="null">
-                            <span>Keine Kurse angelegt gefunden</span>
-                        </div>
-                        <div th:case="*">
-                            <tr class="t-hover" th:each="event : ${eventsMorning}">
-                                <td><a class="t-link btn" th:text="${event.startAt}"
-                                        th:href="@{${'/event/' +  event.id}}"></a>
-                                </td>
-                                <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.course.name}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.room.displayValue}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5"></td>
-                            </tr>
-                        </div>
-                    </div>
-                </div>
-            </table>
+            <div class="col-9">
+                <hr class="schedule-hr">
 
-            <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
-            <table class="table w-75 mx-auto">
-                <thead class="thead-light">
-                    <h5 class="table w-75 mx-auto mt-5">Mittags</h5>
-                    <tr class="text-center">
-                        <th>Beginn</th>
-                        <th>Ende</th>
-                        <th>Kurs</th>
-                        <th>Raum</th>
-                        <th>Trainer</th>
-                    </tr>
-                </thead>
+                <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
+                <table class="table  mx-auto">
+                    <thead class="thead-light">
+                        <h5 class="table  mx-auto">Morgens</h5>
+                        <tr class="text-center">
+                            <th>Beginn</th>
+                            <th>Ende</th>
+                            <th>Kurs</th>
+                            <th>Raum</th>
+                            <th>Trainer</th>
+                        </tr>
+                    </thead>
 
 
-                <div class="col-10 mt-4">
-                    <div th:switch="${eventsAfternoon}">
-                        <div th:case="null">
-                            <span>Keine Kurse angelegt gefunden</span>
-                        </div>
-                        <div th:case="*">
-                            <tr class="t-hover" th:each="event : ${eventsAfternoon}">
-                                <td><a class="t-link btn" th:text="${event.startAt}"
-                                        th:href="@{${'/event/' +  event.id}}"></a>
-                                </td>
-                                <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.course.name}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.room.displayValue}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5"></td>
-                            </tr>
+
+                    <div class="col-10 mt-4">
+                        <div th:switch="${eventsMorning}">
+                            <div th:case="null">
+                                <span>Keine Kurse angelegt gefunden</span>
+                            </div>
+                            <div th:case="*">
+                                <tr class="t-hover" th:each="event : ${eventsMorning}">
+                                    <td><a class="t-link btn" th:text="${event.startAt}"
+                                            th:href="@{${'/event/' +  event.id}}"></a>
+                                    </td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.startAt.plusMinutes(event.course.duration)}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.course.name}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.room.displayValue}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.user.firstname + ' ' + event.user.lastname }"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                </tr>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </table>
+                </table>
 
-            <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
-
-            <table class="table w-75 mx-auto">
-                <thead class="thead-light">
-                    <h5 class="table w-75 mx-auto mt-5">Abends</h5>
-                    <tr class="text-center">
-                        <th>Beginn</th>
-                        <th>Ende</th>
-                        <th>Kurs</th>
-                        <th>Raum</th>
-                        <th>Trainer</th>
-                    </tr>
-                </thead>
+                <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
+                <table class="table  mx-auto">
+                    <thead class="thead-light">
+                        <h5 class="table  mx-auto mt-5">Mittags</h5>
+                        <tr class="text-center">
+                            <th>Beginn</th>
+                            <th>Ende</th>
+                            <th>Kurs</th>
+                            <th>Raum</th>
+                            <th>Trainer</th>
+                        </tr>
+                    </thead>
 
 
-                <div class="col-10 mt-4">
-                    <div th:switch="${eventsEvening}">
-                        <div th:case="null">
-                            <span>Keine Kurse angelegt gefunden</span>
-                        </div>
-                        <div th:case="*">
-                            <tr class="t-hover" th:each="event : ${eventsEvening}">
-                                <td><a class="t-link btn" th:text="${event.startAt}"
-                                        th:href="@{${'/event/' +  event.id}}"></a>
-                                </td>
-                                <td><a class="t-link btn" th:text="${event.startAt.plusMinutes(event.course.duration)}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.course.name}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.room.displayValue}"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                                <td><a class="t-link btn" th:text="${event.user.firstname + ' ' + event.user.lastname }"
-                                        th:href="@{${'/event/' +  event.id}}"></a></td>
-                            </tr>
-                            <tr>
-                                <td colspan="5"></td>
-                            </tr>
+                    <div class="col-10 mt-4">
+                        <div th:switch="${eventsAfternoon}">
+                            <div th:case="null">
+                                <span>Keine Kurse angelegt gefunden</span>
+                            </div>
+                            <div th:case="*">
+                                <tr class="t-hover" th:each="event : ${eventsAfternoon}">
+                                    <td><a class="t-link btn" th:text="${event.startAt}"
+                                            th:href="@{${'/event/' +  event.id}}"></a>
+                                    </td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.startAt.plusMinutes(event.course.duration)}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.course.name}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.room.displayValue}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.user.firstname + ' ' + event.user.lastname }"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                </tr>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </table>
+                </table>
+
+                <!-- //TODO: hier wird dreimal das gleiche gemacht, auslagern in ein fragment -->
+
+                <table class="table  mx-auto">
+                    <thead class="thead-light">
+                        <h5 class="table  mx-auto mt-5">Abends</h5>
+                        <tr class="text-center">
+                            <th>Beginn</th>
+                            <th>Ende</th>
+                            <th>Kurs</th>
+                            <th>Raum</th>
+                            <th>Trainer</th>
+                        </tr>
+                    </thead>
+
+
+                    <div class="col-10 mt-4">
+                        <div th:switch="${eventsEvening}">
+                            <div th:case="null">
+                                <span>Keine Kurse angelegt gefunden</span>
+                            </div>
+                            <div th:case="*">
+                                <tr class="t-hover" th:each="event : ${eventsEvening}">
+                                    <td><a class="t-link btn" th:text="${event.startAt}"
+                                            th:href="@{${'/event/' +  event.id}}"></a>
+                                    </td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.startAt.plusMinutes(event.course.duration)}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.course.name}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn" th:text="${event.room.displayValue}"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                    <td><a class="t-link btn"
+                                            th:text="${event.user.firstname + ' ' + event.user.lastname }"
+                                            th:href="@{${'/event/' +  event.id}}"></a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                </tr>
+                            </div>
+                        </div>
+                    </div>
+                </table>
+            </div>
         </div>
     </div>
     <hr class="schedule-hr">
